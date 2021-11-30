@@ -4,7 +4,7 @@ class Event extends AppModel {
 
     var $name = 'Event';
 
-    function getPage($page = 1, $limit = null, $conditions = array(), $order = array('created' => 'desc', 'name' => 'asc'), $field= array()) {
+    function getPage($page = 1, $limit = null, $conditions = array(), $order = array('created' => 'desc', 'title' => 'asc'), $field= array()) {
         $array = array(
             'limit' => $limit,
             'page' => $page,

@@ -102,10 +102,8 @@ function deleteEventAdmin($input){
      }
 }
 
-
-function listlocationAdmin($input){
-     //Configure::write('debug', 2);
-    $modelLocation = new location();
+function ListGroupLocationAdmin($input){
+        $modelGroupLocation = new GroupLocation();
     global $urlNow;
     if (checkAdminLogin()) {
         # code...
@@ -113,9 +111,9 @@ function listlocationAdmin($input){
         if($page<=0) $page=1;
         $limit= 15;
         $order = array('created'=>'desc');
-        $listData= $modelLocation->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+        $listData= $modelGroupLocation->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
 
-        $totalData= $modelLocation->find('count');
+        $totalData= $modelGroupLocation->find('count');
 
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;
@@ -153,8 +151,43 @@ function listlocationAdmin($input){
     }else{
         $modelCard->redirect($urlHomes);
     }
+}
+
+function addGroupLocationAdmin($input){
+    $modelGroupLocation = new GroupLocation();
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelLocation->getGroupLocation($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+
+           
+
+            $save['GroupLocation']['name']= $dataSend['name'];
+            $save['GroupLocation']['not']= $dataSend['not'];
+            $save['GroupLocation']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+            
+
+            if ($modelGroupLocation->save($save)) {
+                 $modelGroupLocation->redirect($urlPlugins.'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php?code=1');
+            }else{
+                 $modelGroupLocation->redirect($urlPlugins.'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php?code=-1');
+            }
+        }
+    }else{
+        $modelGroupLocation->redirect($urlHomes);
+    }
 
 }
+
+
+
 function addLocationAdmin($input){
     $modelLocation = new location();
     global $urlPlugins;
