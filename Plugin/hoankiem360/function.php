@@ -3,7 +3,7 @@
     $menus= array();
     $menus[0]['title'] = 'Hoàn Kiếm 360';
 
-    $menus[0]['sub'][0] = array('name' => 'Danh sách sự kện ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-Event-listEventAdmin.php','permission'=>'listEventAdmin');
+    $menus[0]['sub'][0] = array('name' => 'Danh sách sự kện ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php','permission'=>'listEventAdmin');
 
     $menus[0]['sub'][3] = array('name' => 'Danh sách tỉnh thành', 'url' => $urlPlugins . 'admin/mantanHotel-admin-city-listCityAdmin.php','permission'=>'listCityAdmin');
 $menus[0]['sub'][4] = array('name' => 'Danh sách tiện nghi', 'url' => $urlPlugins . 'admin/mantanHotel-admin-furniture-listFurnitureAdmin.php','permission'=>'listFurnitureAdmin');
