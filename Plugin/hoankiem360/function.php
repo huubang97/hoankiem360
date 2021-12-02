@@ -3,11 +3,11 @@
     $menus= array();
     $menus[0]['title'] = 'Hoàn Kiếm 360';
 
-    $menus[0]['sub'][0] = array('name' => 'Danh sách sự kện ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php','permission'=>'listEventAdmin');
-    $menus[0]['sub'][1] = array('name' => 'Danh sách nhóm vị trí ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php','permission'=>'ListGroupLocationAdmin');
+    $menus[0]['sub'][0] = array('name' => 'Sự kện', 'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php','permission'=>'listEventAdmin');
+    $menus[0]['sub'][1] = array('name' => 'Chuyên mục địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php','permission'=>'ListGroupLocationAdmin');
+    $menus[0]['sub'][2] = array('name' => 'Loại hình dịch vụ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php','permission'=>'ListServiceTypeAdmin');
+    $menus[0]['sub'][3] = array('name' => 'Địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php','permission'=>'listLocationAdmin');
 
-    $menus[0]['sub'][3] = array('name' => 'Danh sách tỉnh thành', 'url' => $urlPlugins . 'admin/mantanHotel-admin-city-listCityAdmin.php','permission'=>'listCityAdmin');
-    $menus[0]['sub'][4] = array('name' => 'Danh sách tiện nghi', 'url' => $urlPlugins . 'admin/mantanHotel-admin-furniture-listFurnitureAdmin.php','permission'=>'listFurnitureAdmin');
 
 addMenuAdminMantan($menus);
 

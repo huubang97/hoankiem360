@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo $urlHomes . 'app/Plugin/mantanHotel/script.js'; ?>"></script>
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
-$breadcrumb = array('name' => 'Chuyên mục địa điểm',
-    'url' => $urlPlugins . 'admin/mantanHotel-admin-groupLocation-listGroupLocationAdmin.php',
+$breadcrumb = array('name' => 'Địa điểm',
+    'url' => $urlPlugins . 'admin/mantanHotel-admin-location-listLocationAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -34,7 +34,7 @@ element.style {
 </style> 
 
 <div class="clear"></div>
-<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-groupLocation-addGroupLocationAdmin.php'; ?>" class="input">
+<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-addLocationAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm
 </a>  
 <div class="taovien" >
@@ -42,7 +42,10 @@ element.style {
         <table id="listTable" cellspacing="0" class="tableList">
 
             <tr>
-                <th>Tên chuyên mục địa điểm </th>
+                <th>Hình ảnh</th>
+                <th>Tên địa điểm</th>
+                <th>Số điện thoại</th>
+                <th>địa chỉ </th>
                 <th colspan="2">Hành động</th>
             </tr>
 
@@ -53,13 +56,16 @@ element.style {
                 foreach ($listData as $item) {
                     ?>
                     <tr>
-                        <td><?php echo $item['GroupLocation']['name'] ?></td>
+                        <td><img src="<?php echo $item['Location']['image']; ?>" width="100" /></td>
+                        <td><?php echo $item['Location']['name'] ?></td>
+                        <td><?php echo $item['Location']['phone'] ?></td>
+                        <td><?php echo $item['Location']['address'] ?></td>
                         
                         <td align="center">
-                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-groupLocation-addGroupLocationAdmin.php?id='.$item['GroupLocation']['id']; ?>">Sửa</a>
+                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-addLocationAdmin.php?id='.$item['Location']['id']; ?>">Sửa</a>
                         </td>
                         <td align="center">
-                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-groupLocation-deleteGroupLocationAdmin.php?id='.$item['GroupLocation']['id']; ?>">Xóa</a>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-deleteLocationAdmin.php?id='.$item['Location']['id']; ?>">Xóa</a>
                         </td>
 
                     </tr>

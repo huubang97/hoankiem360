@@ -1,8 +1,8 @@
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <script type="text/javascript" src="<?php echo $urlHomes.'app/Plugin/mantanHotel/script.js';?>"></script>
 <?php
-$breadcrumb = array('name' => 'Danh sách chuyên mục địa điểm',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php',
+$breadcrumb = array('name' => 'Loại hình dich vụ',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php',
     'sub' => array('name' => 'Thông tin')
 );
 addBreadcrumbAdmin($breadcrumb);
@@ -46,15 +46,15 @@ addBreadcrumbAdmin($breadcrumb);
     <form action="" method="post" name="">
         <div class="taovien col-md-12 col-sm-12 col-xs-12" >
             <div class="form-group col-sm-6">
-                <i>Tên chuyên mục địa điểm <span class="required">*</span>:</i>
-                <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['GroupLocation']['name'] ?>" class="form-control" required="">
+                <i>Tên loại hình dich vụ <span class="required">*</span>:</i>
+                <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['ServiceType']['name'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
                <i>Ảnh</i>
                 <br>
                 <?php
-                if (!empty($save['GroupLocation']['image'])) {
-                    $image = $save['GroupLocation']['image'];
+                if (!empty($save['ServiceType']['image'])) {
+                    $image = $save['ServiceType']['image'];
                 } else {
                     $image = '';
                 }
@@ -65,7 +65,7 @@ addBreadcrumbAdmin($breadcrumb);
             
              <div class="form-group col-sm-12">
                 <i>Mô tả  <span class="required">*</span>:</i>
-               <textarea name="not" id="not" onkeyup="" class="form-control" rows="5"><?php echo @$save['GroupLocation']['not'] ?></textarea>
+               <textarea name="not" id="not" onkeyup="" class="form-control" rows="5"><?php echo @$save['ServiceType']['not'] ?></textarea>
             </div>
            
              

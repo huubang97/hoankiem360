@@ -46,7 +46,7 @@ addBreadcrumbAdmin($breadcrumb);
     <form action="" method="post" name="">
         <div class="taovien col-md-12 col-sm-12 col-xs-12" >
             <div class="form-group col-sm-6">
-                <i>Tiêu đề <span class="required">*</span>:</i>
+                <i>Tên sự kiện <span class="required">*</span>:</i>
                 <input type="text" maxlength="100" name="title" id="title" value="<?php echo @$save['Event']['title'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
@@ -102,7 +102,7 @@ addBreadcrumbAdmin($breadcrumb);
                 </div>
             </div>
              <div class="form-group col-sm-6">
-                <i>Mô tả  <span class="required">*</span>:</i>
+                <i>Giới thiệu <span class="required">*</span>:</i>
                <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['Event']['introductory'] ?></textarea>
             </div>
            
