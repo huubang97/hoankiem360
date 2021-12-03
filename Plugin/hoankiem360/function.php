@@ -7,6 +7,7 @@
     $menus[0]['sub'][1] = array('name' => 'Chuyên mục địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php','permission'=>'ListGroupLocationAdmin');
     $menus[0]['sub'][2] = array('name' => 'Loại hình dịch vụ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php','permission'=>'ListServiceTypeAdmin');
     $menus[0]['sub'][3] = array('name' => 'Địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php','permission'=>'listLocationAdmin');
+    $menus[0]['sub'][4] = array('name' => 'Việt Nam 360', 'url' => $urlPlugins . 'admin/hoankiem360-admin-vietNam360-listVietNam360Admin.php','permission'=>'listLocationAdmin');
 
 
 addMenuAdminMantan($menus);

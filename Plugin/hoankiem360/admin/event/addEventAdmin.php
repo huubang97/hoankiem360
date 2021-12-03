@@ -46,15 +46,15 @@ addBreadcrumbAdmin($breadcrumb);
     <form action="" method="post" name="">
         <div class="taovien col-md-12 col-sm-12 col-xs-12" >
             <div class="form-group col-sm-6">
-                <i>Tên sự kiện <span class="required">*</span>:</i>
+                <i>Tên sự kiện<span class="required">*</span>:</i>
                 <input type="text" maxlength="100" name="title" id="title" value="<?php echo @$save['Event']['title'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
-                <i>Địa chỉ <span class="required">*</span>:</i>
+                <i>Địa chỉ<span class="required">*</span>:</i>
                 <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['Event']['address'] ?>" class="form-control" required="">
             </div>
             <div class="form-group col-sm-6">
-                <i>Ngày bắt đầu: <span class="required">*</span>:</i>
+                <i>Ngày bắt đầu<span class="required">*</span>:</i>
                 <input type="text" name="dateStart" class="form-control hasDatepicker" id="dateStart" required="" value="<?php echo @$save['Event']['dateStart'] ?>">
             </div>
             <div class="form-group col-sm-6">

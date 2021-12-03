@@ -405,4 +405,100 @@ function deleteLocationAdmin($input){
      }
 }
 
+
+function ListVietNam360Admin($input){
+
+
+    $modServiceType = new ServiceType();
+    global $urlNow;
+    if (checkAdminLogin()) {
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+        $listData= $modServiceType->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+
+        $totalData= $modServiceType->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addVietNam360Admin($input){
+    $modelServiceType = new ServiceType();
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelServiceType->getServiceType($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+            $save['ServiceType']['name']= $dataSend['name'];
+            $save['ServiceType']['not']= @$dataSend['not'];
+            $save['ServiceType']['image']= @$dataSend['image'];
+            $save['ServiceType']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelServiceType->save($save)) {
+                   
+                 $modelServiceType->redirect($urlPlugins.'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php?code=1');
+            }else{
+                 $modelServiceType->redirect($urlPlugins.'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelGroupLocation->redirect($urlHomes);
+    }
+
+}
+
+function deleteVietNam360Admin($input){
+    $modelServiceType = new ServiceType();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelServiceType->delete($idDelete);
+        $modelServiceType->redirect($urlPlugins.'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php?code=1');
+     }
+}
 ?>
