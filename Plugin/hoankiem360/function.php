@@ -7,14 +7,11 @@
     $menus[0]['sub'][1] = array('name' => 'Chuyên mục địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php','permission'=>'ListGroupLocationAdmin');
     $menus[0]['sub'][2] = array('name' => 'Loại hình dịch vụ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php','permission'=>'ListServiceTypeAdmin');
     $menus[0]['sub'][3] = array('name' => 'Địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php','permission'=>'listLocationAdmin');
-    $menus[0]['sub'][4] = array('name' => 'Việt Nam 360', 'url' => $urlPlugins . 'admin/hoankiem360-admin-vietNam360-listVietNam360Admin.php','permission'=>'listLocationAdmin');
+    $menus[0]['sub'][4] = array('name' => 'Ảnh 360', 'url' => $urlPlugins . 'admin/hoankiem360-admin-image360-listImage360Admin.php','permission'=>'listImage360Admin');
+    $menus[0]['sub'][5] = array('name' => 'Banner quản cáo', 'url' => $urlPlugins . 'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php','permission'=>'listImage360Admin');
 
 
 addMenuAdminMantan($menus);
-
-    global $themeSettings;
-    $themeSettings= $modelOption->getOption('ManMoVer3ThemeSettings');
-
     if(empty($_SESSION['language'])){
         $_SESSION['language']= 'vi';
         //$_SESSION['language']= 'en';

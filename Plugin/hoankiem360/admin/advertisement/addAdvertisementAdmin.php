@@ -1,8 +1,8 @@
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <script type="text/javascript" src="<?php echo $urlHomes.'app/Plugin/mantanHotel/script.js';?>"></script>
 <?php
-$breadcrumb = array('name' => 'Việt Nam 360',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-vietNam360-listVietNam360Admin.php',
+$breadcrumb = array('name' => 'Banner quản cáo',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php',
     'sub' => array('name' => 'Thông tin')
 );
 addBreadcrumbAdmin($breadcrumb);
@@ -46,15 +46,15 @@ addBreadcrumbAdmin($breadcrumb);
     <form action="" method="post" name="">
         <div class="taovien col-md-12 col-sm-12 col-xs-12" >
             <div class="form-group col-sm-6">
-                <i>Tên loại hình dich vụ <span class="required">*</span>:</i>
-                <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['ServiceType']['name'] ?>" class="form-control" required="">
+                <i>Tên Banner quản cáo<span class="required">*</span>:</i>
+                <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['Advertisement']['name'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
                <i>Ảnh</i>
                 <br>
                 <?php
-                if (!empty($save['ServiceType']['image'])) {
-                    $image = $save['ServiceType']['image'];
+                if (!empty($save['Advertisement']['image'])) {
+                    $image = $save['Advertisement']['image'];
                 } else {
                     $image = '';
                 }
@@ -62,9 +62,13 @@ addBreadcrumbAdmin($breadcrumb);
                 showUploadFile('image', 'image', $image);
                 ?>
             </div>
-             <div class="form-group col-sm-12">
+             <div class="form-group col-sm-6">
+                <i>link <span class="required">*</span>:</i>
+                <input type="text" maxlength="100" name="link" id="link" value="<?php echo @$save['Advertisement']['link'] ?>" class="form-control" required="">
+            </div>
+             <div class="form-group col-sm-6">
                 <i>Mô tả  <span class="required">*</span>:</i>
-               <textarea name="not" id="not" onkeyup="" class="form-control" rows="5"><?php echo @$save['ServiceType']['not'] ?></textarea>
+               <textarea name="not" id="not" onkeyup="" class="form-control" rows="5"><?php echo @$save['Advertisement']['not'] ?></textarea>
             </div>
         </div>
         

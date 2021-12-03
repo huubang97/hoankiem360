@@ -200,7 +200,7 @@ function deleteGroupLocationAdmin($input){
 function ListServiceTypeAdmin($input){
 
 
-    $modServiceType = new ServiceType();
+    $modelServiceType = new ServiceType();
     global $urlNow;
     if (checkAdminLogin()) {
         # code...
@@ -208,9 +208,9 @@ function ListServiceTypeAdmin($input){
         if($page<=0) $page=1;
         $limit= 15;
         $order = array('created'=>'desc');
-        $listData= $modServiceType->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+        $listData= $modelServiceType->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
 
-        $totalData= $modServiceType->find('count');
+        $totalData= $modelServiceType->find('count');
 
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;
@@ -278,7 +278,7 @@ function addServiceTypeAdmin($input){
             }
         }
     }else{
-        $modelGroupLocation->redirect($urlHomes);
+        $modelServiceType->redirect($urlHomes);
     }
 
 }
@@ -406,10 +406,10 @@ function deleteLocationAdmin($input){
 }
 
 
-function ListVietNam360Admin($input){
+function listImage360Admin($input){
 
 
-    $modServiceType = new ServiceType();
+    $modelImage360 = new Image360();
     global $urlNow;
     if (checkAdminLogin()) {
         # code...
@@ -417,9 +417,9 @@ function ListVietNam360Admin($input){
         if($page<=0) $page=1;
         $limit= 15;
         $order = array('created'=>'desc');
-        $listData= $modServiceType->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+        $listData= $modelImage360->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
 
-        $totalData= $modServiceType->find('count');
+        $totalData= $modelImage360->find('count');
 
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;
@@ -460,45 +460,143 @@ function ListVietNam360Admin($input){
 }
 
 
-function addVietNam360Admin($input){
-    $modelServiceType = new ServiceType();
+function addImage360Admin($input){
+    $modelImage360 = new Image360();
     global $urlPlugins;
     global $isRequestPost;
     
     if (checkAdminLogin()) {
         if (!empty($_GET['id'])) {
-            $save=$modelServiceType->getServiceType($_GET['id']);
+            $save=$modelImage360->getImage360($_GET['id']);
             setVariable('save',$save);
         }
 
         if ($isRequestPost) {
             $dataSend=$input['request']->data;
-            $save['ServiceType']['name']= $dataSend['name'];
-            $save['ServiceType']['not']= @$dataSend['not'];
-            $save['ServiceType']['image']= @$dataSend['image'];
-            $save['ServiceType']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+            $save['Image360']['name']= $dataSend['name'];
+            $save['Image360']['not']= @$dataSend['not'];
+            $save['Image360']['image']= @$dataSend['image'];
+            $save['Image360']['link']= @$dataSend['link'];
+            $save['Image360']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
-            if ($modelServiceType->save($save)) {
+            if ($modelImage360->save($save)) {
                    
-                 $modelServiceType->redirect($urlPlugins.'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php?code=1');
+                 $modelImage360->redirect($urlPlugins.'admin/hoankiem360-admin-image360-listImage360Admin.php?code=1');
             }else{
-                 $modelServiceType->redirect($urlPlugins.'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php?code=2');
+                 $modelImage360->redirect($urlPlugins.'admin/hoankiem360-admin-image360-listImage360Admin.php?code=2');
                    
             }
         }
     }else{
-        $modelGroupLocation->redirect($urlHomes);
+        $modelImage360->redirect($urlHomes);
     }
 
 }
 
-function deleteVietNam360Admin($input){
-    $modelServiceType = new ServiceType();
+function deleteImage360Admin($input){
+    $modelImage360 = new Image360();
     global $urlPlugins;
     if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
         $idDelete = new MongoId($_GET['id']);
-        $modelServiceType->delete($idDelete);
-        $modelServiceType->redirect($urlPlugins.'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php?code=1');
+        $modelImage360->delete($idDelete);
+        $modelImage360->redirect($urlPlugins.'admin/hoankiem360-admin-image360-listImage360Admin.php?code=1');
+     }
+}
+
+function listAdvertisementAdmin($input){
+
+
+    $modelAdvertisement = new Advertisement();
+    global $urlNow;
+    if (checkAdminLogin()) {
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+        $listData= $modelAdvertisement->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+
+        $totalData= $modelAdvertisement->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addAdvertisementAdmin($input){
+    $modelAdvertisement = new Advertisement();
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelAdvertisement->getAdvertisement($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+            $save['Advertisement']['name']= $dataSend['name'];
+            $save['Advertisement']['not']= @$dataSend['not'];
+            $save['Advertisement']['image']= @$dataSend['image'];
+            $save['Advertisement']['link']= @$dataSend['link'];
+            $save['Advertisement']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelAdvertisement->save($save)) {
+                   
+                 $modelAdvertisement->redirect($urlPlugins.'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php?code=1');
+            }else{
+                 $modelAdvertisement->redirect($urlPlugins.'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelAdvertisement->redirect($urlHomes);
+    }
+
+}
+
+function deleteAdvertisementAdmin($input){
+    $modelAdvertisement = new Advertisement();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelAdvertisement->delete($idDelete);
+        $modelAdvertisement->redirect($urlPlugins.'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php?code=1');
      }
 }
 ?>

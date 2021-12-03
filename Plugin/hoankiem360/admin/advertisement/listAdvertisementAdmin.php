@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo $urlHomes . 'app/Plugin/mantanHotel/script.js'; ?>"></script>
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
-$breadcrumb = array('name' => 'Loại hình dịch vụ',
-    'url' => $urlPlugins . 'admin/mantanHotel-admin-serviceType-listServiceTypeAdmin.php',
+$breadcrumb = array('name' => 'Banner quản cáo',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -34,7 +34,7 @@ element.style {
 </style> 
 
 <div class="clear"></div>
-<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-serviceType-addServiceTypeAdmin.php'; ?>" class="input">
+<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-advertisement-addAdvertisementAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm
 </a>  
 <div class="taovien" >
@@ -42,7 +42,7 @@ element.style {
         <table id="listTable" cellspacing="0" class="tableList">
 
             <tr>
-                <th>Tên loại hình dịch vụ </th>
+                <th>Tên banner quản cáo</th>
                 <th>Ảnh </th>
                 <th colspan="2">Hành động</th>
             </tr>
@@ -54,14 +54,14 @@ element.style {
                 foreach ($listData as $item) {
                     ?>
                     <tr>
-                        <td><?php echo $item['ServiceType']['name'] ?></td>
-                        <td><img src="<?php echo $item['ServiceType']['image']; ?>" width="100" /></td>
+                        <td><a href="<?php echo @$item['Advertisement']['link'] ?>" target="_blank" ><?php echo @$item['Advertisement']['name'] ?></a></td>
+                        <td><img src="<?php echo @$item['Advertisement']['image']; ?>" width="100" /></td>
                         
                         <td align="center">
-                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-serviceType-addServiceTypeAdmin.php?id='.$item['ServiceType']['id']; ?>">Sửa</a>
+                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-advertisement-addAdvertisementAdmin.php?id='.$item['Advertisement']['id']; ?>">Sửa</a>
                         </td>
                         <td align="center">
-                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-serviceType-deleteServiceTypeAdmin.php?id='.$item['ServiceType']['id']; ?>">Xóa</a>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-advertisement-deleteAdvertisementAdmin.php?id='.$item['Advertisement']['id']; ?>">Xóa</a>
                         </td>
 
                     </tr>
@@ -76,7 +76,7 @@ element.style {
         </table>
         <p>
             <?php
-            $urlListHotelAdmin = $urlPlugins . 'admin/mantanHotel-admin-serviceType-listServiceTypeAdmin.php';
+            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php';
             if ($page > 5) {
                 $startPage = $page - 5;
             } else {

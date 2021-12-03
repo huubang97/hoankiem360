@@ -2,7 +2,7 @@
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
 $breadcrumb = array('name' => 'Địa điểm',
-    'url' => $urlPlugins . 'admin/mantanHotel-admin-location-listLocationAdmin.php',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -80,7 +80,7 @@ element.style {
         </table>
         <p>
             <?php
-            $urlListHotelAdmin = $urlPlugins . 'admin/mantanHotel-admin-typeroom-sortTypeRoom.php';
+            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php';
             if ($page > 5) {
                 $startPage = $page - 5;
             } else {

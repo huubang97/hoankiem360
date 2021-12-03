@@ -80,7 +80,7 @@ element.style {
         </table>
         <p>
             <?php
-            $urlListHotelAdmin = $urlPlugins . 'admin/mantanHotel-admin-typeroom-sortTypeRoom.php';
+            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php';
             if ($page > 5) {
                 $startPage = $page - 5;
             } else {
