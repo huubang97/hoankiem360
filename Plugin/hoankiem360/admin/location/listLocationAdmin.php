@@ -32,12 +32,49 @@ element.style {
     word-break: break-all;
 }
 </style> 
+ <form action="" method="GET">
+           <table class="table table-bordered" style="border: 1px solid #ddd!important; margin-top: 10px;">  
+            <tr>
+                <td>
+                    <label>Tên địa điểm</label>
+                    <input type="" name="name" class="form-control" placeholder="Tên địa điểm" value="<?php echo @$_GET['name'];?>">
+                </td>
+                <td>
+                    <label>Danh Mục</label> 
+                     <select name="groupLocation" class="form-control" id="groupLocation">
+                    <option value="" save-price="">Chọn chuyên mục</option>
+                    <?php
+                    if(!empty($dataGroupLocation)){
+                        foreach($dataGroupLocation as $groupLocation){
+                            if(!isset($_GET['groupLocation']) || $groupLocation['GroupLocation']['id']!=@$_GET['groupLocation']){
+                                echo '<option value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
+                            }else{
+                                echo '<option selected value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
+                            }
+                        }
+                    }
+                    ?>
+                </select>    
+                </td>
+                
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="" value="Tìm kiếm">
+                </td>
+                <td colspan="2">
+                    <!-- <input type="submit" name="excel" value="Xuất excel"> -->
+                </td>
+            </tr>
+        </table>
+    </form>
 
 <div class="clear"></div>
 <a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-addLocationAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm
 </a>  
 <div class="taovien" >
+
     <form action="" method="post" name="listForm">
         <table id="listTable" cellspacing="0" class="tableList">
 

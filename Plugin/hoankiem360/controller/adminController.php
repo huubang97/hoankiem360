@@ -9,7 +9,22 @@ function listEventAdmin($input){
         if($page<=0) $page=1;
         $limit= 15;
         $order = array('created'=>'desc');
-        $listData= $modelEvent->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        if(!empty($_GET['month'])){
+                $conditions['month']= $_GET['month'];
+        }
+
+        $listData= $modelEvent->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        //debug($listData);
+        //die();
 
         $totalData= $modelEvent->find('count');
 
@@ -296,15 +311,33 @@ function deleteServiceTypeAdmin($input){
 
 function ListLocationAdmin($input){
         $modelLocation = new Location();
+         $modelServiceType = new ServiceType();
+    $modelGroupLocation = new GroupLocation();
 
     global $urlNow;
     if (checkAdminLogin()) {
+        $dataGroupLocation = $modelGroupLocation->find('all', array());
+    $dataServiceType = $modelServiceType->find('all', array());
+    
         # code...
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
         $order = array('created'=>'desc');
-        $listData= $modelLocation->getPage($page, $limit = 15, $conditions = array(), $order =  $order, $fields=null);
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        if(!empty($_GET['groupLocation'])){
+                $conditions['groupLocation']= $_GET['groupLocation'];
+        }
+        $listData= $modelLocation->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
 
         $totalData= $modelLocation->find('count');
 
@@ -335,7 +368,8 @@ function ListLocationAdmin($input){
         }
 
         setVariable('listData',$listData);
-
+        setVariable('dataGroupLocation',$dataGroupLocation);
+    setVariable('dataServiceType',$dataServiceType);
         setVariable('page',$page);
         setVariable('totalPage',$totalPage);
         setVariable('back',$back);

@@ -113,14 +113,23 @@ addBreadcrumbAdmin($breadcrumb);
                 <i>Tọa độ GPS <span class="required">*</span>:</i>
                 <input type="text" name="location" class="form-control" id="location" required="" value="<?php echo @$save['Location']['location'] ?>">
             </div>
-             <div class="form-group col-sm-6">
-                <i>Kết nối id Manmo:</i>
-                <input type="text" name="idHotel" class="form-control" id="idHotel" required="" value="<?php echo @$save['Location']['idHotel'] ?>">
-            </div>
-           
-             <div class="form-group col-sm-6">
+            <div class="form-group col-sm-6">
                 <i>Gới thệu:</i>
                <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['Event']['introductory'] ?></textarea>
+            </div>
+            <div class="form-group col-sm-6">
+                <i>ảnh 360:</i>
+               <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['Event']['introductory'] ?></textarea>
+            </div>
+            <div class="form-group col-sm-6">
+                <i>Kết nối id Manmo:</i>
+                <input type="text" name="idHotel" class="form-control" id="idHotel"  value="<?php echo @$save['Location']['idHotel'] ?>">
+            </div>
+            <div class="form-group col-sm-12">
+                <i>Bài viết</i>
+               <?php
+                        showEditorInput('content','content',@$save['Event']['content'],1);
+                    ?>                                          
             </div>
            
 

@@ -2,7 +2,7 @@
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
 $breadcrumb = array('name' => 'Sự kiện',
-    'url' => $urlPlugins . 'admin/mantanHotel-admin-event-listEventAdmin.php',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -32,7 +32,43 @@ element.style {
     word-break: break-all;
 }
 </style> 
-
+ <form action="" method="GET">
+           <table class="table table-bordered" style="border: 1px solid #ddd!important; margin-top: 10px;">  
+            <tr>
+                <td>
+                    <label>Tên địa điểm</label>
+                    <input type="" name="name" class="form-control" placeholder="Tên địa điểm" value="<?php echo @$_GET['name'];?>">
+                </td>
+                <td>
+                    <label>Tháng diễn ra</label> 
+                      <select name="month" class="form-control" id="month">
+                    <option value="" save-price="">Chọn tháng diễn ra </option>
+                    <?php
+                    $getmonth   = getmonth();
+                    if(!empty($getmonth)){
+                        foreach($getmonth as $month){
+                            if(!isset($_GET['month']) || $month['id']!=@$_GET['month']){
+                                echo '<option value="'.$month['id'].'">'.$month['name'].'</option>';
+                            }else{
+                                echo '<option selected value="'.$month['id'].'">'.$month['name'].'</option>';
+                            }
+                        }
+                    }
+                    ?>
+                </select> 
+                </td>
+                
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="" value="Tìm kiếm">
+                </td>
+                <td colspan="2">
+                    <!-- <input type="submit" name="excel" value="Xuất excel"> -->
+                </td>
+            </tr>
+        </table>
+    </form>
 <div class="clear"></div>
 <a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-event-addEventAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm

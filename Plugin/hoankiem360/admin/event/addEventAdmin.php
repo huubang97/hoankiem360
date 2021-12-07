@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?php echo $urlHomes.'app/Plugin/mantanHotel/script.js';?>"></script>
 <?php
 $breadcrumb = array('name' => 'Sự Kiện',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-Event-listEventAdmin.php',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php',
     'sub' => array('name' => 'Thông tin Sự Kiện')
 );
 addBreadcrumbAdmin($breadcrumb);
