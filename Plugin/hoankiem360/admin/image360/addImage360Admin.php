@@ -46,7 +46,7 @@ addBreadcrumbAdmin($breadcrumb);
     <form action="" method="post" name="">
         <div class="taovien col-md-12 col-sm-12 col-xs-12" >
             <div class="form-group col-sm-6">
-                <i>Tên loại hình dich vụ <span class="required">*</span>:</i>
+                <i>Tiêu đề<span class="required">*</span>:</i>
                 <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['Image360']['name'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
@@ -63,7 +63,7 @@ addBreadcrumbAdmin($breadcrumb);
                 ?>
             </div>
              <div class="form-group col-sm-6">
-                <i>link <span class="required">*</span>:</i>
+                <i>Link ảnh 360<span class="required">*</span>:</i>
                 <input type="text" maxlength="100" name="link" id="link" value="<?php echo @$save['Image360']['link'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">

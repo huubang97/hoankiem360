@@ -1,7 +1,7 @@
 <?php
-class Restaurant extends AppModel {
+class Hklake extends AppModel {
 
-    var $name = 'Restaurant';
+    var $name = 'Hklake';
 
     function getPage($page = 1, $limit = null, $conditions = array(), $order = array('created' => 'desc', 'name' => 'asc'), $field= array()) {
         $array = array(
@@ -14,7 +14,7 @@ class Restaurant extends AppModel {
         return $this->find('all', $array);
     }
 
-    function getRestaurant($id='') {
+    function getHklake($id='') {
         if(MongoId::isValid($id)){
             $id = new MongoId($id);
             $dk = array('_id' => $id);

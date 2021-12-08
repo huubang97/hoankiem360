@@ -2,7 +2,7 @@
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
 $breadcrumb = array('name' => 'Di tích lịch sử',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-HistoricalSites-listHistoricalSitesAdmin.php',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-historicalSites-listHistoricalSitesAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -36,26 +36,9 @@ element.style {
            <table class="table table-bordered" style="border: 1px solid #ddd!important; margin-top: 10px;">  
             <tr>
                 <td>
-                    <label>Tên địa điểm</label>
-                    <input type="" name="name" class="form-control" placeholder="Tên địa điểm" value="<?php echo @$_GET['name'];?>">
+                    <label>Tên di tích</label>
+                    <input type="" name="name" class="form-control" placeholder="Tên di tích" value="<?php echo @$_GET['name'];?>">
                 </td>
-                <!-- <td>
-                    <label>Danh Mục</label> 
-                     <select name="groupLocation" class="form-control" id="groupLocation">
-                    <option value="" save-price="">Chọn chuyên mục</option>
-                    <?php
-                    if(!empty($dataGroupLocation)){
-                        foreach($dataGroupLocation as $groupLocation){
-                            if(!isset($_GET['groupLocation']) || $groupLocation['GroupLocation']['id']!=@$_GET['groupLocation']){
-                                echo '<option value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
-                            }else{
-                                echo '<option selected value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
-                            }
-                        }
-                    }
-                    ?>
-                </select>    
-                </td> -->
                  <td colspan="2">
                     <br>
                     <input type="submit" name="" style="margin-top: 7px;" value="Tìm kiếm">
@@ -81,7 +64,7 @@ element.style {
 
             <tr>
                 <th>Hình ảnh</th>
-                <th>Tên địa điểm</th>
+                <th>Tên di tích</th>
                 <th>Số điện thoại</th>
                 <th>địa chỉ </th>
                 <th colspan="2">Hành động</th>
@@ -118,7 +101,12 @@ element.style {
         </table>
         <p>
             <?php
-            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php';
+            $search = '';
+
+            if(!empty($_GET['name'])){
+                 $search .= '&name='.$_GET['name'].'';
+            }
+            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-historicalSites-listHistoricalSitesAdmin.php';
             if ($page > 5) {
                 $startPage = $page - 5;
             } else {
@@ -131,11 +119,11 @@ element.style {
                 $endPage = $totalPage;
             }
 
-            echo '<a href="' . $urlListHotelAdmin . '?page=' . $back . '">Trang trước</a> ';
+            echo '<a href="' . $urlListHotelAdmin . '?page=' . $back.@$search . '">Trang trước</a> ';
             for ($i = $startPage; $i <= $endPage; $i++) {
-                echo ' <a href="' . $urlListHotelAdmin . '?page=' . $i . '">' . $i . '</a> ';
+                echo ' <a href="' . $urlListHotelAdmin . '?page=' . $i.@$search . '">' . $i . '</a> ';
             }
-            echo ' <a href="' . $urlListHotelAdmin . '?page=' . $next . '">Trang sau</a> ';
+            echo ' <a href="' . $urlListHotelAdmin . '?page=' . $next.@$search . '">Trang sau</a> ';
 
             echo 'Tổng số trang: ' . $totalPage;
             ?>

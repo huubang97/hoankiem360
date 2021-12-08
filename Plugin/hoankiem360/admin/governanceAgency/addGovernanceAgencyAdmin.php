@@ -1,9 +1,9 @@
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <script type="text/javascript" src="<?php echo $urlHomes.'app/Plugin/mantanHotel/script.js';?>"></script>
 <?php
-$breadcrumb = array('name' => 'Nhà hàng',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php',
-    'sub' => array('name' => 'Thông tin nhà hàng')
+$breadcrumb = array('name' => 'Cơ quan hành chính',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-governanceAgency-listGovernanceAgencyAdmin.php',
+    'sub' => array('name' => 'Thông tin cơ quan hành chính')
 );
 addBreadcrumbAdmin($breadcrumb);
 ?>  
@@ -19,17 +19,17 @@ addBreadcrumbAdmin($breadcrumb);
 
 <script>
   $( function() {
-    /*$( ".datepicker" ).datepicker({
+    $( ".datepicker" ).datepicker({
       defaultDate:new Date(),
       closeOnDateSelect:true
     });
-*/
+
 
 
     $('.timepicker').timepicker({
         timeFormat: 'HH:mm',
         interval: 1,
-       // defaultTime: 'now',
+        defaultTime: 'now',
         dynamic: false,
         dropdown: true,
         scrollbar: true
@@ -47,34 +47,26 @@ addBreadcrumbAdmin($breadcrumb);
         <div class="taovien col-md-12 col-sm-12 col-xs-12" >
             <div class="form-group col-sm-6">
                 <i>Tiêu đề<span class="required">*</span>:</i>
-                <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['Restaurant']['name'] ?>" class="form-control" required="">
+                <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['GovernanceAgency']['name'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
                 <i>Địa chỉ<span class="required">*</span>:</i>
-                <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['Restaurant']['address'] ?>" class="form-control" required="">
+                <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['GovernanceAgency']['address'] ?>" class="form-control" required="">
             </div>
             <div class="form-group col-sm-6">
                 <i>Điện thoại<span class="required">*</span>:</i>
-                <input type="text" name="phone" class="form-control" id="phone" required="" value="<?php echo @$save['Restaurant']['phone'] ?>">
+                <input type="text" name="phone" class="form-control" id="phone" required="" value="<?php echo @$save['GovernanceAgency']['phone'] ?>">
             </div>
             <div class="form-group col-sm-6">
                 <i>Email:</i>
-                <input type="text" name="email" class="form-control" id="email" value="<?php echo @$save['Restaurant']['email'] ?>">
+                <input type="text" name="email" class="form-control" id="email"  value="<?php echo @$save['GovernanceAgency']['email'] ?>">
             </div>
-            <div class="form-group col-sm-6">
-                <i>Thời gian làm việc bắt đầu:<span class="required">*</span>:</i>
-                <input type="text" name="timeStart" id="timeStart" value="<?php echo @$save['Restaurant']['timeStart'] ?>"  class="form-control timepicker"  required />                                   
-            </div>
-            <div class="form-group col-sm-6">
-                <i>Thời gian làm việc kết thúc<span class="required">*</span>:</i>
-                <input type="text" name="timeEnd" id="timeEnd" value="<?php echo @$save['Restaurant']['timeEnd'] ?>"  class="form-control timepicker"  required />                                          
-            </div> 
             <div class="form-group col-sm-6">
                <i>Ảnh đại diện</i>
                 <br>
                 <?php
-                if (!empty($save['Restaurant']['image'])) {
-                    $image = $save['Restaurant']['image'];
+                if (!empty($save['GovernanceAgency']['image'])) {
+                    $image = $save['GovernanceAgency']['image'];
                 } else {
                     $image = '';
                 }
@@ -84,45 +76,41 @@ addBreadcrumbAdmin($breadcrumb);
             </div>
              <div class="form-group col-sm-6">
                 <i>Seo:</i>
-                <input type="text" name="seo" class="form-control" id="seo" required="" value="<?php echo @$save['Restaurant']['seo'] ?>">
+                <input type="text" name="seo" class="form-control" id="seo" required="" value="<?php echo @$save['GovernanceAgency']['seo'] ?>">
             </div>
              <div class="form-group col-sm-6">
                 <i>Từ khóa metadata <span class="required">*</span>:</i>
-                <input type="text" name="keyMetadata" class="form-control" id="keyMetadata" required="" value="<?php echo @$save['Restaurant']['keyMetadata'] ?>">
+                <input type="text" name="keyMetadata" class="form-control" id="keyMetadata" required="" value="<?php echo @$save['GovernanceAgency']['keyMetadata'] ?>">
             </div>
             <div class="form-group col-sm-6">
-                <i>Mô tả thẻ metadata<span class="required">*</span>:</i>
-                <input type="text" name="notmetadata" class="form-control" id="notmetadata" required="" value="<?php echo @$save['Restaurant']['notmetadata'] ?>">
+                <i> Mô tả thẻ metadata<span class="required">*</span>:</i>
+                <input type="text" name="notmetadata" class="form-control" id="notmetadata" required="" value="<?php echo @$save['GovernanceAgency']['notmetadata'] ?>">
             </div>
              <div class="form-group col-sm-6">
                 <i>Vĩ độ:</i>
-                <input type="text" name="latitude" class="form-control" id="latitude" value="<?php echo @$save['Restaurant']['latitude'] ?>">
+                <input type="text" name="latitude" class="form-control" id="latitude" value="<?php echo @$save['GovernanceAgency']['latitude'] ?>">
             </div>
              <div class="form-group col-sm-6">
                 <i>Kinh độ:</i>
-                <input type="text" name="longitude" class="form-control" id="longitude" value="<?php echo @$save['Restaurant']['longitude'] ?>">
+                <input type="text" name="longitude" class="form-control" id="longitude" value="<?php echo @$save['GovernanceAgency']['longitude'] ?>">
             </div>
              <div class="form-group col-sm-6">
                 <i>Ảnh 360:</i>
-                <input type="text" name="image360" class="form-control" id="image360"  value="<?php echo @$save['Restaurant']['image360'] ?>">
+                <input type="text" name="image360" class="form-control" id="image360"  value="<?php echo @$save['GovernanceAgency']['image360'] ?>">
                 <br>    
                 <i>Thứ tự:</i>
-                <input type="text" name="cassavaorder" class="form-control" id="cassavaorder" value="<?php echo @$save['Restaurant']['cassavaorder'] ?>">
+                <input type="text" name="cassavaorder" class="form-control" id="cassavaorder" value="<?php echo @$save['GovernanceAgency']['cassavaorder'] ?>">
             </div>
             <div class="form-group col-sm-6">
                 <i>Tổng quan:</i>
-               <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['Restaurant']['introductory'] ?></textarea>
-            </div>
-            <div class="form-group col-sm-6">
-                <i>Mã trên Manmo:</i>
-                <input type="text" name="codeManmo" class="form-control" id="codeManmo" value="<?php echo @$save['Restaurant']['codeManmo'] ?>">
+               <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['GovernanceAgency']['introductory'] ?></textarea>
             </div>
             <div class="form-group col-sm-12">
                 <i>Nội dung bài viết</i>
                <?php
-                        showEditorInput('content','content',@$save['Restaurant']['content'],1);
+                        showEditorInput('content','content',@$save['GovernanceAgency']['content'],1);
                     ?>                                          
-            </div>
+            </div>  
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-bottom: 15px;"><button type="submit" class="btn btn-primary">Thêm</button></div>
     </form>

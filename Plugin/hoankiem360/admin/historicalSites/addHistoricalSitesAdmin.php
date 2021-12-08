@@ -59,43 +59,8 @@ addBreadcrumbAdmin($breadcrumb);
             </div>
             <div class="form-group col-sm-6">
                 <i>Email:</i>
-                <input type="text" name="email" class="form-control" id="email" required="" value="<?php echo @$save['HistoricalSites']['email'] ?>">
+                <input type="text" name="email" class="form-control" id="email" value="<?php echo @$save['HistoricalSites']['email'] ?>">
             </div>
-            <!-- <div class="form-group col-sm-6">
-                <i>Loại hình dịch vụ:<span class="required">*</span>:</i>
-                <select name="serviceType" class="form-control" id="serviceType">
-                    <option value="" save-price="">Chọn loại hình dịch vụ </option>
-                    <?php
-                    $getmonth   = getmonth();
-                    if(!empty($dataServiceType)){
-                        foreach($dataServiceType as $serviceType){
-                            if(!isset($save['HistoricalSites']['serviceType']) || $serviceType['ServiceType']['id']!=$save['HistoricalSites']['serviceType']){
-                                echo '<option value="'.$serviceType['ServiceType']['id'].'">'.$serviceType['ServiceType']['name'].'</option>';
-                            }else{
-                                echo '<option selected value="'.$serviceType['ServiceType']['id'].'">'.$serviceType['ServiceType']['name'].'</option>';
-                            }
-                        }
-                    }
-                    ?>
-                </select>                                          
-            </div> -->
-           <!--  <div class="form-group col-sm-6">
-                <i>Chuyên mục<span class="required">*</span>:</i>
-                <select name="groupHistoricalSites" class="form-control" id="groupHistoricalSites">
-                    <option value="" save-price="">Chọn chuyên mục</option>
-                    <?php
-                    if(!empty($dataGroupHistoricalSites)){
-                        foreach($dataGroupHistoricalSites as $groupHistoricalSites){
-                            if(!isset($save['HistoricalSites']['groupHistoricalSites']) || $groupHistoricalSites['GroupHistoricalSites']['id']!=$save['HistoricalSites']['groupHistoricalSites']){
-                                echo '<option value="'.$groupHistoricalSites['GroupHistoricalSites']['id'].'">'.$groupHistoricalSites['GroupHistoricalSites']['name'].'</option>';
-                            }else{
-                                echo '<option selected value="'.$groupHistoricalSites['GroupHistoricalSites']['id'].'">'.$groupHistoricalSites['GroupHistoricalSites']['name'].'</option>';
-                            }
-                        }
-                    }
-                    ?>
-                </select>                                          
-            </div> -->
             <div class="form-group col-sm-6">
                <i>Ảnh đại diện</i>
                 <br>
@@ -130,7 +95,7 @@ addBreadcrumbAdmin($breadcrumb);
                 <input type="text" name="longitude" class="form-control" id="longitude" value="<?php echo @$save['HistoricalSites']['longitude'] ?>">
             </div>
              <div class="form-group col-sm-6">
-                <i>ảnh 360:</i>
+                <i>Ảnh 360:</i>
                 <input type="text" name="image360" class="form-control" id="image360"  value="<?php echo @$save['HistoricalSites']['image360'] ?>">
                 <br>    
                 <i>Thứ tự:</i>
@@ -140,30 +105,17 @@ addBreadcrumbAdmin($breadcrumb);
                 <i>Tổng quan:</i>
                <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['HistoricalSites']['introductory'] ?></textarea>
             </div>
-           
-            <!-- <div class="form-group col-sm-6">
-                <i>Kết nối id Manmo:</i>
-                <input type="text" name="idHotel" class="form-control" id="idHotel"  value="<?php echo @$save['HistoricalSites']['idHotel'] ?>">
-            </div> -->
             <div class="form-group col-sm-12">
                 <i>Nội dung bài viết</i>
                <?php
                         showEditorInput('content','content',@$save['HistoricalSites']['content'],1);
                     ?>                                          
             </div>
-           
-
-
-           
-
-             
         </div>
         
         <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-bottom: 15px;"><button type="submit" class="btn btn-primary">Thêm</button></div>
     </form>
 </div>
-
-
 <script>
   $( function() {
     $( ".hasDatepicker" ).datepicker({

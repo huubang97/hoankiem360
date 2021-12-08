@@ -1,7 +1,8 @@
 <?php
-class Restaurant extends AppModel {
 
-    var $name = 'Restaurant';
+class GovernanceAgency extends AppModel {
+
+    var $name = 'GovernanceAgency';
 
     function getPage($page = 1, $limit = null, $conditions = array(), $order = array('created' => 'desc', 'name' => 'asc'), $field= array()) {
         $array = array(
@@ -14,7 +15,7 @@ class Restaurant extends AppModel {
         return $this->find('all', $array);
     }
 
-    function getRestaurant($id='') {
+    function getGovernanceAgency($id='') {
         if(MongoId::isValid($id)){
             $id = new MongoId($id);
             $dk = array('_id' => $id);

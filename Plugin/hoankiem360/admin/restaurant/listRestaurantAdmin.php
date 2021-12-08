@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo $urlHomes . 'app/Plugin/mantanHotel/script.js'; ?>"></script>
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
-$breadcrumb = array('name' => 'Di tích lịch sử',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-HistoricalSites-listHistoricalSitesAdmin.php',
+$breadcrumb = array('name' => 'Nhà hàng',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -36,27 +36,10 @@ element.style {
            <table class="table table-bordered" style="border: 1px solid #ddd!important; margin-top: 10px;">  
             <tr>
                 <td>
-                    <label>Tên địa điểm</label>
-                    <input type="" name="name" class="form-control" placeholder="Tên địa điểm" value="<?php echo @$_GET['name'];?>">
+                    <label>Tên nhà hàng</label>
+                    <input type="" name="name" class="form-control" placeholder="Tên nhà hàng" value="<?php echo @$_GET['name'];?>">
                 </td>
-                <!-- <td>
-                    <label>Danh Mục</label> 
-                     <select name="groupLocation" class="form-control" id="groupLocation">
-                    <option value="" save-price="">Chọn chuyên mục</option>
-                    <?php
-                    if(!empty($dataGroupLocation)){
-                        foreach($dataGroupLocation as $groupLocation){
-                            if(!isset($_GET['groupLocation']) || $groupLocation['GroupLocation']['id']!=@$_GET['groupLocation']){
-                                echo '<option value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
-                            }else{
-                                echo '<option selected value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
-                            }
-                        }
-                    }
-                    ?>
-                </select>    
-                </td> -->
-                 <td colspan="2">
+                <td colspan="2">
                     <br>
                     <input type="submit" name="" style="margin-top: 7px;" value="Tìm kiếm">
                 </td>
@@ -71,7 +54,7 @@ element.style {
     </form>
 
 <div class="clear"></div>
-<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-addHistoricalSitesAdmin.php'; ?>" class="input">
+<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-restaurant-addRestaurantAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm
 </a>  
 <div class="taovien" >
@@ -81,7 +64,7 @@ element.style {
 
             <tr>
                 <th>Hình ảnh</th>
-                <th>Tên địa điểm</th>
+                <th>Tên nhà hàng</th>
                 <th>Số điện thoại</th>
                 <th>địa chỉ </th>
                 <th colspan="2">Hành động</th>
@@ -94,16 +77,16 @@ element.style {
                 foreach ($listData as $item) {
                     ?>
                     <tr>
-                        <td><img src="<?php echo $item['HistoricalSites']['image']; ?>" width="100" /></td>
-                        <td><?php echo $item['HistoricalSites']['name'] ?></td>
-                        <td><?php echo $item['HistoricalSites']['phone'] ?></td>
-                        <td><?php echo $item['HistoricalSites']['address'] ?></td>
+                        <td><img src="<?php echo $item['Restaurant']['image']; ?>" width="100" /></td>
+                        <td><?php echo $item['Restaurant']['name'] ?></td>
+                        <td><?php echo $item['Restaurant']['phone'] ?></td>
+                        <td><?php echo $item['Restaurant']['address'] ?></td>
                         
                         <td align="center">
-                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-addHistoricalSitesAdmin.php?id='.$item['HistoricalSites']['id']; ?>">Sửa</a>
+                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-restaurant-addRestaurantAdmin.php?id='.$item['Restaurant']['id']; ?>">Sửa</a>
                         </td>
                         <td align="center">
-                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-deleteHistoricalSitesAdmin.php?id='.$item['HistoricalSites']['id']; ?>">Xóa</a>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-restaurant-deleteRestaurantAdmin.php?id='.$item['Restaurant']['id']; ?>">Xóa</a>
                         </td>
 
                     </tr>
@@ -118,7 +101,7 @@ element.style {
         </table>
         <p>
             <?php
-            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php';
+            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php';
             if ($page > 5) {
                 $startPage = $page - 5;
             } else {
@@ -131,11 +114,17 @@ element.style {
                 $endPage = $totalPage;
             }
 
-            echo '<a href="' . $urlListHotelAdmin . '?page=' . $back . '">Trang trước</a> ';
-            for ($i = $startPage; $i <= $endPage; $i++) {
-                echo ' <a href="' . $urlListHotelAdmin . '?page=' . $i . '">' . $i . '</a> ';
+            $search = '';
+
+            if(!empty($_GET['name'])){
+                 $search = '&name='.$_GET['name'].'';
             }
-            echo ' <a href="' . $urlListHotelAdmin . '?page=' . $next . '">Trang sau</a> ';
+            
+            echo '<a href="' . $urlListHotelAdmin . '?page=' . $back.@$search . '">Trang trước</a> ';
+            for ($i = $startPage; $i <= $endPage; $i++) {
+                echo ' <a href="' . $urlListHotelAdmin . '?page=' . $i.@$search . '">' . $i . '</a> ';
+            }
+            echo ' <a href="' . $urlListHotelAdmin . '?page=' . $next.@$search . '">Trang sau</a> ';
 
             echo 'Tổng số trang: ' . $totalPage;
             ?>

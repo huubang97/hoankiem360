@@ -420,7 +420,7 @@ function addHistoricalSitesAdmin($input){
             }
         }
     }else{
-        $modelLocation->redirect($urlHomes);
+        $modelHistoricalSites->redirect($urlHomes);
     }
     setVariable('dataGroupLocation',$dataGroupLocation);
     setVariable('dataServiceType',$dataServiceType);
@@ -437,7 +437,7 @@ function deleteHistoricalSitesAdmin($input){
      }
 }
 
-/*Nhà nhà  */
+/*Nhà hàng  */
 function listRestaurantAdmin($input){
         $modelRestaurant = new Restaurant();
     
@@ -543,7 +543,7 @@ function addRestaurantAdmin($input){
             }
         }
     }else{
-        $modelLocation->redirect($urlHomes);
+        $modelRestaurant->redirect($urlHomes);
     }
 
 }
@@ -557,6 +557,847 @@ function deleteRestaurantAdmin($input){
         $modelRestaurant->redirect($urlPlugins.'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php?code=1');
      }
 }
+
+/*phố cổ*/
+function listOldQuarterAdmin($input){
+        $modelOldQuarter = new OldQuarter();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+       // $dataGroupLocation = $modelGroupLocation->find('all', array());
+   // $dataServiceType = $modelServiceType->find('all', array());
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelOldQuarter->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelOldQuarter->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+       // setVariable('dataGroupLocation',$dataGroupLocation);
+   // setVariable('dataServiceType',$dataServiceType);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addOldQuarterAdmin($input){
+    $modelOldQuarter = new OldQuarter();
+    $modelServiceType = new ServiceType();
+    $modelGroupLocation = new GroupLocation();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+
+    $dataGroupLocation = $modelGroupLocation->find('all', array());
+    $dataServiceType = $modelServiceType->find('all', array());
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelOldQuarter->getOldQuarter($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['OldQuarter']['name']= $dataSend['name'];
+            $save['OldQuarter']['address']= @$dataSend['address'];
+            $save['OldQuarter']['phone']= @$dataSend['phone'];
+            $save['OldQuarter']['email']= @$dataSend['email'];
+            $save['OldQuarter']['image']= @$dataSend['image'];
+            $save['OldQuarter']['seo']= @$dataSend['seo'];
+            $save['OldQuarter']['introductory']= @$dataSend['introductory'];
+            $save['OldQuarter']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['OldQuarter']['notmetadata']= @$dataSend['notmetadata'];
+            $save['OldQuarter']['latitude']= @$dataSend['latitude'];
+            $save['OldQuarter']['longitude']= @$dataSend['longitude'];
+            $save['OldQuarter']['image360']= @$dataSend['image360'];
+            $save['OldQuarter']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['OldQuarter']['content']= @$dataSend['content'];
+            $save['OldQuarter']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelOldQuarter->save($save)) {
+                   
+                 $modelOldQuarter->redirect($urlPlugins.'admin/hoankiem360-admin-oldQuarter-listOldQuarterAdmin.php?code=1');
+            }else{
+                 $modelOldQuarter->redirect($urlPlugins.'admin/hoankiem360-admin-oldQuarter-listOldQuarterAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelOldQuarter->redirect($urlHomes);
+    }
+    setVariable('dataGroupLocation',$dataGroupLocation);
+    setVariable('dataServiceType',$dataServiceType);
+
+}
+
+function deleteOldQuarterAdmin($input){
+    $modelOldQuarter = new OldQuarter();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelOldQuarter->delete($idDelete);
+        $modelOldQuarter->redirect($urlPlugins.'admin/hoankiem360-admin-oldQuarter-listOldQuarterAdmin.php?code=1');
+     }
+}
+
+/*Cơ quan hành chính*/
+function listGovernanceAgencyAdmin($input){
+        $modelGovernanceAgency = new GovernanceAgency();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelGovernanceAgency->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelGovernanceAgency->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addGovernanceAgencyAdmin($input){
+    $modelGovernanceAgency = new GovernanceAgency();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelGovernanceAgency->getGovernanceAgency($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['GovernanceAgency']['name']= $dataSend['name'];
+            $save['GovernanceAgency']['address']= @$dataSend['address'];
+            $save['GovernanceAgency']['phone']= @$dataSend['phone'];
+            $save['GovernanceAgency']['email']= @$dataSend['email'];
+            $save['GovernanceAgency']['image']= @$dataSend['image'];
+            $save['GovernanceAgency']['seo']= @$dataSend['seo'];
+            $save['GovernanceAgency']['introductory']= @$dataSend['introductory'];
+            $save['GovernanceAgency']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['GovernanceAgency']['notmetadata']= @$dataSend['notmetadata'];
+            $save['GovernanceAgency']['latitude']= @$dataSend['latitude'];
+            $save['GovernanceAgency']['longitude']= @$dataSend['longitude'];
+            $save['GovernanceAgency']['image360']= @$dataSend['image360'];
+            $save['GovernanceAgency']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['GovernanceAgency']['content']= @$dataSend['content'];
+            $save['GovernanceAgency']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelGovernanceAgency->save($save)) {
+                   
+                 $modelGovernanceAgency->redirect($urlPlugins.'admin/hoankiem360-admin-governanceAgency-listGovernanceAgencyAdmin.php?code=1');
+            }else{
+                 $modelGovernanceAgency->redirect($urlPlugins.'admin/hoankiem360-admin-governanceAgency-listGovernanceAgencyAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelGovernanceAgency->redirect($urlHomes);
+    }
+
+}
+
+function deleteGovernanceAgencyAdmin($input){
+    $modelGovernanceAgency = new GovernanceAgency();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelGovernanceAgency->delete($idDelete);
+        $modelGovernanceAgency->redirect($urlPlugins.'admin/hoankiem360-admin-governanceAgency-listGovernanceAgencyAdmin.php?code=1');
+     }
+}
+
+/*tour*/
+function listTourAdmin($input){
+        $modelTour = new Tour();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelTour->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelTour->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addTourAdmin($input){
+    $modelTour = new Tour();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelTour->getTour($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['Tour']['name']= $dataSend['name'];
+            $save['Tour']['address']= @$dataSend['address'];
+            $save['Tour']['phone']= @$dataSend['phone'];
+            $save['Tour']['email']= @$dataSend['email'];
+            $save['Tour']['image']= @$dataSend['image'];
+            $save['Tour']['seo']= @$dataSend['seo'];
+            $save['Tour']['introductory']= @$dataSend['introductory'];
+            $save['Tour']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['Tour']['notmetadata']= @$dataSend['notmetadata'];
+            $save['Tour']['latitude']= @$dataSend['latitude'];
+            $save['Tour']['longitude']= @$dataSend['longitude'];
+            $save['Tour']['image360']= @$dataSend['image360'];
+            $save['Tour']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['Tour']['content']= @$dataSend['content'];
+            $save['Tour']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelTour->save($save)) {
+                   
+                 $modelTour->redirect($urlPlugins.'admin/hoankiem360-admin-tour-listTourAdmin.php?code=1');
+            }else{
+                 $modelTour->redirect($urlPlugins.'admin/hoankiem360-admin-tour-listTourAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelTour->redirect($urlHomes);
+    }
+
+}
+
+function deleteTourAdmin($input){
+    $modelTour = new Tour();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelTour->delete($idDelete);
+        $modelTour->redirect($urlPlugins.'admin/hoankiem360-admin-tour-listTourAdmin.php?code=1');
+     }
+}
+
+/*khách sạn*/
+function listHotelAdmin($input){
+        $modelHotel = new Hotel();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelHotel->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelHotel->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addHotelAdmin($input){
+    $modelHotel = new Hotel();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelHotel->getHotel($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['Hotel']['name']= $dataSend['name'];
+            $save['Hotel']['address']= @$dataSend['address'];
+            $save['Hotel']['phone']= @$dataSend['phone'];
+            $save['Hotel']['email']= @$dataSend['email'];
+            $save['Hotel']['image']= @$dataSend['image'];
+            $save['Hotel']['seo']= @$dataSend['seo'];
+            $save['Hotel']['introductory']= @$dataSend['introductory'];
+            $save['Hotel']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['Hotel']['notmetadata']= @$dataSend['notmetadata'];
+            $save['Hotel']['latitude']= @$dataSend['latitude'];
+            $save['Hotel']['longitude']= @$dataSend['longitude'];
+            $save['Hotel']['image360']= @$dataSend['image360'];
+            $save['Hotel']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['Hotel']['content']= @$dataSend['content'];
+            $save['Hotel']['timeStart']= @$dataSend['timeStart'];
+            $save['Hotel']['timeEnd']= @$dataSend['timeEnd'];
+            $save['Hotel']['codeManmo']= @$dataSend['codeManmo'];
+            $save['Hotel']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelHotel->save($save)) {
+                   
+                 $modelHotel->redirect($urlPlugins.'admin/hoankiem360-admin-hotel-listHotelAdmin.php?code=1');
+            }else{
+                 $modelHotel->redirect($urlPlugins.'admin/hoankiem360-admin-hotel-listHotelAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelHotel->redirect($urlHomes);
+    }
+
+}
+
+function deleteHotelAdmin($input){
+    $modelHotel = new Hotel();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelHotel->delete($idDelete);
+        $modelHotel->redirect($urlPlugins.'admin/hoankiem360-admin-hotel-listHotelAdmin.php?code=1');
+     }
+}
+
+/*Lễ hội*/
+function listFestivalAdmin($input){
+        $modelFestival = new Festival();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelFestival->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelFestival->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addFestivalAdmin($input){
+    $modelFestival = new Festival();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelFestival->getFestival($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['Festival']['name']= $dataSend['name'];
+            $save['Festival']['address']= @$dataSend['address'];
+            $save['Festival']['phone']= @$dataSend['phone'];
+            $save['Festival']['email']= @$dataSend['email'];
+            $save['Festival']['image']= @$dataSend['image'];
+            $save['Festival']['seo']= @$dataSend['seo'];
+            $save['Festival']['introductory']= @$dataSend['introductory'];
+            $save['Festival']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['Festival']['notmetadata']= @$dataSend['notmetadata'];
+            $save['Festival']['latitude']= @$dataSend['latitude'];
+            $save['Festival']['longitude']= @$dataSend['longitude'];
+            $save['Festival']['image360']= @$dataSend['image360'];
+            $save['Festival']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['Festival']['content']= @$dataSend['content'];
+            $save['Festival']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelFestival->save($save)) {
+                   
+                 $modelFestival->redirect($urlPlugins.'admin/hoankiem360-admin-festival-listFestivalAdmin.php?code=1');
+            }else{
+                 $modelFestival->redirect($urlPlugins.'admin/hoankiem360-admin-festival-listFestivalAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelFestival->redirect($urlHomes);
+    }
+
+}
+
+function deleteFestivalAdmin($input){
+    $modelFestival = new Festival();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelFestival->delete($idDelete);
+        $modelFestival->redirect($urlPlugins.'admin/hoankiem360-admin-festival-listFestivalAdmin.php?code=1');
+     }
+}
+
+/*Hồ Hoàn Kiếm*/
+function listHklakeAdmin($input){
+    $modelHklake = new Hklake();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelHklake->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelHklake->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addHklakeAdmin($input){
+    $modelHklake = new Hklake();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelHklake->getHklake($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['Hklake']['name']= $dataSend['name'];
+            $save['Hklake']['address']= @$dataSend['address'];
+            $save['Hklake']['phone']= @$dataSend['phone'];
+            $save['Hklake']['email']= @$dataSend['email'];
+            $save['Hklake']['image']= @$dataSend['image'];
+            $save['Hklake']['seo']= @$dataSend['seo'];
+            $save['Hklake']['introductory']= @$dataSend['introductory'];
+            $save['Hklake']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['Hklake']['notmetadata']= @$dataSend['notmetadata'];
+            $save['Hklake']['latitude']= @$dataSend['latitude'];
+            $save['Hklake']['longitude']= @$dataSend['longitude'];
+            $save['Hklake']['image360']= @$dataSend['image360'];
+            $save['Hklake']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['Hklake']['content']= @$dataSend['content'];
+            $save['Hklake']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelHklake->save($save)) {
+                   
+                 $modelHklake->redirect($urlPlugins.'admin/hoankiem360-admin-hklake-listHklakeAdmin.php?code=1');
+            }else{
+                 $modelHklake->redirect($urlPlugins.'admin/hoankiem360-admin-hklake-listHklakeAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelHklake->redirect($urlHomes);
+    }
+
+}
+
+function deleteHklakeAdmin($input){
+    $modelHklake = new Hklake();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelHklake->delete($idDelete);
+        $modelHklake->redirect($urlPlugins.'admin/hoankiem360-admin-hklake-listHklakeAdmin.php?code=1');
+     }
+}
+
+/*Giải trí*/
+function listEntertainmentAdmin($input){
+    $modelEntertainment = new Entertainment();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+    
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
+
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelEntertainment->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelEntertainment->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addEntertainmentAdmin($input){
+    $modelEntertainment = new Entertainment();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+    
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelEntertainment->getEntertainment($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['Entertainment']['name']= $dataSend['name'];
+            $save['Entertainment']['address']= @$dataSend['address'];
+            $save['Entertainment']['phone']= @$dataSend['phone'];
+            $save['Entertainment']['email']= @$dataSend['email'];
+            $save['Entertainment']['image']= @$dataSend['image'];
+            $save['Entertainment']['seo']= @$dataSend['seo'];
+            $save['Entertainment']['introductory']= @$dataSend['introductory'];
+            $save['Entertainment']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['Entertainment']['notmetadata']= @$dataSend['notmetadata'];
+            $save['Entertainment']['latitude']= @$dataSend['latitude'];
+            $save['Entertainment']['longitude']= @$dataSend['longitude'];
+            $save['Entertainment']['image360']= @$dataSend['image360'];
+            $save['Entertainment']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['Entertainment']['content']= @$dataSend['content'];
+            $save['Entertainment']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelEntertainment->save($save)) {
+                   
+                 $modelEntertainment->redirect($urlPlugins.'admin/hoankiem360-admin-entertainment-listEntertainmentAdmin.php?code=1');
+            }else{
+                 $modelEntertainment->redirect($urlPlugins.'admin/hoankiem360-admin-entertainment-listEntertainmentAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelEntertainment->redirect($urlHomes);
+    }
+
+}
+
+function deleteEntertainmentAdmin($input){
+    $modelEntertainment = new Entertainment();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelEntertainment->delete($idDelete);
+        $modelEntertainment->redirect($urlPlugins.'admin/hoankiem360-admin-entertainment-listEntertainmentAdmin.php?code=1');
+     }
+}
+
 // ảnh 360 
 function listImage360Admin($input){
 

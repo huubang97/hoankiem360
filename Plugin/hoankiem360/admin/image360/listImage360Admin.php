@@ -42,7 +42,7 @@ element.style {
         <table id="listTable" cellspacing="0" class="tableList">
 
             <tr>
-                <th>Tên tiêu đền ảnh</th>
+                <th>Tên tiêu đề ảnh</th>
                 <th>Ảnh </th>
                 <th colspan="2">Hành động</th>
             </tr>
