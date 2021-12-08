@@ -3,12 +3,14 @@
     $menus= array();
     $menus[0]['title'] = 'Hoàn Kiếm 360';
 
-    $menus[0]['sub'][0] = array('name' => 'Sự kện', 'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php','permission'=>'listEventAdmin');
+    $menus[0]['sub'][0] = array('name' => 'Sự kiện', 'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php','permission'=>'listEventAdmin');
+    $menus[1]['title'] = 'Điểm Đến';
     $menus[0]['sub'][1] = array('name' => 'Chuyên mục địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-groupLocation-ListGroupLocationAdmin.php','permission'=>'ListGroupLocationAdmin');
-    $menus[0]['sub'][2] = array('name' => 'Loại hình dịch vụ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-serviceType-ListServiceTypeAdmin.php','permission'=>'ListServiceTypeAdmin');
-    $menus[0]['sub'][3] = array('name' => 'Địa điểm ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php','permission'=>'listLocationAdmin');
+    $menus[1]['sub'][0] = array('name' => 'Di tích lịch sử', 'url' => $urlPlugins . 'admin/hoankiem360-admin-historicalSites-listHistoricalSitesAdmin.php','permission'=>'listHistoricalSitesAdmin');
+    $menus[1]['sub'][1] = array('name' => 'Nhà Hàng ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php','permission'=>'listRestaurantAdmin');
     $menus[0]['sub'][4] = array('name' => 'Ảnh 360', 'url' => $urlPlugins . 'admin/hoankiem360-admin-image360-listImage360Admin.php','permission'=>'listImage360Admin');
-    $menus[0]['sub'][5] = array('name' => 'Banner quản cáo', 'url' => $urlPlugins . 'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php','permission'=>'listImage360Admin');
+    $menus[0]['sub'][5] = array('name' => 'Banner quản cáo', 'url' => $urlPlugins . 'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php','permission'=>'listAdvertisementAdmin');
+    $menus[0]['sub'][6] = array('name' => 'Tài khoản người dùng', 'url' => $urlPlugins . 'admin/hoankiem360-admin-user-listUserAdmin.php','permission'=>'listUserAdmin');
 
 
 addMenuAdminMantan($menus);
@@ -18,7 +20,7 @@ addMenuAdminMantan($menus);
     }
 
 
-    function getmonth(){
+    function getmonth(){ 
     return array(
         '1'=>array('id'=>'1','name'=>'Tháng 1'),
         '2'=>array('id'=>'2','name'=>'Tháng 2'),

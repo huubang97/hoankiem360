@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo $urlHomes . 'app/Plugin/mantanHotel/script.js'; ?>"></script>
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
-$breadcrumb = array('name' => 'Sự kiện',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php',
+$breadcrumb = array('name' => 'Di tích lịch sử',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-HistoricalSites-listHistoricalSitesAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -36,52 +36,54 @@ element.style {
            <table class="table table-bordered" style="border: 1px solid #ddd!important; margin-top: 10px;">  
             <tr>
                 <td>
-                    <label>Tên sự kiện</label>
-                    <input type="" name="name" class="form-control" placeholder="Tên sự kiện" value="<?php echo @$_GET['name'];?>">
+                    <label>Tên địa điểm</label>
+                    <input type="" name="name" class="form-control" placeholder="Tên địa điểm" value="<?php echo @$_GET['name'];?>">
                 </td>
-                <td>
-                    <label>Tháng diễn ra</label> 
-                      <select name="month" class="form-control" id="month">
-                    <option value="" save-price="">Chọn tháng diễn ra </option>
+                <!-- <td>
+                    <label>Danh Mục</label> 
+                     <select name="groupLocation" class="form-control" id="groupLocation">
+                    <option value="" save-price="">Chọn chuyên mục</option>
                     <?php
-                    $getmonth   = getmonth();
-                    if(!empty($getmonth)){
-                        foreach($getmonth as $month){
-                            if(!isset($_GET['month']) || $month['id']!=@$_GET['month']){
-                                echo '<option value="'.$month['id'].'">'.$month['name'].'</option>';
+                    if(!empty($dataGroupLocation)){
+                        foreach($dataGroupLocation as $groupLocation){
+                            if(!isset($_GET['groupLocation']) || $groupLocation['GroupLocation']['id']!=@$_GET['groupLocation']){
+                                echo '<option value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
                             }else{
-                                echo '<option selected value="'.$month['id'].'">'.$month['name'].'</option>';
+                                echo '<option selected value="'.$groupLocation['GroupLocation']['id'].'">'.$groupLocation['GroupLocation']['name'].'</option>';
                             }
                         }
                     }
                     ?>
-                </select> 
+                </select>    
+                </td> -->
+                 <td colspan="2">
+                    <br>
+                    <input type="submit" name="" style="margin-top: 7px;" value="Tìm kiếm">
                 </td>
-                
             </tr>
             <tr>
-                <td colspan="2">
-                    <input type="submit" name="" value="Tìm kiếm">
-                </td>
+               
                 <td colspan="2">
                     <!-- <input type="submit" name="excel" value="Xuất excel"> -->
                 </td>
             </tr>
         </table>
     </form>
+
 <div class="clear"></div>
-<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-event-addEventAdmin.php'; ?>" class="input">
+<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-addHistoricalSitesAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm
 </a>  
 <div class="taovien" >
+
     <form action="" method="post" name="listForm">
         <table id="listTable" cellspacing="0" class="tableList">
 
             <tr>
                 <th>Hình ảnh</th>
-                <th>Tên sự kiện</th>
-                <th>Từ ngày</th>
-                <th>Đến ngày</th>
+                <th>Tên địa điểm</th>
+                <th>Số điện thoại</th>
+                <th>địa chỉ </th>
                 <th colspan="2">Hành động</th>
             </tr>
 
@@ -92,16 +94,16 @@ element.style {
                 foreach ($listData as $item) {
                     ?>
                     <tr>
-                        <td><img src="<?php echo $item['Event']['image']; ?>" width="100" /></td>
-                        <td><?php echo $item['Event']['title'] ?></td>
-                        <td><?php echo $item['Event']['dateStart'] ?></td>
-                        <td><?php echo $item['Event']['dateEnd'] ?></td>
+                        <td><img src="<?php echo $item['HistoricalSites']['image']; ?>" width="100" /></td>
+                        <td><?php echo $item['HistoricalSites']['name'] ?></td>
+                        <td><?php echo $item['HistoricalSites']['phone'] ?></td>
+                        <td><?php echo $item['HistoricalSites']['address'] ?></td>
                         
                         <td align="center">
-                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-event-addEventAdmin.php?id='.$item['Event']['id']; ?>">Sửa</a>
+                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-addHistoricalSitesAdmin.php?id='.$item['HistoricalSites']['id']; ?>">Sửa</a>
                         </td>
                         <td align="center">
-                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-event-deleteEventAdmin.php?id='.$item['Event']['id']; ?>">Xóa</a>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-deleteHistoricalSitesAdmin.php?id='.$item['HistoricalSites']['id']; ?>">Xóa</a>
                         </td>
 
                     </tr>
@@ -116,7 +118,7 @@ element.style {
         </table>
         <p>
             <?php
-            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-event-listEventAdmin.php';
+            $urlListHotelAdmin = $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php';
             if ($page > 5) {
                 $startPage = $page - 5;
             } else {

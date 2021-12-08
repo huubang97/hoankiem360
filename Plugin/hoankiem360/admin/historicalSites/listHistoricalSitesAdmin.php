@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo $urlHomes . 'app/Plugin/mantanHotel/script.js'; ?>"></script>
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
-$breadcrumb = array('name' => 'Địa điểm',
-    'url' => $urlPlugins . 'admin/hoankiem360-admin-location-listLocationAdmin.php',
+$breadcrumb = array('name' => 'Di tích lịch sử',
+    'url' => $urlPlugins . 'admin/hoankiem360-admin-HistoricalSites-listHistoricalSitesAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
 addBreadcrumbAdmin($breadcrumb);
@@ -39,7 +39,7 @@ element.style {
                     <label>Tên địa điểm</label>
                     <input type="" name="name" class="form-control" placeholder="Tên địa điểm" value="<?php echo @$_GET['name'];?>">
                 </td>
-                <td>
+                <!-- <td>
                     <label>Danh Mục</label> 
                      <select name="groupLocation" class="form-control" id="groupLocation">
                     <option value="" save-price="">Chọn chuyên mục</option>
@@ -55,13 +55,14 @@ element.style {
                     }
                     ?>
                 </select>    
+                </td> -->
+                 <td colspan="2">
+                    <br>
+                    <input type="submit" name="" style="margin-top: 7px;" value="Tìm kiếm">
                 </td>
-                
             </tr>
             <tr>
-                <td colspan="2">
-                    <input type="submit" name="" value="Tìm kiếm">
-                </td>
+               
                 <td colspan="2">
                     <!-- <input type="submit" name="excel" value="Xuất excel"> -->
                 </td>
@@ -70,7 +71,7 @@ element.style {
     </form>
 
 <div class="clear"></div>
-<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-addLocationAdmin.php'; ?>" class="input">
+<a style="padding: 4px 8px;" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-addHistoricalSitesAdmin.php'; ?>" class="input">
     <img src="<?php echo $webRoot; ?>images/add.png"> Thêm
 </a>  
 <div class="taovien" >
@@ -93,16 +94,16 @@ element.style {
                 foreach ($listData as $item) {
                     ?>
                     <tr>
-                        <td><img src="<?php echo $item['Location']['image']; ?>" width="100" /></td>
-                        <td><?php echo $item['Location']['name'] ?></td>
-                        <td><?php echo $item['Location']['phone'] ?></td>
-                        <td><?php echo $item['Location']['address'] ?></td>
+                        <td><img src="<?php echo $item['HistoricalSites']['image']; ?>" width="100" /></td>
+                        <td><?php echo $item['HistoricalSites']['name'] ?></td>
+                        <td><?php echo $item['HistoricalSites']['phone'] ?></td>
+                        <td><?php echo $item['HistoricalSites']['address'] ?></td>
                         
                         <td align="center">
-                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-addLocationAdmin.php?id='.$item['Location']['id']; ?>">Sửa</a>
+                            <a href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-addHistoricalSitesAdmin.php?id='.$item['HistoricalSites']['id']; ?>">Sửa</a>
                         </td>
                         <td align="center">
-                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-location-deleteLocationAdmin.php?id='.$item['Location']['id']; ?>">Xóa</a>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa chương trình này không?');" href="<?php echo $urlPlugins . 'admin/hoankiem360-admin-historicalSites-deleteHistoricalSitesAdmin.php?id='.$item['HistoricalSites']['id']; ?>">Xóa</a>
                         </td>
 
                     </tr>

@@ -58,7 +58,7 @@ addBreadcrumbAdmin($breadcrumb);
                 <input type="text" name="dateStart" class="form-control hasDatepicker" id="dateStart" required="" value="<?php echo @$save['Event']['dateStart'] ?>">
             </div>
             <div class="form-group col-sm-6">
-                <i>Ngày kế thúc<span class="required">*</span>:</i>
+                <i>Ngày kết thúc<span class="required">*</span>:</i>
                 <input type="text" name="dateEnd" class="form-control hasDatepicker" id="dateEnd" required="" value="<?php echo @$save['Event']['dateEnd'] ?>">
             </div>
             <div class="form-group col-sm-6">
@@ -94,7 +94,7 @@ addBreadcrumbAdmin($breadcrumb);
                 </select>                                          
             </div>
             <div class="form-group col-md-6">
-                <i>trạng thái diễn ra <span class="required">*</span></i>
+                <i>Trạng thái diễn ra <span class="required">*</span></i>
                 <div class="col-sm-12">
                     <input name="takesplace" type="radio" value="not" required="" <?php if(!empty($save['Event']['takesplace']) && $save['Event']['takesplace']=='not') echo 'checked';?> > Chưa diễn ra &nbsp;&nbsp;
                     <input name="takesplace" type="radio" value="Happenning" <?php if(!empty($save['Event']['takesplace']) && $save['Event']['takesplace']=='Happenning') echo 'checked';?> > Đang diễn ra &nbsp;&nbsp;

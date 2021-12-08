@@ -308,16 +308,14 @@ function deleteServiceTypeAdmin($input){
      }
 }
 
-
-function ListLocationAdmin($input){
-        $modelLocation = new Location();
-         $modelServiceType = new ServiceType();
-    $modelGroupLocation = new GroupLocation();
-
+/*di tich lich sử */
+function listHistoricalSitesAdmin($input){
+        $modelHistoricalSites = new HistoricalSites();
+    
     global $urlNow;
     if (checkAdminLogin()) {
-        $dataGroupLocation = $modelGroupLocation->find('all', array());
-    $dataServiceType = $modelServiceType->find('all', array());
+       // $dataGroupLocation = $modelGroupLocation->find('all', array());
+   // $dataServiceType = $modelServiceType->find('all', array());
     
         # code...
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
@@ -331,15 +329,11 @@ function ListLocationAdmin($input){
              $key=createSlugMantan($_GET['name']);
             $conditions['urlSlug']= array('$regex' => $key);
         }
-
-        if(!empty($_GET['groupLocation'])){
-                $conditions['groupLocation']= $_GET['groupLocation'];
-        }
-        $listData= $modelLocation->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+        $listData= $modelHistoricalSites->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
 
          
 
-        $totalData= $modelLocation->find('count');
+        $totalData= $modelHistoricalSites->find('count');
 
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;
@@ -368,8 +362,8 @@ function ListLocationAdmin($input){
         }
 
         setVariable('listData',$listData);
-        setVariable('dataGroupLocation',$dataGroupLocation);
-    setVariable('dataServiceType',$dataServiceType);
+       // setVariable('dataGroupLocation',$dataGroupLocation);
+   // setVariable('dataServiceType',$dataServiceType);
         setVariable('page',$page);
         setVariable('totalPage',$totalPage);
         setVariable('back',$back);
@@ -381,8 +375,8 @@ function ListLocationAdmin($input){
 }
 
 
-function addLocationAdmin($input){
-    $modelLocation = new Location();
+function addHistoricalSitesAdmin($input){
+    $modelHistoricalSites = new HistoricalSites();
     $modelServiceType = new ServiceType();
     $modelGroupLocation = new GroupLocation();
     global $urlPlugins;
@@ -394,30 +388,34 @@ function addLocationAdmin($input){
     
     if (checkAdminLogin()) {
         if (!empty($_GET['id'])) {
-            $save=$modelLocation->getLocation($_GET['id']);
+            $save=$modelHistoricalSites->getHistoricalSites($_GET['id']);
             setVariable('save',$save);
         }
 
         if ($isRequestPost) {
-            $dataSend=$input['request']->data;
+            $dataSend=$input['request']->data;      
 
-            $save['Location']['name']= $dataSend['name'];
-            $save['Location']['address']= @$dataSend['address'];
-            $save['Location']['phone']= @$dataSend['phone'];
-            $save['Location']['email']= @$dataSend['email'];
-            $save['Location']['serviceType']= @$dataSend['serviceType'];
-            $save['Location']['groupLocation']= @$dataSend['groupLocation'];
-            $save['Location']['image']= @$dataSend['image'];
-            $save['Location']['idHotel']= @$dataSend['idHotel'];
-            $save['Location']['introductory']= @$dataSend['introductory'];
-            $save['Location']['location']= @$dataSend['location'];
-            $save['Location']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+            $save['HistoricalSites']['name']= $dataSend['name'];
+            $save['HistoricalSites']['address']= @$dataSend['address'];
+            $save['HistoricalSites']['phone']= @$dataSend['phone'];
+            $save['HistoricalSites']['email']= @$dataSend['email'];
+            $save['HistoricalSites']['image']= @$dataSend['image'];
+            $save['HistoricalSites']['seo']= @$dataSend['seo'];
+            $save['HistoricalSites']['introductory']= @$dataSend['introductory'];
+            $save['HistoricalSites']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['HistoricalSites']['notmetadata']= @$dataSend['notmetadata'];
+            $save['HistoricalSites']['latitude']= @$dataSend['latitude'];
+            $save['HistoricalSites']['longitude']= @$dataSend['longitude'];
+            $save['HistoricalSites']['image360']= @$dataSend['image360'];
+            $save['HistoricalSites']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['HistoricalSites']['content']= @$dataSend['content'];
+            $save['HistoricalSites']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
-            if ($modelLocation->save($save)) {
+            if ($modelHistoricalSites->save($save)) {
                    
-                 $modelGroupLocation->redirect($urlPlugins.'admin/hoankiem360-admin-location-listLocationAdmin.php?code=1');
+                 $modelHistoricalSites->redirect($urlPlugins.'admin/hoankiem360-admin-historicalSites-listHistoricalSitesAdmin.php?code=1');
             }else{
-                 $modelGroupLocation->redirect($urlPlugins.'admin/hoankiem360-admin-location-listLocationAdmin.php?code=2');
+                 $modelHistoricalSites->redirect($urlPlugins.'admin/hoankiem360-admin-historicalSites-listHistoricalSitesAdmin.php?code=2');
                    
             }
         }
@@ -429,17 +427,137 @@ function addLocationAdmin($input){
 
 }
 
-function deleteLocationAdmin($input){
-    $modelLocation = new Location();
+function deleteHistoricalSitesAdmin($input){
+    $modelHistoricalSites = new HistoricalSites();
     global $urlPlugins;
     if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
         $idDelete = new MongoId($_GET['id']);
-        $modelLocation->delete($idDelete);
-        $modelLocation->redirect($urlPlugins.'admin/hoankiem360-admin-Location-ListLocationAdmin.php?code=1');
+        $modelHistoricalSites->delete($idDelete);
+        $modelHistoricalSites->redirect($urlPlugins.'admin/hoankiem360-admin-historicalSites-listHistoricalSitesAdmin.php?code=1');
      }
 }
 
+/*Nhà nhà  */
+function listRestaurantAdmin($input){
+        $modelRestaurant = new Restaurant();
+    
+    global $urlNow;
+    if (checkAdminLogin()) {
+        # code...
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        $order = array('created'=>'desc');
 
+         $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+        $listData= $modelRestaurant->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+         
+
+        $totalData= $modelRestaurant->find('count');
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+    }else{
+        $modelCard->redirect($urlHomes);
+    }
+}
+
+
+function addRestaurantAdmin($input){
+    $modelRestaurant = new Restaurant();
+    global $urlPlugins;
+    global $urlPlugins;
+    global $isRequestPost;
+
+   
+    if (checkAdminLogin()) {
+        if (!empty($_GET['id'])) {
+            $save=$modelRestaurant->getRestaurant($_GET['id']);
+            setVariable('save',$save);
+        }
+
+        if ($isRequestPost) {
+            $dataSend=$input['request']->data;      
+
+            $save['Restaurant']['name']= $dataSend['name'];
+            $save['Restaurant']['address']= @$dataSend['address'];
+            $save['Restaurant']['phone']= @$dataSend['phone'];
+            $save['Restaurant']['email']= @$dataSend['email'];
+            $save['Restaurant']['image']= @$dataSend['image'];
+            $save['Restaurant']['seo']= @$dataSend['seo'];
+            $save['Restaurant']['introductory']= @$dataSend['introductory'];
+            $save['Restaurant']['keyMetadata']= @$dataSend['keyMetadata'];
+            $save['Restaurant']['notmetadata']= @$dataSend['notmetadata'];
+            $save['Restaurant']['latitude']= @$dataSend['latitude'];
+            $save['Restaurant']['longitude']= @$dataSend['longitude'];
+            $save['Restaurant']['image360']= @$dataSend['image360'];
+            $save['Restaurant']['cassavaorder']= @$dataSend['cassavaorder'];
+            $save['Restaurant']['content']= @$dataSend['content'];
+            $save['Restaurant']['timeStart']= @$dataSend['timeStart'];
+            $save['Restaurant']['timeEnd']= @$dataSend['timeEnd'];
+            $save['Restaurant']['codeManmo']= @$dataSend['codeManmo'];
+            $save['Restaurant']['urlSlug']= createSlugMantan(trim($dataSend['name']));
+        
+            if ($modelRestaurant->save($save)) {
+                   
+                 $modelRestaurant->redirect($urlPlugins.'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php?code=1');
+            }else{
+                 $modelRestaurant->redirect($urlPlugins.'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php?code=2');
+                   
+            }
+        }
+    }else{
+        $modelLocation->redirect($urlHomes);
+    }
+
+}
+
+function deleteRestaurantAdmin($input){
+    $modelRestaurant = new Restaurant();
+    global $urlPlugins;
+    if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+        $idDelete = new MongoId($_GET['id']);
+        $modelRestaurant->delete($idDelete);
+        $modelRestaurant->redirect($urlPlugins.'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php?code=1');
+     }
+}
+// ảnh 360 
 function listImage360Admin($input){
 
 
@@ -632,5 +750,229 @@ function deleteAdvertisementAdmin($input){
         $modelAdvertisement->delete($idDelete);
         $modelAdvertisement->redirect($urlPlugins.'admin/hoankiem360-admin-advertisement-listAdvertisementAdmin.php?code=1');
      }
+}
+
+
+function listUserAdmin($input) {
+    Configure::write('debug', 2);
+    global $modelOption;
+    global $modelUser;
+    global $urlHomes;
+    global $urlNow;
+
+    if (checkAdminLogin()) {
+
+        $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 1;
+        if ($page <= 0)
+            $page = 1;
+        $limit = 15;
+        $conditions = array();
+
+        if(!empty($_GET['fullname'])){
+            $conditions['fullname']= array('$regex' => $_GET['fullname']);
+        }
+
+        if(!empty($_GET['email'])){
+            $conditions['email']= $_GET['email'];
+        }
+        if(!empty($_GET['phone'])){
+            $conditions['phone']= $_GET['phone'];
+        }
+        if(!empty($_GET['user'])){
+            $conditions['user']= $_GET['user'];
+        }
+
+        $listData = $modelUser->getPage($page, $limit, $conditions);
+
+        $totalData = $modelUser->find('count', array('conditions' => $conditions));
+
+        $balance = $totalData % $limit;
+        $totalPage = ($totalData - $balance) / $limit;
+        if ($balance > 0)
+            $totalPage+=1;
+
+        $back = $page - 1;
+        $next = $page + 1;
+        if ($back <= 0)
+            $back = 1;
+        if ($next >= $totalPage)
+            $next = $totalPage;
+
+        if (isset($_GET['page'])) {
+            $urlPage = str_replace('&page=' . $_GET['page'], '', $urlNow);
+            $urlPage = str_replace('page=' . $_GET['page'], '', $urlPage);
+        } else {
+            $urlPage = $urlNow;
+        }
+        if (strpos($urlPage, '?') !== false) {
+            if (count($_GET) > 1) {
+                $urlPage = $urlPage . '&page=';
+            } else {
+                $urlPage = $urlPage . 'page=';
+            }
+        } else {
+            $urlPage = $urlPage . '?page=';
+        }
+
+        setVariable('listData', $listData);
+
+        setVariable('page', $page);
+        setVariable('totalPage', $totalPage);
+        setVariable('back', $back);
+        setVariable('next', $next);
+        setVariable('urlPage', $urlPage);
+
+        if(!empty($_GET['excel'])){
+            $limit= 5000;
+            $listData = $modelUser->find('all', array('conditions'=>$conditions,'page'=>$page,'limit'=>$limit));
+            
+            $table = array(
+                array('label' => __('Ngày tạo'), 'width' => 10),
+                array('label' => __('Tài khoản'),'width' => 25, 'filter' => true, 'wrap' => true),
+                array('label' => __('Họ và tên'),'width' => 25, 'filter' => true, 'wrap' => true),
+                array('label' => __('Loại TK'),'width' => 17, 'filter' => true, 'wrap' => true),
+                array('label' => __('Email'),'width' => 34, 'filter' => true, 'wrap' => true),
+                array('label' => __('Điện thoại'),'width' => 17, 'wrap' => true),
+                
+            );
+            
+            $data= array();
+            if (!empty($listData)) {
+                foreach ($listData as $key => $tin) {
+                    if(!empty($tin['User']['idGoogle'])){
+                        $typeReg= 'Google';
+                    }elseif(!empty($tin['User']['idFacebook'])){
+                        $typeReg= 'Facebook';
+                    }else{
+                        $typeReg= 'Tự ĐK';
+                    }
+
+                    $data[]= array( date('d/m/Y', $tin['User']['created']->sec),
+                                    @$tin['User']['user'],
+                                    @$tin['User']['fullname'],
+                                    $typeReg,
+                                    @$tin['User']['email'],
+                                    @$tin['User']['phone']
+                                );
+                }
+                
+            }
+            
+            $exportsController = new ExportsController;
+
+            $exportsController->requestAction('/exports/excel', array('pass' => array($table,$data,'listUserManMo')));
+        }
+    } else {
+        $modelOption->redirect($urlHomes);
+    }
+}
+
+
+function addUserAdmin($input) {
+    global $modelOption;
+    global $modelUser;
+    global $isRequestPost;
+    global $urlHomes;
+    global $urlPlugins;
+
+    if (checkAdminLogin()) {
+        if ($isRequestPost) {
+
+            $dataSend = arrayMap($input['request']->data);
+            if ($modelUser->isExist($dataSend['user'], $dataSend['email'], $dataSend['cmnd']) == true) {
+                $mess = 'Người dùng đã tồn tại!';
+                setVariable('mess', $mess);
+            } else {
+                $save['User']['user'] = $dataSend['user'];
+                $save['User']['cmnd'] = $dataSend['cmnd'];
+                $save['User']['fullname'] = $dataSend['fullname'];
+                $save['User']['avatar'] = $dataSend['avatar'];
+                $save['User']['email'] = $dataSend['email'];
+                $save['User']['phone'] = $dataSend['phone'];
+                $save['User']['address'] = $dataSend['address'];
+                $save['User']['password'] = md5($dataSend['password']);
+                $save['User']['actived'] = (int) $dataSend['actived'];
+                if (!empty($dataSend['desc'])) {
+                    $save['User']['desc'] = $dataSend['desc'];
+                }
+               
+                if ($modelUser->save($save)) {
+                    $modelUser->redirect($urlPlugins . 'admin/hoankiem360-admin-user-listUserAdmin.php?status=1');
+                } else {
+                    $modelUser->redirect($urlPlugins . 'admin/hoankiem360-admin-user-addUserAdmin.php?status=-1');
+                }
+            }
+        }
+    } else {
+        $modelOption->redirect($urlHomes);
+    }
+}
+
+
+function editUserAdmin($input) {
+    global $modelOption;
+    global $modelUser;
+    global $isRequestPost;
+    global $urlHomes;
+    global $urlPlugins;
+
+    if (checkAdminLogin()) {
+        $modelUser = new User();
+        if(!empty($_GET['id']) && MongoId::isValid($_GET['id'])){
+            $data = $modelUser->getUser($_GET['id']);
+            if ($isRequestPost) {
+
+                $dataSend = arrayMap($input['request']->data);
+
+                if(!empty($dataSend['password'])){
+                    $save['User']['password'] = md5($dataSend['password']);
+                }
+
+                $save['User']['user'] = $data['User']['user'];
+                $save['User']['fullname'] = $dataSend['fullname'];
+                $save['User']['avatar'] = $dataSend['avatar'];
+                $save['User']['email'] = $dataSend['email'];
+                $save['User']['phone'] = $dataSend['phone'];
+                $save['User']['address'] = $dataSend['address'];
+                
+                $save['User']['actived'] = (int) $dataSend['actived'];
+                if (!empty($dataSend['desc'])) {
+                    $save['User']['desc'] = $dataSend['desc'];
+                }
+
+                $dk['_id'] = new MongoId($_GET['id']);
+
+                if ($modelUser->updateAll($save['User'], $dk)) {
+                    $modelUser->redirect($urlPlugins . 'admin/hoankiem360-admin-user-listUserAdmin.php?status=3');
+                } else {
+                    $modelUser->redirect($urlPlugins . 'admin/hoankiem360-admin-user-addUserAdmin.php?status=-3');
+                }
+            }
+
+            setVariable('data', $data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    } else {
+        $modelOption->redirect($urlHomes);
+    }
+}
+
+
+function deleteUserAdmin($input) {
+    global $modelOption;
+    global $urlHomes;
+    global $urlPlugins;
+
+    if (checkAdminLogin()) {
+        $modelUser = new User();
+        if (!empty($_GET['id']) && MongoId::isValid($_GET['id'])) {
+            $idDelete = new MongoId($_GET['id']);
+            $modelUser->delete($idDelete);
+        }
+        $modelUser->redirect($urlPlugins . 'admin/hoankiem360-admin-user-listUserAdmin.php?status=4');
+    } else {
+        $modelOption->redirect($urlHomes);
+    }
 }
 ?>
