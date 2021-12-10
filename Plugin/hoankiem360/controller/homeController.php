@@ -80,7 +80,10 @@ function detailEvent($input){
         $data= $modelEvent->getEventSlug($input['request']->params['pass'][1]);
          //   $folderHotel= $urlHomes.'/app/Plugin/Hotel/';
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Event']['id']))));
+            $otherData= $modelEvent->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -157,7 +160,10 @@ function detailHistoricalSites($input){
            // $folderHotel= $urlHomes.'/app/Plugin/Hotel/';
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['HistoricalSites']['id']))));
+            $otherData= $modelHistoricalSites->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -234,7 +240,10 @@ function detailRestaurant($input){
         $data= $modelRestaurant->getRestaurantSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Restaurant']['id']))));
+            $otherData= $modelRestaurant->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -311,7 +320,10 @@ function detailOldQuarter($input){
         $data= $modelOldQuarter->getOldQuarterSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['OldQuarter']['id']))));
+            $otherData= $modelOldQuarter->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -388,7 +400,11 @@ function detailGovernanceAgency($input){
         $data= $modelGovernanceAgency->getGovernanceAgencySlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['GovernanceAgency']['id']))));
+            $otherData= $modelGovernanceAgency->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
+
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -465,7 +481,10 @@ function detailTour($input){
         $data= $modelTour->getTourSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Tour']['id']))));
+            $otherData= $modelTour->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -543,7 +562,10 @@ function detailHotel($input){
         $data= $modelHotel->getHotelSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
+            $otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -622,7 +644,10 @@ function detailFestival($input){
         $data= $modelFestival->getFestivalSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Festival']['id']))));
+            $otherData= $modelFestival->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -698,9 +723,12 @@ function detailHklake($input){
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
         $data= $modelHklake->getHklakeSlug($input['request']->params['pass'][1]);
-
+            
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hklake']['id']))));
+            $otherData= $modelHklake->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }
@@ -778,7 +806,10 @@ function detailEntertainment($input){
         $data= $modelEntertainment->getEntertainmentSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Entertainment']['id']))));
+            $otherData= $modelEntertainment->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
             setVariable('data',$data);
+            setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }

@@ -50,12 +50,12 @@ addBreadcrumbAdmin($breadcrumb);
                 <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['GovernanceAgency']['name'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
-                <i>Địa chỉ<span class="required">*</span>:</i>
-                <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['GovernanceAgency']['address'] ?>" class="form-control" required="">
+                <i>Địa chỉ:</i>
+                <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['GovernanceAgency']['address'] ?>" class="form-control">
             </div>
             <div class="form-group col-sm-6">
-                <i>Điện thoại<span class="required">*</span>:</i>
-                <input type="text" name="phone" class="form-control" id="phone" required="" value="<?php echo @$save['GovernanceAgency']['phone'] ?>">
+                <i>Điện thoại:</i>
+                <input type="text" name="phone" class="form-control" id="phone" value="<?php echo @$save['GovernanceAgency']['phone'] ?>">
             </div>
             <div class="form-group col-sm-6">
                 <i>Email:</i>
@@ -76,15 +76,15 @@ addBreadcrumbAdmin($breadcrumb);
             </div>
              <div class="form-group col-sm-6">
                 <i>Seo:</i>
-                <input type="text" name="seo" class="form-control" id="seo" required="" value="<?php echo @$save['GovernanceAgency']['seo'] ?>">
+                <input type="text" name="seo" class="form-control" id="seo" value="<?php echo @$save['GovernanceAgency']['seo'] ?>">
             </div>
              <div class="form-group col-sm-6">
-                <i>Từ khóa metadata <span class="required">*</span>:</i>
-                <input type="text" name="keyMetadata" class="form-control" id="keyMetadata" required="" value="<?php echo @$save['GovernanceAgency']['keyMetadata'] ?>">
+                <i>Từ khóa metadata:</i>
+                <input type="text" name="keyMetadata" class="form-control" id="keyMetadata" value="<?php echo @$save['GovernanceAgency']['keyMetadata'] ?>">
             </div>
             <div class="form-group col-sm-6">
-                <i> Mô tả thẻ metadata<span class="required">*</span>:</i>
-                <input type="text" name="notmetadata" class="form-control" id="notmetadata" required="" value="<?php echo @$save['GovernanceAgency']['notmetadata'] ?>">
+                <i> Mô tả thẻ metadata:</i>
+                <input type="text" name="notmetadata" class="form-control" id="notmetadata" value="<?php echo @$save['GovernanceAgency']['notmetadata'] ?>">
             </div>
              <div class="form-group col-sm-6">
                 <i>Vĩ độ:</i>

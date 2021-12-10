@@ -50,8 +50,8 @@ addBreadcrumbAdmin($breadcrumb);
                 <input type="text" maxlength="100" name="name" id="name" value="<?php echo @$save['Hotel']['name'] ?>" class="form-control" required="">
             </div>
              <div class="form-group col-sm-6">
-                <i>Địa chỉ<span class="required">*</span>:</i>
-                <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['Hotel']['address'] ?>" class="form-control" required="">
+                <i>Địa chỉ:</i>
+                <input type="text" maxlength="100" name="address" id="address" value="<?php echo @$save['Hotel']['address'] ?>" class="form-control">
             </div>
             <div class="form-group col-sm-6">
                 <i>Điện thoại<span class="required">*</span>:</i>
@@ -62,12 +62,12 @@ addBreadcrumbAdmin($breadcrumb);
                 <input type="text" name="email" class="form-control" id="email" value="<?php echo @$save['Hotel']['email'] ?>">
             </div>
             <div class="form-group col-sm-6">
-                <i>Thời gian làm việc bắt đầu:<span class="required">*</span>:</i>
-                <input type="text" name="timeStart" id="timeStart" value="<?php echo @$save['Hotel']['timeStart'] ?>"  class="form-control timepicker"  required />                                   
+                <i>Thời gian làm việc bắt đầu:</i>
+                <input type="text" name="timeStart" id="timeStart" value="<?php echo @$save['Hotel']['timeStart'] ?>"  class="form-control timepicker" />                                   
             </div>
             <div class="form-group col-sm-6">
-                <i>Thời gian làm việc kết thúc<span class="required">*</span>:</i>
-                <input type="text" name="timeEnd" id="timeEnd" value="<?php echo @$save['Hotel']['timeEnd'] ?>"  class="form-control timepicker"  required />                                          
+                <i>Thời gian làm việc kết thúc:</i>
+                <input type="text" name="timeEnd" id="timeEnd" value="<?php echo @$save['Hotel']['timeEnd'] ?>"  class="form-control timepicker" />                                          
             </div> 
             <div class="form-group col-sm-6">
                <i>Ảnh đại diện</i>
@@ -87,12 +87,12 @@ addBreadcrumbAdmin($breadcrumb);
                 <input type="text" name="seo" class="form-control" id="seo" required="" value="<?php echo @$save['Hotel']['seo'] ?>">
             </div>
              <div class="form-group col-sm-6">
-                <i>Từ khóa metadata <span class="required">*</span>:</i>
-                <input type="text" name="keyMetadata" class="form-control" id="keyMetadata" required="" value="<?php echo @$save['Hotel']['keyMetadata'] ?>">
+                <i>Từ khóa metadata:</i>
+                <input type="text" name="keyMetadata" class="form-control" id="keyMetadata" value="<?php echo @$save['Hotel']['keyMetadata'] ?>">
             </div>
             <div class="form-group col-sm-6">
-                <i>Mô tả thẻ metadata<span class="required">*</span>:</i>
-                <input type="text" name="notmetadata" class="form-control" id="notmetadata" required="" value="<?php echo @$save['Hotel']['notmetadata'] ?>">
+                <i>Mô tả thẻ metadata:</i>
+                <input type="text" name="notmetadata" class="form-control" id="notmetadata" value="<?php echo @$save['Hotel']['notmetadata'] ?>">
             </div>
              <div class="form-group col-sm-6">
                 <i>Vĩ độ:</i>
