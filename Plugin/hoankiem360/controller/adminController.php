@@ -23,10 +23,7 @@ function listEventAdmin($input){
 
         $listData= $modelEvent->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
 
-        //debug($listData);
-        //die();
-
-        $totalData= $modelEvent->find('count');
+        $totalData= $modelEvent->find('count',$conditions);
 
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;

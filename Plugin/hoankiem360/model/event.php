@@ -24,6 +24,14 @@ class Event extends AppModel {
         }
     }
 
+     function getEventSlug($slug)
+       {
+             $dk = array ('urlSlug' => $slug);
+             $return = $this -> find('first', array('conditions' => $dk) );
+             return $return;
+         
+       }
+
 }
 
 ?>

@@ -22,6 +22,11 @@ class Tour extends AppModel {
             return $return;
         }
     }
+    function getTourSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+    }
 
 }
 

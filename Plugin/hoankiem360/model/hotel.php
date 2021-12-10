@@ -22,7 +22,11 @@ class Hotel extends AppModel {
             return $return;
         }
     }
-
+    function getHotelSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+    }
 }
 
 ?>

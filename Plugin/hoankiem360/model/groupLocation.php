@@ -23,7 +23,12 @@ class GroupLocation extends AppModel {
             return $return;
         }
     }
-
+    function getGroupLocationSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+         
+   }
 }
 
 ?>

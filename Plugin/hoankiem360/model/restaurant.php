@@ -22,6 +22,11 @@ class Restaurant extends AppModel {
             return $return;
         }
     }
+    function getRestaurantSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+    }
 
 }
 

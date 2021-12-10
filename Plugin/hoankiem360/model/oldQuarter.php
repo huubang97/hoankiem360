@@ -22,6 +22,11 @@ class OldQuarter extends AppModel {
             return $return;
         }
     }
+    function getOldQuarterSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+    }
 
 }
 

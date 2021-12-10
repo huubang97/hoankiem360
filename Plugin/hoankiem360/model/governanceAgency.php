@@ -23,6 +23,12 @@ class GovernanceAgency extends AppModel {
             return $return;
         }
     }
+    function getGovernanceAgencySlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+         
+   }
 
 }
 

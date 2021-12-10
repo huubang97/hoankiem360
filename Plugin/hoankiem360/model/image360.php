@@ -23,6 +23,11 @@ class Image360 extends AppModel {
             return $return;
         }
     }
+    function getImage360Slug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+    }
 
 }
 

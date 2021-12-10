@@ -22,6 +22,12 @@ class Festival extends AppModel {
             return $return;
         }
     }
+    function getFestivalSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+         
+   }
 
 }
 

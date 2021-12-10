@@ -23,6 +23,12 @@ class Advertisement extends AppModel {
         }
     }
 
+    function getAdvertisementSlug($slug){
+        $dk = array ('urlSlug' => $slug);
+        $return = $this -> find('first', array('conditions' => $dk) );
+        return $return;
+         
+   }
 }
 
 ?>
