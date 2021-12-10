@@ -9,8 +9,8 @@
    $routesPlugin['chi_tiet_nha_hang'] = 'hoankiem360/view/detailRestaurant.php';
    $routesPlugin['pho_co'] = 'hoankiem360/view/listOldQuarter.php';
    $routesPlugin['chi_tiet_pho_co'] = 'hoankiem360/view/detailOldQuarter.php';
-   $routesPlugin['co_quan_hang_chinh'] = 'hoankiem360/view/listGovernanceAgency.php';
-   $routesPlugin['chi_tiet_co_quan_hang_chinh'] = 'hoankiem360/view/detailGovernanceAgency.php';
+   $routesPlugin['co_quan_hanh_chinh'] = 'hoankiem360/view/listGovernanceAgency.php';
+   $routesPlugin['chi_tiet_co_quan_hanh_chinh'] = 'hoankiem360/view/detailGovernanceAgency.php';
    $routesPlugin['tour'] = 'hoankiem360/view/listTour.php';
    $routesPlugin['chi_tiet_tour'] = 'hoankiem360/view/detailTour.php';
    $routesPlugin['khach_san'] = 'hoankiem360/view/listHotel.php';

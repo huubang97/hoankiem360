@@ -88,7 +88,7 @@ function detailEvent($input){
     
        
 }
-
+// di tich lịch sủ
 function listHistoricalSites($input){
 
     $modelHistoricalSites = new HistoricalSites();
@@ -166,7 +166,7 @@ function detailHistoricalSites($input){
        
 }
 
-
+// Nhà hàng
 function listRestaurant($input){
 
     $modelRestaurant = new Restaurant();
@@ -231,7 +231,551 @@ function detailRestaurant($input){
 
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
-        $data= $modelHistoricalSites->getRestaurantSlug($input['request']->params['pass'][1]);
+        $data= $modelRestaurant->getRestaurantSlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+//Phố cổ
+function listOldQuarter($input){
+
+    $modelOldQuarter = new OldQuarter();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelOldQuarter->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelOldQuarter->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailOldQuarter($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelOldQuarter = new OldQuarter();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelOldQuarter->getOldQuarterSlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+//Cơ quan hành chính
+function listGovernanceAgency($input){
+
+    $modelGovernanceAgency = new GovernanceAgency();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelGovernanceAgency->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelGovernanceAgency->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailGovernanceAgency($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelGovernanceAgency = new GovernanceAgency();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelGovernanceAgency->getGovernanceAgencySlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+//tour 
+function listTour($input){
+
+    $modelTour = new Tour();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelTour->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelTour->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailTour($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelTour = new Tour();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelTour->getTourSlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+//Hotel 
+function listHotel($input){
+
+    $modelHotel = new Hotel();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelHotel->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelHotel->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+        debug($listData);
+        die();
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailHotel($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelHotel = new Hotel();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelHotel->getHotelSlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+
+//Lễ hội
+function listFestival($input){
+
+    $modelFestival = new Festival();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelFestival->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelFestival->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+        debug($listData);
+        die();
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailFestival($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelFestival = new Festival();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelFestival->getFestivalSlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+//Hô hoàn kiếm
+function listHklake($input){
+
+    $modelHklake = new Hklake();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelHklake->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelHklake->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+        debug($listData);
+        die();
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailHklake($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelHklake = new Hklake();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelHklake->getHklakeSlug($input['request']->params['pass'][1]);
+
+        if(!empty($data)){
+            setVariable('data',$data);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    }
+    
+       
+}
+
+//Giải trí 
+function listEntertainment($input){
+
+    $modelEntertainment = new Entertainment();
+    global $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+          if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $listData= $modelEntertainment->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelEntertainment->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+        debug($listData);
+        die();
+        setVariable('listData',$listData);
+        setVariable('page',$page);
+        setVariable('totalPage',$totalPage);
+        setVariable('back',$back);
+        setVariable('next',$next);
+        setVariable('urlPage',$urlPage);
+
+}
+
+function detailEntertainment($input){
+    global $infoSite;
+    global $urlHomes;
+        
+    $modelOption= new Option();
+    $modelEntertainment = new Entertainment();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+        $data= $modelEntertainment->getEntertainmentSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
             setVariable('data',$data);
