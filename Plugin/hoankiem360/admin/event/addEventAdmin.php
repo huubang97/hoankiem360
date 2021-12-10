@@ -100,6 +100,11 @@ addBreadcrumbAdmin($breadcrumb);
                     <input name="takesplace" type="radio" value="Happenning" <?php if(!empty($save['Event']['takesplace']) && $save['Event']['takesplace']=='Happenning') echo 'checked';?> > Đang diễn ra &nbsp;&nbsp;
                     <input name="takesplace" type="radio" value="done" <?php if(!empty($save['Event']['takesplace']) && $save['Event']['takesplace']=='done') echo 'checked';?> > Đã diễn ra
                 </div>
+                <br><br>
+                <br><br>
+                <i>Tác giả:</i>
+                <input type="text" name="author" class="form-control" id="author" value="<?php echo @$save['Event']['author'] ?>">
+           
             </div>
              <div class="form-group col-sm-6">
                 <i>Giới thiệu:</i>

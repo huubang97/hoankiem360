@@ -111,6 +111,10 @@ addBreadcrumbAdmin($breadcrumb);
                         showEditorInput('content','content',@$save['Festival']['content'],1);
                     ?>                                          
             </div>  
+            <div class="form-group col-sm-6">
+                <i>Tác giả:</i>
+                <input type="text" name="author" class="form-control" id="author" value="<?php echo @$save['Festival']['author'] ?>">
+            </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-bottom: 15px;"><button type="submit" class="btn btn-primary">Thêm</button></div>
     </form>

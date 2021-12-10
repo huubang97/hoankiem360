@@ -88,8 +88,9 @@ function addEventAdmin($input){
             $save['Event']['urlSlug']= createSlugMantan(trim($dataSend['title']));
             $save['Event']['takesplace']= $dataSend['takesplace'];
             $save['Event']['takesplace']= $dataSend['takesplace'];
-            $save['Event']['introductory']= $dataSend['introductory'];
-            $save['Event']['content']= $dataSend['content'];
+            $save['Event']['introductory']= @$dataSend['introductory'];
+            $save['Event']['content']= @$dataSend['content'];
+            $save['Event']['author']= @$dataSend['author'];
 
             if ($modelEvent->save($save)) {
                  $modelEvent->redirect($urlPlugins.'admin/hoankiem360-admin-event-listEventAdmin.php?code=1');
@@ -182,6 +183,7 @@ function addGroupLocationAdmin($input){
             $save['GroupLocation']['name']= $dataSend['name'];
             $save['GroupLocation']['not']= @$dataSend['not'];
             $save['GroupLocation']['image']= @$dataSend['image'];
+            $save['GroupLocation']['author']= @$dataSend['author'];
             $save['GroupLocation']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelGroupLocation->save($save)) {
@@ -279,6 +281,7 @@ function addServiceTypeAdmin($input){
             $save['ServiceType']['name']= $dataSend['name'];
             $save['ServiceType']['not']= @$dataSend['not'];
             $save['ServiceType']['image']= @$dataSend['image'];
+            $save['ServiceType']['author']= @$dataSend['author'];
             $save['ServiceType']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelServiceType->save($save)) {
@@ -406,6 +409,7 @@ function addHistoricalSitesAdmin($input){
             $save['HistoricalSites']['image360']= @$dataSend['image360'];
             $save['HistoricalSites']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['HistoricalSites']['content']= @$dataSend['content'];
+            $save['HistoricalSites']['author']= @$dataSend['author'];
             $save['HistoricalSites']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelHistoricalSites->save($save)) {
@@ -529,6 +533,7 @@ function addRestaurantAdmin($input){
             $save['Restaurant']['timeStart']= @$dataSend['timeStart'];
             $save['Restaurant']['timeEnd']= @$dataSend['timeEnd'];
             $save['Restaurant']['codeManmo']= @$dataSend['codeManmo'];
+            $save['Restaurant']['author']= @$dataSend['author'];
             $save['Restaurant']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelRestaurant->save($save)) {
@@ -656,6 +661,7 @@ function addOldQuarterAdmin($input){
             $save['OldQuarter']['image360']= @$dataSend['image360'];
             $save['OldQuarter']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['OldQuarter']['content']= @$dataSend['content'];
+            $save['OldQuarter']['author']= @$dataSend['author'];
             $save['OldQuarter']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelOldQuarter->save($save)) {
@@ -776,6 +782,7 @@ function addGovernanceAgencyAdmin($input){
             $save['GovernanceAgency']['image360']= @$dataSend['image360'];
             $save['GovernanceAgency']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['GovernanceAgency']['content']= @$dataSend['content'];
+            $save['GovernanceAgency']['author']= @$dataSend['author'];
             $save['GovernanceAgency']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelGovernanceAgency->save($save)) {
@@ -894,6 +901,7 @@ function addTourAdmin($input){
             $save['Tour']['image360']= @$dataSend['image360'];
             $save['Tour']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['Tour']['content']= @$dataSend['content'];
+            $save['Tour']['author']= @$dataSend['author'];
             $save['Tour']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelTour->save($save)) {
@@ -1015,6 +1023,7 @@ function addHotelAdmin($input){
             $save['Hotel']['timeStart']= @$dataSend['timeStart'];
             $save['Hotel']['timeEnd']= @$dataSend['timeEnd'];
             $save['Hotel']['codeManmo']= @$dataSend['codeManmo'];
+            $save['Hotel']['author']= @$dataSend['author'];
             $save['Hotel']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelHotel->save($save)) {
@@ -1133,6 +1142,7 @@ function addFestivalAdmin($input){
             $save['Festival']['image360']= @$dataSend['image360'];
             $save['Festival']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['Festival']['content']= @$dataSend['content'];
+            $save['Festival']['author']= @$dataSend['author'];
             $save['Festival']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelFestival->save($save)) {
@@ -1251,6 +1261,7 @@ function addHklakeAdmin($input){
             $save['Hklake']['image360']= @$dataSend['image360'];
             $save['Hklake']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['Hklake']['content']= @$dataSend['content'];
+            $save['Hklake']['author']= @$dataSend['author'];
             $save['Hklake']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelHklake->save($save)) {
@@ -1369,6 +1380,7 @@ function addEntertainmentAdmin($input){
             $save['Entertainment']['image360']= @$dataSend['image360'];
             $save['Entertainment']['cassavaorder']= @$dataSend['cassavaorder'];
             $save['Entertainment']['content']= @$dataSend['content'];
+            $save['Entertainment']['author']= @$dataSend['author'];
             $save['Entertainment']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelEntertainment->save($save)) {

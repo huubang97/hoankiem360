@@ -1,7 +1,6 @@
 <?php 
 // sự kiệt
 function listEvent($input){
-
     $modelEvent = new Event();
     global $urlNow;
       
@@ -60,7 +59,6 @@ function listEvent($input){
         setVariable('back',$back);
         setVariable('next',$next);
         setVariable('urlPage',$urlPage);
-
 }
 
 function detailEvent($input){
@@ -87,13 +85,10 @@ function detailEvent($input){
         }else{
             $modelOption->redirect($urlHomes);
         }
-    }
-    
-       
+    }       
 }
 // di tich lịch sủ
 function listHistoricalSites($input){
-
     $modelHistoricalSites = new HistoricalSites();
     global $urlNow;
       
@@ -144,7 +139,6 @@ function listHistoricalSites($input){
         setVariable('back',$back);
         setVariable('next',$next);
         setVariable('urlPage',$urlPage);
-
 }
 
 function detailHistoricalSites($input){
@@ -556,14 +550,26 @@ function detailHotel($input){
         
     $modelOption= new Option();
     $modelHotel = new Hotel();
+    $keyManMo = '5dc8f2652ac5db08348b4567';
 
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
         $data= $modelHotel->getHotelSlug($input['request']->params['pass'][1]);
 
         if(!empty($data)){
+            
+            $dataPost= array('key'=>$keyManMo, 'idHotel'=>$data['Hotel']['codeManmo'], 'lat'=>'', 'long'=>'', 'idUser'=>'');
+            $infoHotelMM= sendDataConnectMantan('http://api.quanlyluutru.com/getInfoHotelAPI', $dataPost);
+            $infoHotelMM= str_replace('ï»¿', '', utf8_encode($infoHotelMM));
+            $infoHotelMM= json_decode($infoHotelMM, true);
+
+
+
             $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
             $otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
+
+            $data['HotelManmo'] = $infoHotelMM; 
+
             setVariable('data',$data);
             setVariable('otherData',$otherData);
         }else{
@@ -635,6 +641,8 @@ function listFestival($input){
 function detailFestival($input){
     global $infoSite;
     global $urlHomes;
+
+    
         
     $modelOption= new Option();
     $modelFestival = new Festival();
@@ -723,7 +731,7 @@ function detailHklake($input){
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
         $data= $modelHklake->getHklakeSlug($input['request']->params['pass'][1]);
-            
+
         if(!empty($data)){
             $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hklake']['id']))));
             $otherData= $modelHklake->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);

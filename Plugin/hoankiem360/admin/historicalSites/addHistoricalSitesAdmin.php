@@ -105,6 +105,10 @@ addBreadcrumbAdmin($breadcrumb);
                 <i>Tổng quan:</i>
                <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['HistoricalSites']['introductory'] ?></textarea>
             </div>
+            <div class="form-group col-sm-6">
+                <i>Tác giả:</i>
+                <input type="text" name="author" class="form-control" id="author" value="<?php echo @$save['HistoricalSites']['author'] ?>">
+            </div> 
             <div class="form-group col-sm-12">
                 <i>Nội dung bài viết</i>
                <?php
