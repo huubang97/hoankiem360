@@ -826,4 +826,29 @@ function detailEntertainment($input){
        
 }
 
+//user
+function registerUser($input){
+    global $infoSite;
+    global $urlHomes;
+    global $isRequestPost;
+
+    $keyManMo = '5dc8f2652ac5db08348b4567';
+     if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+
+        
+
+            $dataPost= array('fullname'=>$dataSend['fullname'], 'email'=>$dataSend['email'], 'phone'=>$dataSend['phone'], 'password'=>$dataSend['password'], 'passwordAgain'=>$dataSend['passwordAgain'], 'sex'=>$dataSend['sex'], 'username'=>$dataSend['username'],'address'=>$dataSend['address'],'codeAffiliate'=>'');
+            $mess= sendDataConnectMantan('http://api.quanlyluutru.com/checkRegisterUserAPI', $dataPost);
+            $mess= str_replace('ï»¿', '', utf8_encode($mess));
+            $mess= json_decode($mess, true);
+            if($mess['code']==1){
+                $modelOption->redirect($urlHomes.'/dang_nhap');
+            }else{
+                setVariable('mess',$mess);
+            }
+        }
+
+}
+
  ?>

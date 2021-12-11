@@ -21,4 +21,5 @@
    $routesPlugin['chi_tiet_ho_hoan_kiem'] = 'hoankiem360/view/detailHklake.php';
    $routesPlugin['giai_tri'] = 'hoankiem360/view/listEntertainment.php';
    $routesPlugin['chi_tiet_giai_tri'] = 'hoankiem360/view/detailEntertainment.php';
+   $routesPlugin['dang_ky'] = 'hoankiem360/view/registerUser.php';
 ?> 
