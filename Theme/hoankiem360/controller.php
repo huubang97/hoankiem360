@@ -49,6 +49,8 @@ function settings($input)
 				$data['Option']['value']['youtube']= @$dataSend['youtube'];
 				$data['Option']['value']['instagram']= @$dataSend['instagram'];
 				$data['Option']['value']['pinterest']= @$dataSend['pinterest'];
+				$data['Option']['value']['idCateNotice']= @$dataSend['idCateNotice'];
+				$data['Option']['value']['idCateNotice1']= @$dataSend['idCateNotice1'];
 				
 				$modelOption->saveOption('ThemeSettings', $data['Option']['value']);
 				$mess= 'lưu thành công';

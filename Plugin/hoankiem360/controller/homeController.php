@@ -3,6 +3,7 @@
 function listEvent($input){
     $modelEvent = new Event();
     global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
       
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
@@ -68,6 +69,9 @@ function detailEvent($input){
     global $metaImageMantan;
     global $infoSite;
     global $urlHomes;
+
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
         
     $modelOption= new Option();
     $modelEvent = new Event();
@@ -91,7 +95,7 @@ function detailEvent($input){
 function listHistoricalSites($input){
     $modelHistoricalSites = new HistoricalSites();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -144,7 +148,8 @@ function listHistoricalSites($input){
 function detailHistoricalSites($input){
     global $infoSite;
     global $urlHomes;
-        
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
     $modelOption= new Option();
     $modelHistoricalSites = new HistoricalSites();
 
@@ -171,7 +176,7 @@ function listRestaurant($input){
 
     $modelRestaurant = new Restaurant();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -225,7 +230,8 @@ function listRestaurant($input){
 function detailRestaurant($input){
     global $infoSite;
     global $urlHomes;
-        
+     global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;   
     $modelOption= new Option();
     $modelRestaurant = new Restaurant();
 
@@ -251,7 +257,7 @@ function listOldQuarter($input){
 
     $modelOldQuarter = new OldQuarter();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -305,7 +311,8 @@ function listOldQuarter($input){
 function detailOldQuarter($input){
     global $infoSite;
     global $urlHomes;
-        
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;    
     $modelOption= new Option();
     $modelOldQuarter = new OldQuarter();
 
@@ -331,7 +338,7 @@ function listGovernanceAgency($input){
 
     $modelGovernanceAgency = new GovernanceAgency();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -385,7 +392,8 @@ function listGovernanceAgency($input){
 function detailGovernanceAgency($input){
     global $infoSite;
     global $urlHomes;
-        
+     global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;   
     $modelOption= new Option();
     $modelGovernanceAgency = new GovernanceAgency();
 
@@ -412,7 +420,7 @@ function listTour($input){
 
     $modelTour = new Tour();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -466,7 +474,8 @@ function listTour($input){
 function detailTour($input){
     global $infoSite;
     global $urlHomes;
-        
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;    
     $modelOption= new Option();
     $modelTour = new Tour();
 
@@ -492,7 +501,7 @@ function listHotel($input){
 
     $modelHotel = new Hotel();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -533,8 +542,6 @@ function listHotel($input){
         }else{
             $urlPage= $urlPage.'?page=';
         }
-        debug($listData);
-        die();
         setVariable('listData',$listData);
         setVariable('page',$page);
         setVariable('totalPage',$totalPage);
@@ -547,10 +554,12 @@ function listHotel($input){
 function detailHotel($input){
     global $infoSite;
     global $urlHomes;
-        
+     global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;   
     $modelOption= new Option();
     $modelHotel = new Hotel();
     $keyManMo = '5dc8f2652ac5db08348b4567';
+    $listFurniture = getListFurniture();
 
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
@@ -568,7 +577,9 @@ function detailHotel($input){
             $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
             $otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
 
-            $data['HotelManmo'] = $infoHotelMM; 
+            $data['HotelManmo'] = $infoHotelMM;
+
+            setVariable('listFurniture', $listFurniture); 
 
             setVariable('data',$data);
             setVariable('otherData',$otherData);
@@ -586,7 +597,7 @@ function listFestival($input){
 
     $modelFestival = new Festival();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;  
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -627,8 +638,7 @@ function listFestival($input){
         }else{
             $urlPage= $urlPage.'?page=';
         }
-        debug($listData);
-        die();
+     
         setVariable('listData',$listData);
         setVariable('page',$page);
         setVariable('totalPage',$totalPage);
@@ -642,7 +652,8 @@ function detailFestival($input){
     global $infoSite;
     global $urlHomes;
 
-    
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
         
     $modelOption= new Option();
     $modelFestival = new Festival();
@@ -669,7 +680,7 @@ function listHklake($input){
 
     $modelHklake = new Hklake();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow;  
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -710,8 +721,7 @@ function listHklake($input){
         }else{
             $urlPage= $urlPage.'?page=';
         }
-        debug($listData);
-        die();
+      
         setVariable('listData',$listData);
         setVariable('page',$page);
         setVariable('totalPage',$totalPage);
@@ -727,7 +737,8 @@ function detailHklake($input){
         
     $modelOption= new Option();
     $modelHklake = new Hklake();
-
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
         $data= $modelHklake->getHklakeSlug($input['request']->params['pass'][1]);
@@ -750,7 +761,7 @@ function listEntertainment($input){
 
     $modelEntertainment = new Entertainment();
     global $urlNow;
-      
+    $_SESSION['urlCallBack']= $urlNow; 
         $page= (isset($_GET['page']))? (int) $_GET['page']:1;
         if($page<=0) $page=1;
         $limit= 15;
@@ -791,8 +802,7 @@ function listEntertainment($input){
         }else{
             $urlPage= $urlPage.'?page=';
         }
-        debug($listData);
-        die();
+       
         setVariable('listData',$listData);
         setVariable('page',$page);
         setVariable('totalPage',$totalPage);
@@ -808,7 +818,8 @@ function detailEntertainment($input){
         
     $modelOption= new Option();
     $modelEntertainment = new Entertainment();
-
+    global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
         $data= $modelEntertainment->getEntertainmentSlug($input['request']->params['pass'][1]);
@@ -831,24 +842,64 @@ function registerUser($input){
     global $infoSite;
     global $urlHomes;
     global $isRequestPost;
-
+    $modelOption= new Option();
+   
     $keyManMo = '5dc8f2652ac5db08348b4567';
      if ($isRequestPost) {
             $dataSend=$input['request']->data;
-
-        
-
             $dataPost= array('fullname'=>$dataSend['fullname'], 'email'=>$dataSend['email'], 'phone'=>$dataSend['phone'], 'password'=>$dataSend['password'], 'passwordAgain'=>$dataSend['passwordAgain'], 'sex'=>$dataSend['sex'], 'username'=>$dataSend['username'],'address'=>$dataSend['address'],'codeAffiliate'=>'');
             $mess= sendDataConnectMantan('http://api.quanlyluutru.com/checkRegisterUserAPI', $dataPost);
             $mess= str_replace('ï»¿', '', utf8_encode($mess));
-            $mess= json_decode($mess, true);
-            if($mess['code']==1){
+            $mess= json_decode($mess, true);                                                                    
+            if($mess['code']==0){
                 $modelOption->redirect($urlHomes.'/dang_nhap');
             }else{
                 setVariable('mess',$mess);
             }
         }
 
+}
+
+function loginUser($input){
+     global $infoSite;
+    global $urlHomes;
+    global $isRequestPost;
+    $modelOption= new Option();
+    if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+
+            $dataPost= array('pass'=>$dataSend['password'], 'user'=>$dataSend['username']);
+            $mess= sendDataConnectMantan('http://api.quanlyluutru.com/checkLoginUserAPI', $dataPost);
+            $mess= str_replace('ï»¿', '', utf8_encode($mess));
+            $mess= json_decode($mess, true);                                                                 
+            if($mess['code']==0){
+                $_SESSION['userInfo']= $mess['user'];
+                //$modelOption->redirect($urlHomes);
+                if(empty($_GET['urlBack'])){
+                    if(!empty($dataSend['urlBack'])){
+                        $modelOption->redirect($dataSend['urlBack']);
+                    }else{
+                        if(!empty($_SESSION['urlCallBack'])){
+                            $modelOption->redirect($_SESSION['urlCallBack']);
+                        }else{
+                            $modelOption->redirect('/account');
+                        }
+                    }
+                }else{
+                    $modelOption->redirect($_GET['urlBack']);
+                }
+            }else{
+                setVariable('mess',$mess);
+        }
+    }
+} 
+function logoutUser(){
+     global $infoSite;
+    global $urlHomes;
+    global $isRequestPost;
+    $modelOption= new Option();
+      $_SESSION['userInfo']= '';
+    $modelOption->redirect($urlHomes);
 }
 
  ?>
