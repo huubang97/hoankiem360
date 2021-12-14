@@ -102,21 +102,34 @@ addBreadcrumbAdmin($breadcrumb);
                 <i>Kinh độ:</i>
                 <input type="text" name="longitude" class="form-control" id="longitude" value="<?php echo @$save['Hotel']['longitude'] ?>">
             </div>
-             <div class="form-group col-sm-6">
+            <div class="form-group col-sm-6">
                 <i>Ảnh 360:</i>
                 <input type="text" name="image360" class="form-control" id="image360"  value="<?php echo @$save['Hotel']['image360'] ?>">
-                <br>    
+            </div>
+            <div class="form-group col-sm-6">
                 <i>Thứ tự:</i>
                 <input type="text" name="cassavaorder" class="form-control" id="cassavaorder" value="<?php echo @$save['Hotel']['cassavaorder'] ?>">
+            </div>
+            <div class="form-group col-sm-6">
+                <i>Giá nghỉ giờ:</i>
+                <input type="text" name="gia_gio" class="form-control" id="gia_gio"  value="<?php echo @$save['Hotel']['gia_gio'] ?>">
+            </div>
+             <div class="form-group col-sm-6">
+               <i>Mã trên Manmo:</i>
+                <input type="text" name="codeManmo" class="form-control" id="codeManmo" value="<?php echo @$save['Hotel']['codeManmo'] ?>">
+            </div>
+             <div class="form-group col-sm-6">
+                <i>Giá nghỉ đêm:</i>
+                <input type="text" name="gia_dem" class="form-control" id="gia_dem"  value="<?php echo @$save['Hotel']['gia_dem'] ?>">  
+                <br> 
+                <i>Giá nghỉ ngày:</i>
+                <input type="text" name="gia_ngay" class="form-control" id="gia_ngay"  value="<?php echo @$save['Hotel']['gia_ngay'] ?>">
             </div>
             <div class="form-group col-sm-6">
                 <i>Tổng quan:</i>
                <textarea name="introductory" id="introductory" onkeyup="" class="form-control" rows="5"><?php echo @$save['Hotel']['introductory'] ?></textarea>
             </div>
-            <div class="form-group col-sm-6">
-                <i>Mã trên Manmo:</i>
-                <input type="text" name="codeManmo" class="form-control" id="codeManmo" value="<?php echo @$save['Hotel']['codeManmo'] ?>">
-            </div>
+            
             <div class="form-group col-sm-12">
                 <i>Nội dung bài viết</i>
                <?php

@@ -57,7 +57,10 @@ element.style {
                     ?>
                 </select> 
                 </td>
-                
+                <td>
+                    <label>Năm diễn ra</label>
+                    <input type="" name="year" class="form-control" placeholder="Năm diễn ra" value="<?php echo @$_GET['year'];?>">
+                </td>
             </tr>
             <tr>
                 <td colspan="2">

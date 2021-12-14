@@ -9,8 +9,7 @@ function listEventAdmin($input){
         if($page<=0) $page=1;
         $limit= 15;
         $order = array('created'=>'desc');
-
-         $conditions = array();
+        $conditions = array();
 
         if(!empty($_GET['name'])){
              $key=createSlugMantan($_GET['name']);
@@ -19,6 +18,9 @@ function listEventAdmin($input){
 
         if(!empty($_GET['month'])){
                 $conditions['month']= $_GET['month'];
+        }
+        if(!empty($_GET['year'])){
+                $conditions['year']= $_GET['year'];
         }
 
         $listData= $modelEvent->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
@@ -85,6 +87,7 @@ function addEventAdmin($input){
             $save['Event']['dateEnd']= $dataSend['dateEnd'];
             $save['Event']['image']= $dataSend['image'];
             $save['Event']['month']= $dataSend['month'];
+            $save['Event']['year']= $dataSend['year'];
             $save['Event']['urlSlug']= createSlugMantan(trim($dataSend['title']));
             $save['Event']['takesplace']= $dataSend['takesplace'];
             $save['Event']['takesplace']= $dataSend['takesplace'];
@@ -1024,6 +1027,9 @@ function addHotelAdmin($input){
             $save['Hotel']['timeEnd']= @$dataSend['timeEnd'];
             $save['Hotel']['codeManmo']= @$dataSend['codeManmo'];
             $save['Hotel']['author']= @$dataSend['author'];
+            $save['Hotel']['gia_gio']= @$dataSend['gia_gio'];
+            $save['Hotel']['gia_ngay']= @$dataSend['gia_ngay'];
+            $save['Hotel']['gia_dem']= @$dataSend['gia_dem'];
             $save['Hotel']['urlSlug']= createSlugMantan(trim($dataSend['name']));
         
             if ($modelHotel->save($save)) {

@@ -74,4 +74,56 @@ addMenuAdminMantan($menus);
             '24'=>array('id'=>24,'name'=>'Hội trường','class'=>'fas fa-chalkboard-teacher','image'=>'/app/Plugin/mantanHotel/images/archive.png','nameEN'=>'Hall'), 
         );
     }
+
+    function destination(){
+        global $urlHomes;
+        $modelHistoricalSites = new HistoricalSites();
+
+        $historicalSites= $modelHistoricalSites->find('count');
+
+        $modelRestaurant = new Restaurant();
+
+        $restaurant= $modelRestaurant->find('count');
+
+        $modelOldQuarter = new OldQuarter();
+
+        $oldQuarter= $modelOldQuarter->find('count');
+
+        $modelGovernanceAgency = new GovernanceAgency();
+
+        $governanceAgency= $modelGovernanceAgency->find('count');
+
+        $modelTour = new Tour();
+
+        $tour= $modelTour->find('count');
+
+        $modelHotel = new Hotel();
+
+        $hotel= $modelHotel->find('count');
+
+        $modelFestival = new Festival();
+
+        $festival= $modelFestival->find('count');
+
+        $modelHklake = new Hklake();
+
+        $hklake= $modelHklake->find('count');
+
+         $modelEntertainment = new Entertainment();
+
+        $entertainment= $modelEntertainment->find('count');
+
+
+        return array(   '1'=>array('id'=>1,'name'=>'Khu vực Hồ Hoàn Kiếm','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khu-vuc-hoan-kiem.png','urlSlug'=>$urlHomes .'ho_hoan_kiem', 'count'=>@$hklake),
+            '2'=>array('id'=>2,'name'=>'Di tích và danh lam','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/di-tich-danh-lam.png','urlSlug'=>$urlHomes .'di_tich_lich_su', 'count'=>@$historicalSites),   
+            '3'=>array('id'=>3,'name'=>'Phố cổ Hà Nội','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/pho-ha-noi.png','urlSlug'=>$urlHomes .'pho_co', 'count'=>@$oldQuarter),   
+            '4'=>array('id'=>4,'name'=>'Dịch vụ hỗ trợ du lịch','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/dich-vu-ho-tro-du-lich.png','urlSlug'=>$urlHomes .'tour', 'count'=>@$tour),  
+            '5'=>array('id'=>5,'name'=>'Cơ quan hành chính','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/co-quan-hanh-chinh.png','urlSlug'=>$urlHomes .'co_quan_hanh_chinh', 'count'=>@$governanceAgency),   
+            '6'=>array('id'=>6,'name'=>'Lễ hội và sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/su-kien.png','urlSlug'=>$urlHomes .'le_hoi', 'count'=>@$festival), 
+            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>$urlHomes .'khach_san', 'count'=>@$hotel),   
+            '8'=>array('id'=>8,'name'=>'Nhà hàng và quán ăn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/nha-hang-va-quan-an.png','urlSlug'=>$urlHomes .'nha_hang', 'count'=>@$restaurant),   
+            '9'=>array('id'=>9,'name'=>'Giải trí và thư giãn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/giai-tri-va-thu-dan.png','urlSlug'=>$urlHomes .'giai_tri', 'count'=>@$entertainment),  
+        );                                  
+             
+    }
 ?>

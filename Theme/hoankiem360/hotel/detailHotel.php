@@ -133,7 +133,7 @@
 						<input type="text" name="pricePay" id="pricePay" value="" required=""  disabled="" placeholder="Chi phí dự kiến">
 					</div>
 					<div class="col-md-12" style=" margin-top: 55px;">
-						<button class="btn_booking" onclick="resetTinh();">Đặt Phòng</button>
+						<button type="button" class="btn_booking" onclick="resetTinh();">Đặt Phòng</button>
 					</div>
 				</div>
 			</form>
@@ -372,6 +372,34 @@
 			</div>
 			
 		</div>
+
+
+<div class="modal" id="modalQR">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Thông tin đặt phòng</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <center><p>Mã đặt phòng của bạn là: <strong id="textCodeOrder"></strong></p></center>
+        <center><p>Quý khách vui lòng tải ảnh QR về máy để thực hiện checkin tự động tại khách sạn</p></center>
+        <center><img id="qrOrder" width="150" src=""></center>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 		<script type="text/javascript">
     jQuery('#date_start, #date_end').datetimepicker({

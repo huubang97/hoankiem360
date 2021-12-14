@@ -74,7 +74,7 @@ addBreadcrumbAdmin($breadcrumb);
                 showUploadFile('image', 'image', $image);
                 ?>
             </div>
-             <div class="form-group col-sm-6">
+             <div class="form-group col-sm-3">
 
                 <i>Tháng diễn ra<span class="required">*</span>:</i>
                 <select name="month" class="form-control" id="month">
@@ -92,6 +92,10 @@ addBreadcrumbAdmin($breadcrumb);
                     }
                     ?>
                 </select>                                          
+            </div>
+             <div class="form-group col-sm-3">
+                <i>Năm diễn ra:</i>
+               <input type="text" name="year" class="form-control" id="year" value="<?php echo @$save['Event']['year'] ?>">
             </div>
             <div class="form-group col-md-6">
                 <i>Trạng thái diễn ra <span class="required">*</span></i>
