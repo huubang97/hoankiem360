@@ -63,4 +63,9 @@ function settings($input)
 			$modelOption->redirect($urlHomes);
 		}
 	}
+
+function indexTheme(){
+	 global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;
+}
 ?>

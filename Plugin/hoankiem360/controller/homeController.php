@@ -860,6 +860,41 @@ function registerUser($input){
 
 }
 
+/*function loginUser($input){
+     global $infoSite;
+    global $urlHomes;
+    global $isRequestPost;
+    $modelOption= new Option();
+    if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+
+            $dataPost= array('pass'=>$dataSend['password'], 'user'=>$dataSend['username']);
+            $mess= sendDataConnectMantan('http://api.quanlyluutru.com/checkLoginUserAPI', $dataPost);
+            $mess= str_replace('ï»¿', '', utf8_encode($mess));
+            $mess= json_decode($mess, true);                                                                 
+            if($mess['code']==0){
+                $_SESSION['userInfo']= $mess['user'];
+                //$modelOption->redirect($urlHomes);
+                if(empty($_GET['urlBack'])){
+                    if(!empty($dataSend['urlBack'])){
+                        $modelOption->redirect($dataSend['urlBack']);
+                    }else{
+                        if(!empty($_SESSION['urlCallBack'])){
+                            $modelOption->redirect($_SESSION['urlCallBack']);
+                        }else{
+                            $modelOption->redirect('/account');
+                        }
+                    }
+                }else{
+                    $modelOption->redirect($_GET['urlBack']);
+                }
+            }else{
+                setVariable('mess',$mess);
+        }
+    }
+} */
+
+
 function loginUser($input){
      global $infoSite;
     global $urlHomes;
@@ -893,13 +928,35 @@ function loginUser($input){
         }
     }
 } 
+
 function logoutUser(){
      global $infoSite;
     global $urlHomes;
     global $isRequestPost;
     $modelOption= new Option();
       $_SESSION['userInfo']= '';
-    $modelOption->redirect($urlHomes);
+    $modelOption->redirect('/dang_nhap');
 }
 
- ?>
+function updateInfoUser(){
+      global $infoSite;
+    global $urlHomes;
+    global $isRequestPost;
+    $modelOption= new Option();
+    $accessToken ='5987dc86a5d814226842379c';
+    if ($isRequestPost) {
+            $dataSend=$input['request']->data;
+
+            $dataPost= array('accessToken'=>@$accessToken, 'fullname'=>@$dataSend['fullname'],'email'=>@$dataSend['email'],'sex'=>@$dataSend['sex'],'phone'=>@$dataSend['phone'],'address'=>$dataSend['address'],'birthday'=>@$dataSend['birthday']);
+            $mess= sendDataConnectMantan('http://api.quanlyluutru.com/updateInfoUserAPI', $dataPost);
+            $mess= str_replace('ï»¿', '', utf8_encode($mess));
+            $mess= json_decode($mess, true);                                                                 
+            if($mess['code']==0){
+               $modelOption->redirect('/updateInfoUser');
+            }else{
+                setVariable('mess',$mess);
+        }
+    }
+
+}
+?>
