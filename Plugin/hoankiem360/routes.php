@@ -33,4 +33,25 @@
    $routesPlugin['detailHistoricalSitesAPI'] = 'hoankiem360/view/detailHistoricalSitesAPI.php';
    $routesPlugin['listRestaurantAPI'] = 'hoankiem360/view/listRestaurantAPI.php';
    $routesPlugin['detailRestaurantAPI'] = 'hoankiem360/view/detailRestaurantAPI.php';
-?> 
+   $routesPlugin['listOldQuarterAPI'] = 'hoankiem360/view/listOldQuarterAPI.php';
+   $routesPlugin['detailOldQuarterAPI'] = 'hoankiem360/view/detailOldQuarterAPI.php';
+   $routesPlugin['listGovernanceAgencyAPI'] = 'hoankiem360/view/listGovernanceAgencyAPI.php';
+   $routesPlugin['detailGovernanceAgencyAPI'] = 'hoankiem360/view/detailGovernanceAgencyAPI.php';
+   $routesPlugin['listTourAPI'] = 'hoankiem360/view/listTourAPI.php';
+   $routesPlugin['detailTourAPI'] = 'hoankiem360/view/detailTourAPI.php';
+   $routesPlugin['listFestivalAPI'] = 'hoankiem360/view/listFestivalAPI.php';
+   $routesPlugin['detailFestivalAPI'] = 'hoankiem360/view/detailFestivalAPI.php';
+   $routesPlugin['listHklakeAPI'] = 'hoankiem360/view/listHklakeAPI.php';
+   $routesPlugin['detailHklakeAPI'] = 'hoankiem360/view/detailHklakeAPI.php';
+   $routesPlugin['listHklakeAPI'] = 'hoankiem360/view/listHklakeAPI.php';
+   $routesPlugin['detailHklakeAPI'] = 'hoankiem360/view/detailHklakeAPI.php';
+   $routesPlugin['listEntertainmentAPI'] = 'hoankiem360/view/listEntertainmentAPI.php';
+   $routesPlugin['detailEntertainmentAPI'] = 'hoankiem360/view/detailEntertainmentAPI.php';
+   $routesPlugin['listImage360API'] = 'hoankiem360/view/listImage360API.php';
+   $routesPlugin['detailImage360API'] = 'hoankiem360/view/detailImage360API.php';
+   $routesPlugin['getListCategoryAPI'] = 'hoankiem360/view/getListCategoryAPI.php';
+   $routesPlugin['getNoticeInCategoryAPI'] = 'hoankiem360/view/getNoticeInCategoryAPI.php';
+   $routesPlugin['viewNoticeAPI'] = 'hoankiem360/view/viewNoticeAPI.php';
+   $routesPlugin['getNoticeHotAPI'] = 'hoankiem360/view/getNoticeHotAPI.php';
+   $routesPlugin['getNoticeNewAPI'] = 'hoankiem360/view/getNoticeNewAPI.php';
+?>

@@ -90,6 +90,7 @@ function listEventAPI($input){
 function detailEventAPI($input){
     
     header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
     $modelEvent = new Event();
     $dataSend = arrayMap($input['request']->data);       
     if (!empty($dataSend['id'])) {
@@ -126,6 +127,7 @@ function lisHistoricalSitestAPI($input){
 function detailHistoricalSitesAPI($input){
     
     header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
     $modelHistoricalSites = new HistoricalSites();
     $dataSend = arrayMap($input['request']->data);       
     if (!empty($dataSend['id'])) {
@@ -138,7 +140,7 @@ function detailHistoricalSitesAPI($input){
 }
 
 /*Nhà hàng  */
-function lisHRestaurantAPI($input){
+function listRestaurantAPI($input){
     
      header('Access-Control-Allow-Methods: *');
     $modelRestaurant = new Restaurant();
@@ -162,6 +164,7 @@ function lisHRestaurantAPI($input){
 function detailRestaurantAPI($input){
     
     header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
     $modelRestaurant = new Restaurant();
     $dataSend = arrayMap($input['request']->data);       
     if (!empty($dataSend['id'])) {
@@ -170,6 +173,389 @@ function detailRestaurantAPI($input){
         }
 
 
+    echo json_encode($return);
+}
+
+/*phố cổ*/
+function listOldQuarterAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelOldQuarter = new OldQuarter();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelOldQuarter->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailOldQuarterAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelOldQuarter = new OldQuarter();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelOldQuarter->getOldQuarter($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
+
+/*Cơ quan hành chính*/
+function listGovernanceAgencyAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelGovernanceAgency = new GovernanceAgency();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelGovernanceAgency->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailGovernanceAgencyAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelGovernanceAgency = new GovernanceAgency();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelGovernanceAgency->getGovernanceAgency($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
+
+/*Tour*/
+function listTourAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelTour = new Tour();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelTour->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailTourAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelTour = new Tour();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelTour->getTour($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
+
+/*Lễ hội*/
+function listFestivalAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelFestival = new Festival();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelFestival->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailFestivalAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelFestival = new Festival();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelFestival->getFestival($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
+
+/*Hồ Hoàn Kiếm*/
+function listHklakeAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelHklake = new Hklake();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelHklake->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailHklakeAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelHklake = new Hklake();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelHklake->getHklake($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+    echo json_encode($return);
+}
+
+/*Giải trí*/
+function listEntertainmentAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelEntertainment = new Entertainment();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelEntertainment->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailEntertainmentAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelEntertainment = new Entertainment();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelEntertainment->getEntertainment($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+     echo json_encode($return);
+}
+
+// ảnh 360 
+function listImage360API($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelImage360 = new Image360();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelImage360->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailImage360API($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelImage360 = new Image360();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelImage360->getImage360($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+     echo json_encode($return);
+}
+
+// Tin tức
+/*function listNoticeAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelNotice = new Notice();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelNotice->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        debug($totalData);
+        die();
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailNoticeAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $return= array('code'=>0);
+    $modelNotice = new Notice();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelNotice->getNotice($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+     echo json_encode($return);
+}*/
+
+function getListCategoryAPI($input){
+    global $modelOption;
+
+    $return= $modelOption->getOption('categoryNotice');
+        
+    $return= (!empty($return['Option']['value']['category']))?$return['Option']['value']['category']:array();
+
+    echo json_encode($return);
+}
+
+function getNoticeInCategoryAPI($input){
+    global $modelNotice;
+    global $modelOption;
+    global $urlHomes;
+
+    $category= $modelOption->getOption('categoryNotice');
+
+    $dataSend= $input['request']->data;
+    $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
+    if($page<1) $page=1;
+    $limit= 15;
+    $conditions= array();
+    $fields= array('title','image','author','introductory','time');
+
+    $return= $modelNotice->getOtherNotice(array((int)$dataSend['category']),$limit,$conditions,$page,$fields);
+
+    if($return){
+        foreach ($return as $key => $value) {
+            $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+        }
+    }
+
+    echo json_encode($return);
+}
+
+function viewNoticeAPI($input)
+{
+    if(!empty($_GET['id'])){
+        global $modelNotice;
+        $data= $modelNotice->getNotice($_GET['id']);
+        setVariable('data',$data);
+    }
+}
+
+function getNoticeHotAPI($input){
+    global $modelNotice;
+    global $urlHomes;
+
+    $dataSend= $input['request']->data;
+        
+    $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
+    if($page<1) $page=1;
+    $limit= 15;
+    $conditions= array();
+    $fields= array('title','image','author','introductory','time');
+
+    $return= $modelNotice->getTopEventNotice($limit,$fields,$page);
+
+    if($return){
+        foreach ($return as $key => $value) {
+            $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+        }
+    }
+    echo json_encode($return);
+}
+
+function getNoticeNewAPI($input){
+    global $modelNotice;
+    global $urlHomes;
+        
+    $dataSend= $input['request']->data;
+        
+    $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
+    if($page<1) $page=1;
+    $limit= 15;
+    $conditions= array();
+    $fields= array('title','image','author','introductory','time');
+
+    $return= $modelNotice->getNewNotice($limit,$fields,$page);
+
+    if($return){
+        foreach ($return as $key => $value) {
+            $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+        }
+    }
     echo json_encode($return);
 }
 ?>
