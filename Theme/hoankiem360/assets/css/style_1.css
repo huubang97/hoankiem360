@@ -550,12 +550,17 @@ select:focus{
     margin-bottom: 20px;
 }
 
-.information_hotel>p{
+.information_hotel>h2{
     font-size: 18px;
     font-weight: 500;
     color: #efb138;
     padding: 10px 0px;
     border-bottom: 1px solid #efb138;
+}
+
+.title_destination span{
+    font-size: 12px;
+    color: #fff;
 }
 
 .information_hotel>ul{

@@ -13,7 +13,7 @@
 			<ul class="">
 				<li><a href="">Điểm Đến / </a></li>
 				<li><a href="">Khách sạn và trung tâm hội nghị, sự kiện / </a></li>
-				<li><a href=""><?php echo @$tmpVariable['data']['Hotel']['name'];?></a></li>
+				<li><a href=""><?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></a></li>
 			</ul>
 			 <?php 
 	
@@ -28,29 +28,29 @@
 
 
  </style>
-			<h1><?php echo @$tmpVariable['data']['Hotel']['name'];?></h1>
-			<p><i class="fas fa-map-marker-alt"></i> <?php echo @$tmpVariable['data']['Hotel']['address'];?></p>
+			<h1><?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></h1>
+			<p><i class="fas fa-map-marker-alt"></i> <?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['address'];?></p>
 			<div class="infor_hotel">
 				<div class="row">
 					<div class="col-md-8 col-12">
 						<div class="row imglist">
 							<div class="col-md-6 col-6">
 								<div class="img-hotel">
-									<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" data-fancybox="images" >
-									    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" />
+									<a href="<?php echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" data-fancybox="images" >
+									    <img src="<?php echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" />
 									 </a>
 								</div>
 								
 								<div class="img-hotel">
-									<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" data-fancybox="images" >
-									    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" />
+									<a href="<?php echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" data-fancybox="images" >
+									    <img src="<?php echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" />
 									 </a>
 								</div>
 							</div>
 							<div class="col-md-6 col-6">
 								<div class="img-hotel1">
-										<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" data-fancybox="images" >
-									    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" />
+										<a href="<?php echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" data-fancybox="images" >
+									    <img src="<?php echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" />
 									 </a>
 								</div>
 							</div>
@@ -170,16 +170,16 @@
 		</div>
 		<div class="container">
 			<div class="information_hotel">
-				<p>Thông Tin Liên Hệ <?php echo @$tmpVariable['data']['Hotel']['name'];?></p>
+				<h2>Thông Tin Liên Hệ <?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></h2>
 				<ul>
-					<li>Điện thoại: <span><?php echo @$tmpVariable['data']['Hotel']['phone'];?></span></li>
-					<li>Điạ chỉ: <span><?php echo @$tmpVariable['data']['Hotel']['address'];?></span></li>
-					<li>Email: <span><?php echo @$tmpVariable['data']['Hotel']['email'];?></span></li>
+					<li>Điện thoại: <span><?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['phone'];?></span></li>
+					<li>Điạ chỉ: <span><?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['address'];?></span></li>
+					<li>Email: <span><?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['email'];?></span></li>
 				</ul>
 			</div>
 
 			<div class="information_hotel">
-				<p>Giới Thiệu <?php echo @$tmpVariable['data']['Hotel']['name'];?></p>
+				<h2>Giới Thiệu <?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></h2>
 				 <?php
                         if(empty($tmpVariable['data']['HotelManmo']['data']['Hotel']['info'])){
                             $numberRoomText= (!empty($tmpVariable['data']['HotelManmo']['data']['Hotel']['numberRoom']))?$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'].' có quy mô '.$tmpVariable['data']['HotelManmo']['data']['Hotel']['numberRoom'].' phòng, ':'';
@@ -192,7 +192,9 @@
                     ?>
 			</div>
 
-			<div class="infomation_detail">
+			<?php
+				if(!empty($tmpVariable['data']['HotelManmo']['listTypeRoom'])){ ?>
+						<div class="infomation_detail">
 	            <div class="container information_hotel">
 	                <p class="title_p">Loại Phòng</p>
 	                <div class="list_room">
@@ -280,35 +282,182 @@
 	            </div>
 	        </div>
 
-			<!-- <div class="information_hotel">
-				<p>Đánh Giá <?php echo @$tmpVariable['data']['Hotel']['name'];?></p>
+			<?php	}
+			?>
+
+		
+
+			<div class="information_hotel">
+				<h2>Đánh Giá <?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></h2>
+
 				<div class="row">
 					<div class="col-lg-9 col-md-9  col-12">
-						<div class="item_review">
-							<p>1<i class="fas fa-star"></i></p>
-							<div class="scroll_star"></div>
-							<p class="precent_star">100%</p>
-						</div>
-						<div class="item_review">
-							<p>2<i class="fas fa-star"></i></p>
-							<div class="scroll_star"></div>
-							<p class="precent_star">100%</p>
-						</div>
-						<div class="item_review">
-							<p>3<i class="fas fa-star"></i></p>
-							<div class="scroll_star"></div>
-							<p class="precent_star">100%</p>
-						</div>
-						<div class="item_review">
-							<p>4<i class="fas fa-star"></i></p>
-							<div class="scroll_star scroll_star_active"></div>
-							<p class="precent_star">100%</p>
-						</div>
-						<div class="item_review">
-							<p>5<i class="fas fa-star"></i></p>
-							<div class="scroll_star"></div>
-							<p class="precent_star">100%</p>
-						</div>
+						<?php
+							if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){
+								foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+									if($value['Comment']['star'] = 0 ){ ?>
+										<div class="item_review">
+											<p>1<i class="fas fa-star"></i></p>
+											<div class="scroll_star scroll_star_active"></div>
+											<p class="precent_star">100%</p>
+										</div>
+										<div class="item_review">
+											<p>2<i class="fas fa-star"></i></p>
+											<div class="scroll_star"></div>
+											<p class="precent_star">0%</p>
+										</div>
+										<div class="item_review">
+											<p>3<i class="fas fa-star"></i></p>
+											<div class="scroll_star"></div>
+											<p class="precent_star">0%</p>
+										</div>
+										<div class="item_review">
+											<p>4<i class="fas fa-star"></i></p>
+											<div class="scroll_star "></div>
+											<p class="precent_star">0%</p>
+										</div>
+										<div class="item_review">
+											<p>5<i class="fas fa-star"></i></p>
+											<div class="scroll_star"></div>
+											<p class="precent_star">0%</p>
+										</div>
+								<?php }
+									elseif ($value['Comment']['star'] = 1) { ?>
+										<div class="item_review">
+											<p>1<i class="fas fa-star"></i></p>
+											<div class="scroll_star scroll_star_active"></div>
+											<p class="precent_star">100%</p>
+										</div>
+										<div class="item_review">
+											<p>2<i class="fas fa-star"></i></p>
+											<div class="scroll_star "></div>
+											<p class="precent_star">0%</p>
+										</div>
+										<div class="item_review">
+											<p>3<i class="fas fa-star"></i></p>
+											<div class="scroll_star"></div>
+											<p class="precent_star">0%</p>
+										</div>
+										<div class="item_review">
+											<p>4<i class="fas fa-star"></i></p>
+											<div class="scroll_star "></div>
+											<p class="precent_star">0%</p>
+										</div>
+										<div class="item_review">
+											<p>5<i class="fas fa-star"></i></p>
+											<div class="scroll_star"></div>
+											<p class="precent_star">0%</p>
+								<?php	}
+									elseif ($value['Comment']['star'] = 2) { ?>
+											<div class="item_review">
+												<p>1<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>2<i class="fas fa-star"></i></p>
+												<div class="scroll_star scroll_star_active"></div>
+												<p class="precent_star">100%</p>
+											</div>
+											<div class="item_review">
+												<p>3<i class="fas fa-star"></i></p>
+												<div class="scroll_star"></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>4<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>5<i class="fas fa-star"></i></p>
+												<div class="scroll_star"></div>
+												<p class="precent_star">0%</p>
+									<?php	}
+									elseif ($value['Comment']['star'] = 3) { ?>
+											<div class="item_review">
+												<p>1<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>2<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>3<i class="fas fa-star"></i></p>
+												<div class="scroll_star scroll_star_active"></div>
+												<p class="precent_star">100%</p>
+											</div>
+											<div class="item_review">
+												<p>4<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>5<i class="fas fa-star"></i></p>
+												<div class="scroll_star"></div>
+												<p class="precent_star">0%</p>
+									<?php	}
+									elseif ($value['Comment']['star'] = 4) { ?>
+											<div class="item_review">
+												<p>1<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>2<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>3<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>4<i class="fas fa-star"></i></p>
+												<div class="scroll_star scroll_star_active"></div>
+												<p class="precent_star">100%</p>
+											</div>
+											<div class="item_review">
+												<p>5<i class="fas fa-star"></i></p>
+												<div class="scroll_star"></div>
+												<p class="precent_star">0%</p>
+									<?php	}
+									else{ ?>
+											<div class="item_review">
+												<p>1<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>2<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>3<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>4<i class="fas fa-star"></i></p>
+												<div class="scroll_star "></div>
+												<p class="precent_star">0%</p>
+											</div>
+											<div class="item_review">
+												<p>5<i class="fas fa-star"></i></p>
+												<div class="scroll_star scroll_star_active"></div>
+												<p class="precent_star">100%</p>
+									<?php	}
+
+								}
+							}
+						?>
+						
+					</div>
 					</div>
 					<div class="col-lg-3 col-md-3  col-12">
 						<div class="review">
@@ -327,152 +476,52 @@
 						</div>
 					</div>
 				</div>
-				 <div class="row">
-                <div class="col-lg-9 col-md-9 col-sm-9 col-9">
-                    <div class="row">
-                        <?php 
-                            $phantramvote= array();
-                            if($tmpVariable['tong']>0){
-                                if($tmpVariable['nam']>0){
-                                    $phantramvote[5]=((int)$tmpVariable['nam']/(int)$tmpVariable['tong'])*100;
-                                }else{
-                                    $phantramvote[5]=0;
-                                }
-                                if($tmpVariable['bon']>0){
-                                    $phantramvote[4]=((int)$tmpVariable['bon']/(int)$tmpVariable['tong'])*100;
-                                }else{
-                                    $phantramvote[4]=0;
-                                }
-                                if($tmpVariable['ba']>0){
-                                    $phantramvote[3]=((int)$tmpVariable['ba']/(int)$tmpVariable['tong'])*100;
-                                }else{
-                                    $phantramvote[3]=0;
-                                }
-                                if($tmpVariable['hai']>0){
-                                    $phantramvote[2]=((int)$tmpVariable['hai']/(int)$tmpVariable['tong'])*100;
-                                }else{
-                                    $phantramvote[2]=0;
-                                }
-                                if($tmpVariable['mot']>0){
-                                    $phantramvote[1]=((int)$tmpVariable['mot']/(int)$tmpVariable['tong'])*100;
-                                }else{
-                                    $phantramvote[1]=0;
-                                }
-                            }else{
-                                $phantramvote[1]= 0;
-                                $phantramvote[2]= 0;
-                                $phantramvote[3]= 0;
-                                $phantramvote[4]= 0;
-                                $phantramvote[5]= 0;
-                            }
-
-                            for($i=5;$i>=1;$i--){
-                                echo '  <div class="col-sm-12">
-                                            <div class=" animated" >
-                                                    <p>'.$i.'  <i class="fa fa-star" aria-hidden="true"></i></p>
-
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-bg" style="width: '.$phantramvote[$i].'%; background: #1edaa4, "><span class="sr-only"></span>
-                                                    </div>
-                                                </div>
-                                                <span class="progress_text progress-bar-clr">&nbsp;'.round($phantramvote[$i]).'%</span>
-                                            </div>
-                                        </div>';
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-                    <div class="danh-gia" style="display: flex;padding-left: 30px;">
-                        <span class="point-review"><?php echo round($tmpVariable['data']['Hotel']['point'],1);?></span>
-                        <ul class="dg" itemprop="ratingValue">
-                            <?php 
-                            if($tmpVariable['data']['Hotel']['point']<=2){
-                                echo '
-                                    <li class="text-dg">Kém</li>
-                                    <li class="p-sao" style="display: flex; color:#ffbc00; font-size: 12px; ">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                        <span class="span-sao">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i> Kết quả dựa trên đánh giá thực của người dùng (Cao nhất là 5 điểm)
-                                        </span> 
-                                    </li>
-                                ';
-                            }elseif($tmpVariable['data']['Hotel']['point']<=3){
-                                echo '
-                                    <li class="text-dg">Trung Bình</li>
-                                    <li class="p-sao" style="display: flex; color:#ffbc00; font-size: 12px; ">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                        <span class="span-sao">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i> Kết quả dựa trên đánh giá thực của người dùng (Cao nhất là 5 điểm)
-                                        </span>
-                                    </li>
-                                ';
-                            }elseif($tmpVariable['data']['Hotel']['point']<=4){
-                                echo '
-                                    <li class="text-dg">Khá</li>
-                                    <li class="p-sao" style="display: flex; color:#ffbc00; font-size: 12px; ">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                        <span class="span-sao">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i> Kết quả dựa trên đánh giá thực của người dùng (Cao nhất là 5 điểm)
-                                        </span>
-                                    </li>
-                                ';
-                            }else{
-                                echo '
-                                    <li class="text-dg">Tốt</li>
-                                    <li class="p-sao" style="display: flex; color:#ffbc00; font-size: 12px; ">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                        <span class="span-sao">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i> Kết quả dựa trên đánh giá thực của người dùng (Cao nhất là 5 điểm)
-                                        </span>
-                                    </li>
-                                ';
-                            }
-                            ?>
-                        <li class="xh"><?php echo count(@$tmpVariable['data']['Hotel']['listVote']);?> đánh giá</li>
-                        </ul>
-                       
-                    </div>
-                </div>
-            </div>
 				<div class="comment">
-					<p>Bình Luận (14)</p>
-					<div class="item_comment">
-						<div class="item_comment_top">
-							<div class="comment_top_right">
-								<img src="assets/images/ha_noi.jpg" alt="">
-								<div class="user_comment">
-									<p>Thái Anh Tuấn</p>
-									<label>12/11/2021</label>
+					<p>Bình Luận </p>
+					<?php
+						if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){
+						
+							foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) { ?>
+								<div class="item_comment">
+									<div class="item_comment_top">
+										<div class="comment_top_right">
+											<img src="<?php echo $value['Comment']['avatar']?>" alt="">
+											<div class="user_comment">
+												<p><?php echo $value['Comment']['fullname']?></p>
+												<label><?php echo date('d/m/y',$value['Comment']['time']) ?></label>
+											</div>
+										</div>
+										<div class="comment_top_left">
+											<button class="btn-clearcmt "><i class="fas fa-ellipsis-v"></i></button>
+											<p class="repost_cmt">Tố Cáo Bình Luận</p>
+										</div>
+									</div>
+									<div class="item_comment_bottom">
+										<p><?php echo $value['Comment']['cmmt']?></p>
+									</div>
 								</div>
-							</div>
-							<div class="comment_top_left">
-								<button class="btn-clearcmt "><i class="fas fa-ellipsis-v"></i></button>
-								<p class="repost_cmt">Tố Cáo Bình Luận</p>
-							</div>
-						</div>
-						<div class="item_comment_bottom">
-							<p>Quá Đẹp Trai</p>
-						</div>
-					</div>
-					
+						<?php }
+						}
+					?>
 				</div>
 				<div class="write_cmt">
 					<textarea name="" id="" style="width: 100%; height: 104px;" placeholder="Viết bình luận"></textarea>
 					<button>Bình Luận</button>
 				</div>
-			</div> -->
+			</div>
 			<div class="list_hotel_other">
 				<p>Các khách sạn liên quan </p>
 				<div class="row">
-					<?php if (!empty($tmpVariable['otherData'])){ 
-						foreach($tmpVariable['otherData'] as $key => $otherData){
+					<??>
+					<?php if (!empty($tmpVariable['data']['HotelManmo']['otherData'])){ 
+						foreach($tmpVariable['data']['HotelManmo']['otherData'] as $key => $otherData){
 						?>
 					<div class="col-md-4 col-12">
-						<div class="item_destination" style="background-image: url(<?php echo $otherData['Hotel']['image'] ?>);">
+						<div class="item_destination" style="background-image: url(<?php echo $otherData['Hotel']['imageDefault'] ?>);">
 							<div class="title_destination">
-								<a href="/chi_tiet_khach_san/<?php echo $otherData['Hotel']['urlSlug'] ?>.html">
+								<a href="/chi_tiet_khach_san/<?php echo $otherData['Hotel']['slug'] ?>.html">
 									<p><?php echo $otherData['Hotel']['name'] ?></p>
+									<span><i class="fas fa-map-marker-alt"></i> <?php echo $otherData['Hotel']['address'] ?></span>
 									<ul>
 										<li><i class="fas fa-heart"></i> 0</li>
 										<li><i class="fas fa-comment"></i> 0</li>
