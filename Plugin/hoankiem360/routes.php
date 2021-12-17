@@ -26,4 +26,8 @@
    $routesPlugin['dang_xuat'] = 'hoankiem360/view/logoutUser.php';
    $routesPlugin['thong_tin_tai_khoan'] = 'hoankiem360/view/updateInfoUser.php';
    $routesPlugin['listHotelAPI'] = 'hoankiem360/view/listHotelAPI.php';
+   $routesPlugin['listEventAPI'] = 'hoankiem360/view/listEventAPI.php';
+   $routesPlugin['detailEventAPI'] = 'hoankiem360/view/detailEventAPI.php';
+   $routesPlugin['lisHistoricalSitestAPI'] = 'hoankiem360/view/lisHistoricalSitestAPI.php';
+   $routesPlugin['detailHistoricalSitesAPI'] = 'hoankiem360/view/detailHistoricalSitesAPI.php';
 ?> 

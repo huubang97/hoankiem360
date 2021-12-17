@@ -56,64 +56,120 @@ function detailHotelAPI($input){
     echo json_encode($return);
 }
 
-function listEventAPI($input){
-    $modelEvent = new Event();
-    global $urlNow;
-    $_SESSION['urlCallBack']= $urlNow;
-      
-       
-         $getmonth   = getmonth();
-        
-        $order = array('created'=>'desc');
-        $conditions = array();
+/*sự khiện */
 
-        if(!empty($_GET['name'])){
-             $key=createSlugMantan($_GET['name']);
+function listEventAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelEvent = new Event();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
             $conditions['urlSlug']= array('$regex' => $key);
         }
 
-        if(!empty($_GET['month'])){
-                $conditions['month']= $_GET['month'];
+        if(!empty($dataSend['month'])){
+            $conditions['month']= $dataSend['month'];
+
         }
+        if(!empty($dataSend['year'])){
+            $conditions['year']= $dataSend['year'];
 
-        $listData= $modelEvent->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
-
-        $totalData= $modelEvent->find('count',$conditions);
-
-        $balance= $totalData%$limit;
-        $totalPage= ($totalData-$balance)/$limit;
-        if($balance>0)$totalPage+=1;
-        if($totalPage<1) $totalPage=1;
-
-        $back=$page-1;$next=$page+1;
-        if($back<=0) $back=1;
-        if($next>=$totalPage) $next=$totalPage;
-
-        if(isset($_GET['page'])){
-            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
-            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
-        }else{
-            $urlPage= $urlNow;
         }
+          $order= array('created'=>'desc');
 
-        if(strpos($urlPage,'?')!== false){
-            if(count($_GET)>1){
-                $urlPage= $urlPage.'&page=';
-            }else{
-                $urlPage= $urlPage.'page=';
-            }
-        }else{
-            $urlPage= $urlPage.'?page=';
-        }
+        $totalData= $modelEvent->find('all',array('conditions'=>$conditions,'order'=>$order));
 
-        setVariable('listData',$listData);
-        setVariable('getmonth',$getmonth);
+        $return= array('code'=>1,'listData'=>$totalData);
 
-        setVariable('page',$page);
-        setVariable('totalPage',$totalPage);
-        setVariable('back',$back);
-        setVariable('next',$next);
-        setVariable('urlPage',$urlPage);
+    echo json_encode($return);
 }
 
+function detailEventAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $modelEvent = new Event();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelEvent->getEvent($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
+
+/*di tich lich sử */
+function lisHistoricalSitestAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelHistoricalSites = new HistoricalSites();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelHistoricalSites->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailHistoricalSitesAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $modelHistoricalSites = new HistoricalSites();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelHistoricalSites->getHistoricalSites($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
+
+/*Nhà hàng  */
+function lisHRestaurantAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelRestaurant = new Restaurant();
+    $dataSend = arrayMap($input['request']->data);
+        
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelRestaurant->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
+    echo json_encode($return);
+}
+
+function detailRestaurantAPI($input){
+    
+    header('Access-Control-Allow-Methods: *');
+    $modelRestaurant = new Restaurant();
+    $dataSend = arrayMap($input['request']->data);       
+    if (!empty($dataSend['id'])) {
+            $data=$modelRestaurant->getRestaurant($dataSend['id']);
+             $return= array('code'=>1,'data'=>$data);
+        }
+
+
+    echo json_encode($return);
+}
 ?>

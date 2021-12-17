@@ -14,7 +14,7 @@
     $menus[1]['sub'][2] = array('name' => 'Phố cổ ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-oldQuarter-listOldQuarterAdmin.php','permission'=>'listOldQuarterAdmin');
     $menus[1]['sub'][3] = array('name' => 'Cơ quan hành chính', 'url' => $urlPlugins . 'admin/hoankiem360-admin-governanceAgency-listGovernanceAgencyAdmin.php','permission'=>'listGovernanceAgencyAdmin');
     $menus[1]['sub'][4] = array('name' => 'Tour', 'url' => $urlPlugins . 'admin/hoankiem360-admin-tour-listTourAdmin.php','permission'=>'listTourAdmin');
-    $menus[1]['sub'][5] = array('name' => 'Khách sạn', 'url' => $urlPlugins . 'admin/hoankiem360-admin-hotel-listHotelAdmin.php','permission'=>'listHotelAdmin');
+    //$menus[1]['sub'][5] = array('name' => 'Khách sạn', 'url' => $urlPlugins . 'admin/hoankiem360-admin-hotel-listHotelAdmin.php','permission'=>'listHotelAdmin');
     $menus[1]['sub'][6] = array('name' => 'Lễ hội', 'url' => $urlPlugins . 'admin/hoankiem360-admin-festival-listFestivalAdmin.php','permission'=>'listFestivalAdmin');
     $menus[1]['sub'][7] = array('name' => 'Hồ Hoàn Kiếm', 'url' => $urlPlugins . 'admin/hoankiem360-admin-hklake-listHklakeAdmin.php','permission'=>'listHklakeAdmin');
     $menus[1]['sub'][8] = array('name' => 'Giải trí', 'url' => $urlPlugins . 'admin/hoankiem360-admin-entertainment-listEntertainmentAdmin.php','permission'=>'listEntertainmentAdmin');
@@ -120,7 +120,7 @@ addMenuAdminMantan($menus);
             '4'=>array('id'=>4,'name'=>'Dịch vụ hỗ trợ du lịch','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/dich-vu-ho-tro-du-lich.png','urlSlug'=>$urlHomes .'tour', 'count'=>@$tour),  
             '5'=>array('id'=>5,'name'=>'Cơ quan hành chính','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/co-quan-hanh-chinh.png','urlSlug'=>$urlHomes .'co_quan_hanh_chinh', 'count'=>@$governanceAgency),   
             '6'=>array('id'=>6,'name'=>'Lễ hội và sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/su-kien.png','urlSlug'=>$urlHomes .'le_hoi', 'count'=>@$festival), 
-            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>$urlHomes .'khach_san', 'count'=>@$hotel),   
+            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>$urlHomes .'khach_san', 'count'=>@$_SESSION['totalHotel']),   
             '8'=>array('id'=>8,'name'=>'Nhà hàng và quán ăn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/nha-hang-va-quan-an.png','urlSlug'=>$urlHomes .'nha_hang', 'count'=>@$restaurant),   
             '9'=>array('id'=>9,'name'=>'Giải trí và thư giãn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/giai-tri-va-thu-dan.png','urlSlug'=>$urlHomes .'giai_tri', 'count'=>@$entertainment),  
         );                                  
