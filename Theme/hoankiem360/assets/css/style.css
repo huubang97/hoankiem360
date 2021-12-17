@@ -144,10 +144,17 @@ a:hover {
 
 .wr-header-top .box-log {
   position: relative;
+  margin-right: 50px;
 }
 
-.wr-header-top .box-log {
-  margin-right: 50px;
+.wr-header-top .box-log.boxOn{
+  margin-right: 0;
+  margin-left: 50px;
+}
+
+.wr-header-top .box-log.boxOn:before {
+  right: 0;
+  left: -26px;
 }
 
 .wr-header-top .box-log:before {
@@ -156,7 +163,50 @@ a:hover {
   right: -26px;
   height: 26px;
   position: absolute;
-  border-left: 1px solid #fff;
+  border-left: 1px solid rgb(148, 167, 185);
+}
+
+.box-log-info {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: -20px;
+  width: 100%;
+  min-width: 160px;
+  min-height: 60px;
+  background: #fff;
+  z-index: 9;
+  border: 1px solid #f0f0f0;
+  padding: 2px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.box-log.boxOn {
+  cursor: pointer ;
+}
+
+.box-log-info.on {
+  visibility: visible;
+  opacity: 1;
+}
+
+.box-log-info > a,
+.box-log-info > span {
+  display: block;
+  padding: 10px ;
+  text-align: center;
+  color: #000;
+  margin-left: 0!important;
+}
+
+.box-log-info > a:hover {
+  background: rgb(127,127,127);
+  color: #fff;
+}
+
+.box-log-info > hr {
+  width: 80%;
+  margin: 10px auto;
 }
 
 .wr-header-top .box-log a {
@@ -218,7 +268,7 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0);
   transition: background 0.8s;
   z-index: 5;
 }
@@ -700,10 +750,17 @@ a:hover {
 }
 
 .box-month-event {
+  min-height: 380px;
   padding: 20px;
   width: calc(100% - 300px);
   background: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 / 17%) 0px 8px 18px;
+}
+
+.default-event-text {
+  font-size: 2.2rem;
+  color: #fff;
+  font-weight: 500;
 }
 
 .box-month-event .box-left {
@@ -2824,6 +2881,10 @@ a:hover {
   .box-width-regis a {
     width: 160px;
   }
+}
+
+.page-pagination {
+  margin-top: 20px;
 }
 
 .page-pagination__list {

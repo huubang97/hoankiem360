@@ -108,6 +108,41 @@
 				</div>
 			</div>
 		</div>
+		<div class="">
+			<div class="col-12">
+				<?php
+				if ($page > 5) {
+					$startPage = $page - 5;
+				} else {
+					$startPage = 1;
+				}
+
+				if ($totalPage > $page + 5) {
+					$endPage = $page + 5;
+				} else {
+					$endPage = $totalPage;
+				}
+
+				if($totalPage>=1){
+					?>
+
+					<!-- post pagination --> 
+					<div class="page-pagination">
+						<ul class="page-pagination__list">
+							<li class="page-pagination__item"><a class="page-pagination__link"  href="<?php echo $urlPage . $back ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+							</li>
+							<?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
+								<li class="page-pagination__item"><a class="page-pagination__link <?php echo $i==$page?'active" ':'" href="'.$urlPage.$i.'"' ?>"><?php echo $i; ?></a></li>
+								<?php 
+							} ?>
+
+							<li class="page-pagination__item"><a class="page-pagination__link"  href="<?php echo $urlPage . $next ?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+							</li>
+						</ul>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
 <?php }elseif($category['id']==2 || $category['parent']==2) { ?>
 	<div class="container-fluid">
 		<div class="wr-slide-cate">
@@ -179,6 +214,41 @@
 				</div>
 			</div>
 		</div>
+		<div class="">
+			<div class="col-12">
+				<?php
+				if ($page > 5) {
+					$startPage = $page - 5;
+				} else {
+					$startPage = 1;
+				}
+
+				if ($totalPage > $page + 5) {
+					$endPage = $page + 5;
+				} else {
+					$endPage = $totalPage;
+				}
+
+				if($totalPage>=1){
+					?>
+
+					<!-- post pagination --> 
+					<div class="page-pagination">
+						<ul class="page-pagination__list">
+							<li class="page-pagination__item"><a class="page-pagination__link"  href="<?php echo $urlPage . $back ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+							</li>
+							<?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
+								<li class="page-pagination__item"><a class="page-pagination__link <?php echo $i==$page?'active" ':'" href="'.$urlPage.$i.'"' ?>"><?php echo $i; ?></a></li>
+								<?php 
+							} ?>
+
+							<li class="page-pagination__item"><a class="page-pagination__link"  href="<?php echo $urlPage . $next ?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+							</li>
+						</ul>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
 	</div>
 <?php }elseif($category['id']==9 || $category['parent']==9) { ?>
 	<div class="container-fluid">
@@ -235,6 +305,41 @@
 						<img src="<?php echo @$urlThemeActive ?>assets/images/banner-qc.png" alt="">
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<?php
+				if ($page > 5) {
+					$startPage = $page - 5;
+				} else {
+					$startPage = 1;
+				}
+
+				if ($totalPage > $page + 5) {
+					$endPage = $page + 5;
+				} else {
+					$endPage = $totalPage;
+				}
+
+				if($totalPage>=1){
+					?>
+
+					<!-- post pagination --> 
+					<div class="page-pagination">
+						<ul class="page-pagination__list">
+							<li class="page-pagination__item"><a class="page-pagination__link"  href="<?php echo $urlPage . $back ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+							</li>
+							<?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
+								<li class="page-pagination__item"><a class="page-pagination__link <?php echo $i==$page?'active" ':'" href="'.$urlPage.$i.'"' ?>"><?php echo $i; ?></a></li>
+								<?php 
+							} ?>
+
+							<li class="page-pagination__item"><a class="page-pagination__link"  href="<?php echo $urlPage . $next ?>"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+							</li>
+						</ul>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

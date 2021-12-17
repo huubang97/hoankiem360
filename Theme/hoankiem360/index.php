@@ -1,7 +1,6 @@
 		<?php getHeader(); 
 		global $themesettings;
 		global $modelOption;
-
 		// debug($tmpVariable['newNoticeNetDep']);
 		// global $urlNow;
     	// $_SESSION['urlCallBack']= $urlNow;
@@ -141,28 +140,28 @@
 						</ul>
 						<ul class="carousel carousel-nav"
 						  data-flickity='{ "asNavFor": ".navc", "contain": true, "pageDots": false }'>
-						  	<li class="carousel-cell text-center" data-month="12" onclick="loadEvent(this)">Tháng 12</li>
-							<li class="carousel-cell text-center" data-month="11" onclick="loadEvent(this)">Tháng 11</li>
-							<li class="carousel-cell text-center" data-month="10" onclick="loadEvent(this)">Tháng 10</li>
-							<li class="carousel-cell text-center" data-month="9" onclick="loadEvent(this)">Tháng 9</li>
-							<li class="carousel-cell text-center" data-month="8" onclick="loadEvent(this)">Tháng 8</li>
-							<li class="carousel-cell text-center selected" data-month="7" onclick="loadEvent(this)">Tháng 7</li>
-							<li class="carousel-cell text-center" data-month="6" onclick="loadEvent(this)">Tháng 6</li>
-							<li class="carousel-cell text-center" data-month="5" onclick="loadEvent(this)">Tháng 5</li>
-							<li class="carousel-cell text-center" data-month="4" onclick="loadEvent(this)">Tháng 4</li>
-							<li class="carousel-cell text-center" data-month="3" onclick="loadEvent(this)">Tháng 3</li>
-							<li class="carousel-cell text-center" data-month="2" onclick="loadEvent(this)">Tháng 2</li>
-							<li class="carousel-cell text-center" data-month="1" onclick="loadEvent(this)">Tháng 1</li>
+						  	<li class="carousel-cell text-center <?php echo getdate()['mon']==12?'is-selected':'' ?>" data-month="12" onclick="loadEvent(this)">Tháng 12</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==11?'is-selected':'' ?>" data-month="11" onclick="loadEvent(this)">Tháng 11</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==10?'is-selected':'' ?>" data-month="10" onclick="loadEvent(this)">Tháng 10</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==9?'is-selected':'' ?>" data-month="9" onclick="loadEvent(this)">Tháng 9</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==8?'is-selected':'' ?>" data-month="8" onclick="loadEvent(this)">Tháng 8</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==7?'is-selected':'' ?>" data-month="7" onclick="loadEvent(this)">Tháng 7</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==6?'is-selected':'' ?>" data-month="6" onclick="loadEvent(this)">Tháng 6</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==5?'is-selected':'' ?>" data-month="5" onclick="loadEvent(this)">Tháng 5</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==4?'is-selected':'' ?>" data-month="4" onclick="loadEvent(this)">Tháng 4</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==3?'is-selected':'' ?>" data-month="3" onclick="loadEvent(this)">Tháng 3</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==2?'is-selected':'' ?>" data-month="2" onclick="loadEvent(this)">Tháng 2</li>
+							<li class="carousel-cell text-center <?php echo getdate()['mon']==1?'is-selected':'' ?>" data-month="1" onclick="loadEvent(this)">Tháng 1</li>
 						</ul>
 						<div class="text-center"><button><i class="fa fa-chevron-left" aria-hidden="true"></i></button></div>
 					</div>
-					<div class="box-month-event">
+					<div class="box-month-event" <?php echo empty($tmpVariable['listDataEvent'])?'style="background:#efb138;"':''; ?>>
 						<?php if(!empty($tmpVariable['listDataEvent'])) { ?>
 							<div class="main-carousel main-month-event" data-flickity='{ "cellAlign": "left", "contain": true, "fade": true, "pageDots": false, "draggable": false }'>
 								<?php foreach ($tmpVariable['listDataEvent'] as $key => $value) { ?>
 								<div class="carousel-cell clsFlex">
 									<div class="box-left">
-										<a class="title-event-post" href=""><?php echo @$value['Event']['title'] ?></a>
+										<a class="title-event-post" href="chi_tiet_su_kien/<?php echo @$value['Event']['urlSlug'] ?>.html"><?php echo @$value['Event']['title'] ?></a>
 										<hr>
 										<p class="text-hidden"><?php echo @$value['Event']['introductory'] ?></p>
 										<p><img src="<?php echo @$urlThemeActive ?>assets/images/map.svg" alt=""> <?php echo @$value['Event']['address'] ?></p>
@@ -176,7 +175,17 @@
 								<?php
 								} ?>
 							</div>
-						<?php } ?>
+						<?php }else { ?>
+							<div class="carousel-cell clsFlex">
+                                    <div class="clsFlex-center-mid box-left">
+                                        <span class="default-event-text">Chưa có sự kiện nào đang diễn ra.</span>
+                                    </div>
+                                    <div class="box-right">
+                                        <img src="<?php echo @$urlThemeActive ?>assets/images/imageevent.svg" alt="">
+                                    </div>
+                                </div>
+						<?php
+						} ?>
 					</div>
 
 				</div>

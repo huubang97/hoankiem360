@@ -137,8 +137,21 @@ function ajax_event($input){
                 ';
             }
             $text .= '</div>';
-        }
-        echo json_encode(array('text'=>$text));
+            $code = 1;
+        }else {
+                $text .= '
+                <div class="carousel-cell clsFlex">
+                                    <div class="clsFlex-center-mid box-left">
+                                        <span class="default-event-text">Chưa có sự kiện nào đang diễn ra.</span>
+                                    </div>
+                                    <div class="box-right">
+                                        <img src="'.@$urlThemeActive.'assets/images/imageevent.svg" alt="">
+                                    </div>
+                                </div>
+                ';
+                $code = 2;
+            }
+        echo json_encode(array('text'=>$text,'code'=>$code));
 }
 
 function detailEvent($input){

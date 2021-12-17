@@ -46,6 +46,10 @@ function decreaseCount(a, b) {
   }
 }
 
+$('.box-log.boxOn').click(function(){
+  $('.box-log-info').toggleClass('on');
+})
+
 
 $('.box-chevor').click(function(){
   let hei = $('.wr-banner').height();
@@ -110,7 +114,6 @@ function reload(e,onMonth) {
 // load event
 function loadEvent(e) {
   var month = $(e).attr('data-month');
-  alert(month);
   //var url = 'su_kien?month='+month;
   $.ajax({
       type: "GET",
@@ -119,7 +122,6 @@ function loadEvent(e) {
     }).done(function( msg ) {
       var msg = JSON.parse(msg);
       $('.box-month-event').html(msg.text);
-      console.log(msg);
       $('.main-month-event').flickity({
         cellAlign: 'left',
         contain: true,
@@ -128,6 +130,11 @@ function loadEvent(e) {
         draggable: false,
         contain: true
       });
+      if(msg.code==2){
+        $('.box-month-event').css('background','#efb138');
+      }else {
+        $('.box-month-event').css('background','#fff');
+      }
     });
 }
 
