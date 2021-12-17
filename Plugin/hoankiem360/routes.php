@@ -24,4 +24,6 @@
    $routesPlugin['dang_ky'] = 'hoankiem360/view/registerUser.php';
    $routesPlugin['dang_nhap'] = 'hoankiem360/view/loginUser.php';
    $routesPlugin['dang_xuat'] = 'hoankiem360/view/logoutUser.php';
+   $routesPlugin['thong_tin_tai_khoan'] = 'hoankiem360/view/updateInfoUser.php';
+   $routesPlugin['listHotelAPI'] = 'hoankiem360/view/listHotelAPI.php';
 ?> 

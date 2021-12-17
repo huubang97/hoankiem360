@@ -513,10 +513,21 @@ function listHotel($input){
             $conditions['urlSlug']= array('$regex' => $key);
         }
 
-        $listData= $modelHotel->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+        $keyManMo = '5dc8f2652ac5db08348b4567';
+        $city = 1;
+        $district = 7;
 
-        $totalData= $modelHotel->find('count',$conditions);
+     $dataPost= array('key'=>$keyManMo, 'city'=>1, 'lat'=>'', 'long'=>'', 'district'=>7, 'limit'=>15,'page'=>$page);
+            $listHotel= sendDataConnectMantan('https://api.quanlyluutru.com/getHotelAroundAPI', $dataPost);
+            $listHotel= str_replace('ï»¿', '', utf8_encode($listHotel));
+            $listHotel= json_decode($listHotel, true);
 
+
+        $listData= $listHotel['data'];
+        //$modelHotel->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $listHotel['total'];
+ 
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;
         if($balance>0)$totalPage+=1;
@@ -563,12 +574,10 @@ function detailHotel($input){
 
     if(isset($input['request']->params['pass'][1])){
         $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
-        $data= $modelHotel->getHotelSlug($input['request']->params['pass'][1]);
-
-        if(!empty($data)){
+       // $data= $modelHotel->getHotelSlug($input['request']->params['pass'][1]);
             
-            $dataPost= array('key'=>$keyManMo, 'idHotel'=>$data['Hotel']['codeManmo'], 'lat'=>'', 'long'=>'', 'idUser'=>'');
-            $infoHotelMM= sendDataConnectMantan('http://api.quanlyluutru.com/getInfoHotelAPI', $dataPost);
+            $dataPost= array('key'=>$keyManMo, 'slug'=>$input['request']->params['pass'][1], 'lat'=>'', 'long'=>'', 'idUser'=>'');
+            $infoHotelMM= sendDataConnectMantan('http://api.quanlyluutru.com/getHotelSluglAPI', $dataPost);
             $infoHotelMM= str_replace('ï»¿', '', utf8_encode($infoHotelMM));
             $infoHotelMM= json_decode($infoHotelMM, true);
 
@@ -586,7 +595,7 @@ function detailHotel($input){
         }else{
             $modelOption->redirect($urlHomes);
         }
-    }
+    
     
        
 }
@@ -938,7 +947,7 @@ function logoutUser(){
     $modelOption->redirect('/dang_nhap');
 }
 
-function updateInfoUser(){
+function updateInfoUser($input){
       global $infoSite;
     global $urlHomes;
     global $isRequestPost;
@@ -947,11 +956,17 @@ function updateInfoUser(){
     if ($isRequestPost) {
             $dataSend=$input['request']->data;
 
-            $dataPost= array('accessToken'=>@$accessToken, 'fullname'=>@$dataSend['fullname'],'email'=>@$dataSend['email'],'sex'=>@$dataSend['sex'],'phone'=>@$dataSend['phone'],'address'=>$dataSend['address'],'birthday'=>@$dataSend['birthday']);
+            $dataPost= array('accessToken'=>$_SESSION['userInfo']['accessToken'], 'fullname'=>@$dataSend['fullname'],'email'=>@$dataSend['email'],'sex'=>$_SESSION['userInfo']['sex'],'phone'=>@$dataSend['phone'],'address'=>@$dataSend['address'],'birthday'=>@$_SESSION['userInfo']['birthday']);
+             
             $mess= sendDataConnectMantan('http://api.quanlyluutru.com/updateInfoUserAPI', $dataPost);
             $mess= str_replace('ï»¿', '', utf8_encode($mess));
-            $mess= json_decode($mess, true);                                                                 
+            $mess= json_decode($mess, true);                                                               
             if($mess['code']==0){
+               
+                 $_SESSION['userInfo']['fullname']=@$dataSend['fullname'];
+                 $_SESSION['userInfo']['phone']=@$dataSend['phone'];
+                 $_SESSION['userInfo']['address']=@$dataSend['address'];
+                 $_SESSION['userInfo']['email']=@$dataSend['email'];
                $modelOption->redirect('/updateInfoUser');
             }else{
                 setVariable('mess',$mess);

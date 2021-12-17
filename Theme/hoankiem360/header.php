@@ -4,11 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="<?php echo @$urlThemeActive ?>assets/lib/bootstrap-4.3.1-dist/bootstrap-4.3.1-dist/css/bootstrap.css" />
-	<link rel="stylesheet" src="<?php echo @$urlThemeActive ?>assets/lib/fanciybox/package/dist/fancybox.css">
+	<!-- <link rel="stylesheet" src="<?php echo @$urlThemeActive ?>assets/lib/fanciybox/package/dist/fancybox.css"> -->
 	<link rel="stylesheet" src="<?php echo @$urlThemeActive ?>assets/lib/fanciybox/package/dist/carousel.css">
 	<link rel="stylesheet" src="<?php echo @$urlThemeActive ?>assets/lib/flickity-docs/flickity-fade.css">
 	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 	<link rel="stylesheet" src="<?php echo @$urlThemeActive ?>assets/lib/fontawesome-free-5.15.1-web/css/all.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 	<link rel="stylesheet" href="<?php echo @$urlThemeActive ?>assets/css/reset.css">
 	<link rel="stylesheet" href="<?php echo @$urlThemeActive ?>assets/css/style.css">
@@ -18,7 +19,7 @@
 	<script type="text/javascript" src="<?php echo @$urlThemeActive ?>assets/js/jquery-2.1.4.min.js"></script>
 	<script src="<?php echo @$urlThemeActive ?>assets/js/jquery.datetimepicker.full.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css'>
+    <!-- <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css'> -->
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css'>
 	<link rel="stylesheet" href="<?php echo @$urlThemeActive ?>assets/css/datetimepicker.css">
 	
@@ -41,11 +42,11 @@
 			<div class="col-12 wr-header-top">
 				<div class="container set-pd-col">
 					<div class="clsFlex-between-mid">
-						<div class="time"><?php echo date('d/m/Y'); ?></div>
+						<div class="time"><?php echo sw_get_current_weekday() ?></div>
 						<div class="clsFlex-mid">
 							<div class="box-log">
 								<?php if (!empty($_SESSION['userInfo'])){ ?>
-									<a href="#"><?php echo $_SESSION['userInfo']['fullname'];  ?></a>
+									<a href="/thong_tin_tai_khoan"><?php echo $_SESSION['userInfo']['fullname'];  ?></a>
 									<a href="/dang_xuat">Đăng xuất</a>
 								<?php }else{ ?>	
 									<a href="/dang_nhap">Đăng nhập</a>
@@ -65,18 +66,18 @@
 						<div class="col-12 clsFlex-between-mid ">
 							<div class="">
 								<div class="clsFlex-mid box-logo">
-									<a href=""><img src="<?php echo @$urlThemeActive ?>assets/images/logo.svg" alt="">Hoan Kiem 360</a>
+									<a href="/"><img src="<?php echo @$urlThemeActive ?>assets/images/logo.svg" alt="">Hoan Kiem 360</a>
 								</div>	
 							</div>
-							<div class="clsFlex-between box-menu">
-								<a href="">Trang chủ</a>
-								<a href="">Nét đẹp Hoàn Kiếm</a>
-								<a href="">Điểm đến</a>
-								<a href="">Sự kiện</a>
-								<a href="">Blog du lịch</a>
-								<a href="">Kênh doanh nghiệp</a>
-								<a href="">Bản đồ</a>
-								<a href="">Việt Nam 360</a>
+							<div class="clsFlex-between box-menu navigation">
+								<a id="idhome" href="/">Trang chủ</a>
+								<a id="idnetdep" href="/net-dep.html">Nét đẹp Hoàn Kiếm</a>
+								<a id="iddiemdien" href="/">Điểm đến</a>
+								<a id="idsukien" href="/su_kien">Sự kiện</a>
+								<a id="idblog" href="/blog-du-lich.html">Blog du lịch</a>
+								<a id="idkenhdoanhnghiep" href="/uu-dai-khuyen-mai.html">Kênh doanh nghiệp</a>
+								<a id="idbando" href="/">Bản đồ</a>
+								<a id="idvietnam360" href="vietnam360">Việt Nam 360</a>
 								<a><i class="fa fa-search" aria-hidden="true"></i></a>
 								<button class="hidden-pc" data-toggle="collapse" data-target="#menu-mb"><img src="<?php echo @$urlThemeActive ?>assets/images/menuBar.svg" alt=""></button>
 							</div>
