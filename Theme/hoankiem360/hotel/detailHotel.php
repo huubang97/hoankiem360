@@ -1,6 +1,8 @@
 
  <?php getHeader()?>
-
+<?php 
+	debug($tmpVariable);
+?>
 
 <style>
 	.wr-header-bot{

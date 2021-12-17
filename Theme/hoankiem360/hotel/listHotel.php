@@ -192,20 +192,22 @@
 
 				if($tmpVariable['totalPage']>1){
 				?>
+
+				
 				<div class="col-sm-12 wow fadeInUp  " data-wow-delay=".25s">
 					<div class="direc " >
-						<ul class="pagination">
-							<li class="disabled"><a href="<?php echo $tmpVariable['urlPage'] . $tmpVariable['back'] ?>" class="prev">&laquo;</a></li>
+						<ul class="page-pagination__list">
+							<li class="page-pagination__item"><a class="page-pagination__link" href="<?php echo $tmpVariable['urlPage'] . $tmpVariable['back'] ?>" class="prev"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
 							<?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
-								<li class="pageNumber <?php
+								<li class="page-pagination__item "><a  href="<?php echo $tmpVariable['urlPage'] . $i; ?>" class="page-pagination__link <?php
 								if ($i == $tmpVariable['page']) {
 									echo 'active';
 								}
-								?>"><a href="<?php echo $tmpVariable['urlPage'] . $i; ?>" class="css-phantrang"><?php echo $i; ?></a></li>
+								?>"><?php echo $i; ?></a></li>
 							<?php }
 							?>
 
-							<li><a href="<?php echo $tmpVariable['urlPage'] . $tmpVariable['next'] ?>" class="next">&raquo;</a></li>
+							<li class="page-pagination__item"><a class="page-pagination__link" href="<?php echo $tmpVariable['urlPage'] . $tmpVariable['next'] ?>" class="next"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 						</ul>
 					</div>
 				</div>
