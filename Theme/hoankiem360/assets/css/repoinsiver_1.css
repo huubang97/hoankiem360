@@ -1,0 +1,65 @@
+@media only screen and (min-width: 321px) and (max-width: 624px){
+    .list_bl{
+        margin-top: 10px;
+    }
+    .detailDestination>ul>li {
+        font-size: 12px;
+    }
+    .img-hotel{
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .img-hotel1{
+        height: 210px;
+    }
+    .infor_hotel button {
+        font-size: 11px;
+    }
+
+    .detail_hotel>ul>li{
+        list-style: none;
+        margin-left: 5px;
+        font-size: 12px;
+        color: #efb138;
+    }
+    .item_review .scroll_star {
+        height: 4px;
+        background-color: #bab8b8;
+        border-radius: 2px;
+        width: 80%;
+        margin-top: 8px;
+    }
+
+    .booking form {
+    width: 90%px;
+    padding: 15px 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    z-index: 999999;
+}
+
+    .booking{
+        overflow: scroll;
+    }
+    
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px){
+    .list_bl li{
+       font-size: 10px !important;
+       font-weight: 500;
+    }
+
+    .list_bl {
+        margin-top: 43px;
+    }
+
+    .review{
+        padding: 2px !important;
+    }
+}

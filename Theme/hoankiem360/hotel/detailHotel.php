@@ -1,5 +1,12 @@
+
  <?php getHeader()?>
-	
+
+
+<style>
+	.wr-header-bot{
+		opacity: 1 !important;
+	}
+</style>	
  	<main class="detail_hotel container">
 			<ul class="">
 				<li><a href="">Điểm Đến / </a></li>
@@ -16,29 +23,49 @@
     text-decoration: none;
     color: #ffffff;
 }
+
+
  </style>
 			<h1><?php echo @$tmpVariable['data']['Hotel']['name'];?></h1>
-			<p><i class="fas fa-map-marker-alt"></i><?php echo @$tmpVariable['data']['Hotel']['address'];?></p>
+			<p><i class="fas fa-map-marker-alt"></i> <?php echo @$tmpVariable['data']['Hotel']['address'];?></p>
 			<div class="infor_hotel">
 				<div class="row">
 					<div class="col-md-8 col-12">
-						<div class="row">
+						<div class="row imglist">
 							<div class="col-md-6 col-6">
 								<div class="img-hotel">
-									<img  src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" alt="" width="100%">
+									<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" data-fancybox="images" >
+									    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][0]; ?>" />
+									 </a>
 								</div>
 								
 								<div class="img-hotel">
-									<img  src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" alt="" width="100%">
+									<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" data-fancybox="images" >
+									    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][1]; ?>" />
+									 </a>
 								</div>
 							</div>
 							<div class="col-md-6 col-6">
 								<div class="img-hotel1">
-									<img  src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" alt="" width="100%">
+										<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" data-fancybox="images" >
+									    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][2]; ?>" />
+									 </a>
 								</div>
 							</div>
+							<div class="img" style="display: none;">
+								<?php 
+									if(!empty($tmpVariable['data']['HotelManmo']['data']['Hotel']['image'])){
+										$countImg= count($tmpVariable['data']['HotelManmo']['data']['Hotel']['image']);
+										for ($i=3; $i < $countImg ; $i++) { ?>
+										<a href="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][$i]?>" data-fancybox="images" >
+										    <img src="<?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['image'][$i]?>" />
+										 </a>
+									<?php }
+									}
+								?>
+								
+							</div>
 						</div>
-						<button>+ Ảnh</button>
 						<button>Xem chỉ đường</button>
 					</div>
 					<div class="col-md-4 col-12">
@@ -49,7 +76,7 @@
 							<div class="row list_service">
 							<?php foreach ($tmpVariable['data']['HotelManmo']['data']['Hotel']['furniture'] as $furniture) { ?>	
 								<div class="col-6 col-md-6 ">
-									<p><i class="fas <?php echo $tmpVariable['listFurniture'][$furniture]['class']  ?>"></i>  <?php echo $tmpVariable['listFurniture'][$furniture]['name']  ?> </p>
+									<p><i class="far fa-check-circle"></i>  <?php echo $tmpVariable['listFurniture'][$furniture]['name']  ?> </p>
 								</div>
 							<?php } ?>
 							</div>
@@ -66,36 +93,36 @@
 				
 			</div>
 		</main>
-		<div class="booking" style="background-image: url(assets/images/bg-pho-net-dep.svg); background-repeat: no-repeat; background-size: cover;">
-			<form action="" method="post" style="height: 370px;" >
+		<div class="booking" style="background-image: url(<?php echo @$urlThemeActive ?>assets/images/bg-pho-net-dep.svg); background-repeat: no-repeat; background-size: cover;">
+			<form action="" method="post"  >
 				<button class="click_form click_forms clear_btn">
 					<i class="fas fa-times "></i>
 				</button>
 				<p>Đặt phòng</p>
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Họ Tên</p>
 						<input type="text"  name="name"  required="" id="name" value="<?php echo @$_SESSION['userInfo']['fullname']; ?>">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Số điện thoại</p>
 						<input type="text" name="phone" required="" id="phone" value="<?php echo @$_SESSION['userInfo']['phone']; ?>">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Email</p>
 						<input type="text" required="" name="email" id="email" value="<?php echo @$_SESSION['userInfo']['email']; ?>">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Ngày vào dự kiến</p>
 						<!-- <input type="text" id="date_start" required="" autocomplete="off"	> -->
 						<input type="text" value="" name="date_start" id="date_start" class="input_date form-control" required="" onclick="tinhthoigian();" onchange="tinhthoigian();" autocomplete="off">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Ngày ra dự kiến</p>
 						<!-- <input type="text" id="date_end"> -->
 						<input type="text" value="" name="date_end" id="date_end" class="input_date form-control" required="" onclick="tinhthoigian();" onchange="tinhthoigian();" autocomplete="off">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Hình thức nghỉ</p>
 						<select name="type_register" id="type_register" onchange="tinhphi();">
 							<option value="" data-imagesrc="">Hình thức nghỉ </option>
@@ -104,7 +131,7 @@
                             <option value="gia_theo_ngay" data-imagesrc="">Nghỉ ngày</option>
 						</select>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Loại phòng</p>
 						<select name="typeRoom" id="typeRoom" onchange="tinhphi();">
 							<option value="">Chọn loại phòng</option>
@@ -116,24 +143,24 @@
 								
 						</select>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Số người</p>
 						<input type="number" name="number_people" id="number_people"  required=""  value="" min="1" >
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<p>Số phòng</p>
 						<input type="number" name="number_room" id="number_room" required="" value="" min="1" onchange="tinhphi();">
 					</div>
-					<div class="col-md-4">
-						<p>Số phòng</p>
+					<div class="col-md-6">
+						<p>Thời gian dự kiến</p>
 						<input type="text" name="timePay" id="timePay" value="" required="" disabled="" placeholder="Thời gian ở">
 					</div>
-					<div class="col-md-4">
-						<p>Số phòng</p>
+					<div class="col-md-6">
+						<p>Chi phí dự kiến</p>
 						<input type="text" name="pricePay" id="pricePay" value="" required=""  disabled="" placeholder="Chi phí dự kiến">
 					</div>
 					<div class="col-md-12" style=" margin-top: 55px;">
-						<button type="button" class="btn_booking" onclick="resetTinh();">Đặt Phòng</button>
+						<button type="button" class="btn_booking btn_dp" onclick="resetTinh();">Đặt Phòng</button>
 					</div>
 				</div>
 			</form>
@@ -162,6 +189,94 @@
                         echo $tmpVariable['data']['HotelManmo']['data']['Hotel']['info'];
                     ?>
 			</div>
+
+			<div class="infomation_detail">
+	            <div class="container information_hotel">
+	                <p class="title_p">Loại Phòng</p>
+	                <div class="list_room">
+	                    <?php
+	                        if(!empty($tmpVariable['data']['HotelManmo']['listTypeRoom'])){
+	                            foreach ($tmpVariable['data']['HotelManmo']['listTypeRoom'] as $value) { ?>
+	                            	<div class="room">
+	                            		 <div class="row ">
+	                                    <div class="col-md-2 col-12">
+	                                        <div class="img_room">
+	                                            <img src="<?php echo $value['TypeRoom']['image']?>" alt="">
+	                                        </div>
+	                                    </div>
+	                                    <div class="col-md-10">
+	                                        <div class="title_room">
+	                                            <div class="name_rooms">
+	                                                <p><?php echo @$value['TypeRoom']['roomtype']?></p>
+	                                                <div class="div_btn" style="position: relative;">
+	                                                	  <?php if(!empty($_SESSION['userInfo'])){  ?>
+																<button class="btn-p btn_pop_book">Đặt Phòng</button>
+															<?php }else{ ?>	
+																<a class="btn-p" href="/dang_nhap">Đặt Phòng</a>
+															<?php } ?>
+	                                                </div>
+	                                              
+	                                            </div>
+	                                            <div class="rooms">
+	                                                <p><i class="fas fa-bed"></i> <?php echo @$value['TypeRoom']['so_giuong']?> giường</p>
+	                                                <p><i class="fas fa-user-alt"></i> <?php echo @$value['TypeRoom']['so_nguoi']?> người</p>
+	                                            </div>
+	                                            <div class="detail_room row">
+	                                                <?php
+	                                                    if(!empty($value['TypeRoom']['ngay_thuong']['gia_theo_gio'])){ 
+	                                                        if($value['TypeRoom']['ngay_thuong']['gia_theo_gio']['0-23'][1] <= 0){
+	                                                            echo '';
+	                                                        }
+	                                                        else{
+	                                                            echo'
+	                                                                <div class="col-md-3">
+	                                                                    <p>'.number_format($value['TypeRoom']['ngay_thuong']['gia_theo_gio']['0-23'][1]).'đ / <span>giờ</span></p>
+	                                                                    <span>Quá 15 phút làm tròn thành 1h</span>
+	                                                                </div>
+	                                                            ';
+	                                                        }
+	                                                    }
+	                                                 ?>
+	                                                <?php
+	                                                    if(!empty($value['TypeRoom']['ngay_thuong']['gia_ngay'])){ ?>
+	                                                            <div class="col-md-3">
+	                                                                <p><?php echo number_format($value['TypeRoom']['ngay_thuong']['gia_ngay']) ?>đ / <span>đêm</span></p>
+	                                                                <span>Từ 21h hôm trước đến 10h hôm sau</span>
+	                                                            </div>
+	                                                 <?php }
+	                                                ?>
+	                                                <?php
+	                                                    if(!empty($value['TypeRoom']['ngay_thuong']['gia_ngay'])){ ?>
+	                                                            <div class="col-md-3">
+	                                                                <p><?php echo number_format($value['TypeRoom']['ngay_thuong']['gia_ngay']) ?>đ / <span>ngày</span></p>
+	                                                                <span>Từ 14h hôm trước đến 12h hôm sau</span>
+	                                                            </div>
+	                                                 <?php }
+	                                                ?>
+	                                                <?php
+	                                                    if(!empty($value['TypeRoom']['ngay_thuong']['gia_thang'])){ ?>
+	                                                            <div class="col-md-3">
+	                                                                <p><?php echo number_format($value['TypeRoom']['ngay_thuong']['gia_thang']) ?>đ / <span>tháng</span></p>  
+	                                                            </div>
+	                                                 <?php }else{ ?>
+	                                                             <div class="col-md-3">
+	                                                                <p>Liên hệ / <span>tháng</span></p>  
+	                                                            </div>
+	                                                <?php }
+	                                                ?>
+	                                            </div>
+
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            	</div>
+	                               
+	                    <?php   }
+	                        }
+	                    ?>
+	                </div>
+	            </div>
+	        </div>
 
 			<!-- <div class="information_hotel">
 				<p>Đánh Giá <?php echo @$tmpVariable['data']['Hotel']['name'];?></p>
@@ -373,6 +488,7 @@
 			
 		</div>
 
+</div>
 
 <div class="modal" id="modalQR">
   <div class="modal-dialog">
@@ -439,8 +555,8 @@ $('.click_forms').click(function() {
     time = 0;
     function resetTinh()
     {
-    $('.w3_main_grid_right > button[type="button"]').text('Xin chờ...');
-    $('.w3_main_grid_right > button[type="button"]').attr('disable','disable');
+    $('.btn_dp').text('Xin chờ...');
+    $('.btn_dp').attr('disable','disable');
        var date_starts= $('#date_start').val();
        var date_ends= $('#date_end').val();
 
@@ -536,6 +652,7 @@ $('.click_forms').click(function() {
     if(date_start!='' && date_end!=''){
         var resStart = date_start.split(" ");
         var resEnd = date_end.split(" ");
+        var today = new Date();
 
         date_start= resStart[0];
         date_end= resEnd[0];
@@ -562,6 +679,7 @@ $('.click_forms').click(function() {
         var date1 = new Date(date_start_splitted[2], date_start_splitted[1]-1, date_start_splitted[0], 0,0);
         var date2 = new Date(date_end_splitted[2], date_end_splitted[1]-1, date_end_splitted[0], 0, 0);
 
+
         var ngay= Math.ceil((date2.getTime() - date1.getTime())/86400000);
 
         var timePay= ngay+ ' ngày';
@@ -579,6 +697,8 @@ $('.click_forms').click(function() {
 
 
 
+
+
         if(ngay>1){
             $('#type_register').html('<select class="required ddslick form-control" id="type_register" name="type_register"  onchange="tinhphi();"><option value="gia_theo_ngay">Nghỉ theo ngày</option></select>'); 
             numberDay= ngay;
@@ -589,6 +709,8 @@ $('.click_forms').click(function() {
             numberDay= 1;
             numberHours= 0;
             //console.log('ngày: '+numberDay);
+        }else if(ngay < 1){
+        	alert('Ngày check Out không hợp lệ vui lòng nhập lại');
         }else{
             $('#type_register').html('<select class="required ddslick form-control" id="type_register" name="type_register"  onchange="tinhphi();"><option value="gia_theo_gio">Nghỉ theo giờ</option></select>');
             numberHours= Math.ceil((time2.getTime() - time1.getTime())/3600000);
@@ -678,3 +800,18 @@ $('#price').val(price);
 }
 
 </script>
+
+<script type="text/javascript">
+		$('[data-fancybox="images"]').fancybox({
+			  buttons : [ 
+			    'slideShow',
+			    'share',
+			    'zoom',
+			    'fullScreen',
+			    'close'
+			  ],
+			  thumbs : {
+			    autoStart : true
+			  }
+			});
+	</script>

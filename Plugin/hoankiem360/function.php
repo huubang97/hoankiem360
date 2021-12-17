@@ -44,11 +44,11 @@ addMenuAdminMantan($menus);
             
         );
     }
-
+   
     function getListFurniture(){
-        return array(   '1'=>array('id'=>1,'name'=>'Máy in','class'=>'fa-print','image'=>'/app/Plugin/mantanHotel/images/print.png','nameEN'=>'Printer'), 
-            '2'=>array('id'=>2,'name'=>'Tivi','class'=>'flaticon-television','image'=>'/app/Plugin/mantanHotel/images/tivi.png','nameEN'=>'Television'), 
-            '3'=>array('id'=>3,'name'=>'Wifi','class'=>'flaticon-wifi','image'=>'/app/Plugin/mantanHotel/images/wifi.png','nameEN'=>'Wifi'),
+        return array(   '1'=>array('id'=>1,'name'=>'Máy in','class'=>'fas fa-print','image'=>'/app/Plugin/mantanHotel/images/print.png','nameEN'=>'Printer'), 
+            '2'=>array('id'=>2,'name'=>'Tivi','class'=>'fas fa-tv','image'=>'/app/Plugin/mantanHotel/images/tivi.png','nameEN'=>'Television'), 
+            '3'=>array('id'=>3,'name'=>'Wifi','class'=>'fas fa-wifi','image'=>'/app/Plugin/mantanHotel/images/wifi.png','nameEN'=>'Wifi'),
             '4'=>array('id'=>4,'name'=>'Giặt là','class'=>'flaticon-hanger','image'=>'/app/Plugin/mantanHotel/images/bullseye.png','nameEN'=>'Laundry'),
             '5'=>array('id'=>5,'name'=>'Điều hòa','class'=>'flaticon-air-conditioner','image'=>'/app/Plugin/mantanHotel/images/podcast.png','nameEN'=>'Air conditional'),
             '6'=>array('id'=>6,'name'=>'Thang máy','class'=>'flaticon-elevator','image'=>'/app/Plugin/mantanHotel/images/building.png','nameEN'=>'Elevator'),

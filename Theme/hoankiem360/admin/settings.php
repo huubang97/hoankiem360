@@ -14,6 +14,9 @@
 }
 </style>
 <?php
+ global $modelOption;
+    $categoryNotice = $modelOption->getOption('categoryNotice');
+
     $breadcrumb= array( 'name'=>'Theme Settings',
                         'url'=>$urlPlugins.'theme/ktmaithanh-admin-settings.php',
                         'sub'=>array('name'=>'Settings')
@@ -209,8 +212,42 @@
                     <p><b>Điện thoại 4</b></p>
                 </td>
             </tr>
+            <tr>
+                <td colspan="2" align="center">Khối doanh nghiệp </td>
+            </tr>
+             <tr>
+                <td>
+                    <p><b>Tin tức nổi bật </b></p>
+                    <select class="form-control" name="idCateNotice">
+                        <?php foreach ($categoryNotice['Option']['value']['category'] as $key => $value) { ?>
+                            <option <?php echo $data['Option']['value']['idCateNotice']==$value['id']?'selected':''; ?> value="<?php echo @$value['id'] ?>"><?php echo @$value['name'] ?></option>
+                        <?php
+                        } ?>
+                    </select>
+                   
+                </td>
+                <td>
+                    <p><b>Khuyến Mãi </b></p>
+                    <select class="form-control" name="idCateNotice1">
+                        <?php foreach ($categoryNotice['Option']['value']['category'] as $key => $value) { ?>
+                            <option <?php echo $data['Option']['value']['idCateNotice1']==$value['id']?'selected':''; ?> value="<?php echo @$value['id'] ?>"><?php echo @$value['name'] ?></option>
+                        <?php
+                        } ?>
+                    </select>
+                   
+                </td>
+            </tr>
         </table>
-        
+        <div class="thanhcongcu">
+            <div class="congcu" onclick="save();">
+                <input type="hidden" id="idChange" value="" />
+                <span id="save">
+                    <input type="image" src="<?php echo $webRoot;?>images/save.png" />
+                </span>
+                <br/>
+                <?php echo $languageMantan['save'];?>
+            </div>
+        </div>
 
 
     </form>

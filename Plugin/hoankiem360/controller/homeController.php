@@ -62,6 +62,85 @@ function listEvent($input){
         setVariable('urlPage',$urlPage);
 }
 
+function ajax_event($input){
+    $modelEvent = new Event();
+    global $urlNow;
+    global $urlThemeActive;
+    $_SESSION['urlCallBack']= $urlNow;
+      
+        $page= (isset($_GET['page']))? (int) $_GET['page']:1;
+        if($page<=0) $page=1;
+        $limit= 15;
+         $getmonth   = getmonth();
+        
+        $order = array('created'=>'desc');
+        $conditions = array();
+
+        if(!empty($_GET['name'])){
+             $key=createSlugMantan($_GET['name']);
+            $conditions['urlSlug']= array('$regex' => $key);
+        }
+
+        if(!empty($_GET['month'])){
+                $conditions['month']= $_GET['month'];
+        }
+
+        $listData= $modelEvent->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
+
+        $totalData= $modelEvent->find('count',$conditions);
+
+        $balance= $totalData%$limit;
+        $totalPage= ($totalData-$balance)/$limit;
+        if($balance>0)$totalPage+=1;
+        if($totalPage<1) $totalPage=1;
+
+        $back=$page-1;$next=$page+1;
+        if($back<=0) $back=1;
+        if($next>=$totalPage) $next=$totalPage;
+
+        if(isset($_GET['page'])){
+            $urlPage= str_replace('&page='.$_GET['page'], '', $urlNow);
+            $urlPage= str_replace('page='.$_GET['page'], '', $urlPage);
+        }else{
+            $urlPage= $urlNow;
+        }
+
+        if(strpos($urlPage,'?')!== false){
+            if(count($_GET)>1){
+                $urlPage= $urlPage.'&page=';
+            }else{
+                $urlPage= $urlPage.'page=';
+            }
+        }else{
+            $urlPage= $urlPage.'?page=';
+        }
+
+        $text ='';
+
+        if(!empty($listData)) {
+            $text .= '<div class="main-carousel main-month-event">';
+            foreach ($listData as $key => $value) {
+                $text .= '
+                <div class="carousel-cell clsFlex">
+                                    <div class="box-left">
+                                        <a class="title-event-post" href="/chi_tiet_su_kien/'.@$value['Event']['urlSlug'].'.html">'.@$value['Event']['title'].'</a>
+                                        <hr>
+                                        <p class="text-hidden">'.@$value['Event']['introductory'].'</p>
+                                        <p><img src="'.@$urlThemeActive.'assets/images/map.svg" alt=""> '.@$value['Event']['address'].'</p>
+                                        <p><img src="'.@$urlThemeActive.'assets/images/date.svg" alt=""> '.@$value['Event']['dateStart'].' - '.@$value['Event']['dateEnd'].'</p>
+                                        <p><img src="'.@$urlThemeActive.'assets/images/city.svg" alt=""> '.@$value['Event']['address'].'</p>
+                                    </div>
+                                    <div class="box-right">
+                                        <img src="'.@$value['Event']['image'].'" alt="">
+                                    </div>
+                                </div>
+                ';
+            }
+            $text .= '</div>';
+        }
+        echo json_encode(array('text'=>$text));
+}
+
 function detailEvent($input){
     global $metaTitleMantan;
     global $metaKeywordsMantan;
@@ -527,6 +606,8 @@ function listHotel($input){
         //$modelHotel->getPage($page, $limit = 15, $conditions, $order =  $order, $fields=null);
 
         $totalData= $listHotel['total'];
+
+        $_SESSION['totalHotel'] = $listHotel['total'];
  
         $balance= $totalData%$limit;
         $totalPage= ($totalData-$balance)/$limit;

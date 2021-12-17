@@ -65,7 +65,27 @@ function settings($input)
 	}
 
 function indexTheme(){
-	 global $urlNow;
+	global $urlNow;
+	global $modelNotice;
+	global $modelOption;
+
+	$modelEvent = new Event();
+
+	$conditions = array();
+
+
+	
+	$listDataEvent= $modelEvent->find('all',array('conditions'=>array('month'=>'11')));
+
+
     $_SESSION['urlCallBack']= $urlNow;
+    $newNoticeNetDep = $modelNotice->getOtherNotice(array(9),8);
+
+    $listCategory = $modelOption->getOption('categoryNotice');
+    $listCategoryBlog= $modelOption->getcat($listCategory['Option']['value']['category'],14,'id');
+
+    setVariable('newNoticeNetDep',$newNoticeNetDep);
+    setVariable('listCategoryBlog',$listCategoryBlog);
+    setVariable('listDataEvent',$listDataEvent);
 }
 ?>
