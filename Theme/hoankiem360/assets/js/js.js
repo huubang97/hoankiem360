@@ -46,6 +46,10 @@ function decreaseCount(a, b) {
   }
 }
 
+$('.box-log.boxOn').click(function(){
+  $('.box-log-info').toggleClass('on');
+})
+
 
 $('.box-chevor').click(function(){
   let hei = $('.wr-banner').height();
