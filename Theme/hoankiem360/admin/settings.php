@@ -16,6 +16,7 @@
 <?php
  global $modelOption;
     $categoryNotice = $modelOption->getOption('categoryNotice');
+    $listCategoryKM= $modelOption->getcat($categoryNotice['Option']['value']['category'],2,'id');
 
     $breadcrumb= array( 'name'=>'Theme Settings',
                         'url'=>$urlPlugins.'theme/ktmaithanh-admin-settings.php',
@@ -229,7 +230,7 @@
                 <td>
                     <p><b>Khuyến Mãi </b></p>
                     <select class="form-control" name="idCateNotice1">
-                        <?php foreach ($categoryNotice['Option']['value']['category'] as $key => $value) { ?>
+                        <?php foreach ($listCategoryKM['sub'] as $key => $value) { ?>
                             <option <?php echo $data['Option']['value']['idCateNotice1']==$value['id']?'selected':''; ?> value="<?php echo @$value['id'] ?>"><?php echo @$value['name'] ?></option>
                         <?php
                         } ?>

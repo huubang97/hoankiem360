@@ -154,6 +154,15 @@ function ajax_event($input){
         echo json_encode(array('text'=>$text,'code'=>$code));
 }
 
+function ajax_noticeKM($input){
+    // global $modelNotice;
+    // $id= $_POST['id'];
+    // echo $id;die;
+    // $noticeKM = $modelNotice->getOtherNotice(array($id)),8);
+    // echo json_encode(array('data'=>$noticeKM,'id'=>$_POST['id']));
+}
+
+
 function detailEvent($input){
     global $metaTitleMantan;
     global $metaKeywordsMantan;
@@ -677,15 +686,15 @@ function detailHotel($input){
 
 
 
-            $conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
-            $otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
+            //$conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
+            //$otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
 
             $data['HotelManmo'] = $infoHotelMM;
 
             setVariable('listFurniture', $listFurniture); 
 
             setVariable('data',$data);
-            setVariable('otherData',$otherData);
+            //setVariable('otherData',$otherData);
         }else{
             $modelOption->redirect($urlHomes);
         }

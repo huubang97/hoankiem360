@@ -1026,6 +1026,8 @@ a:hover {
 .wr-slide-link {
   padding-right: 25px;
   width: calc(100% - 320px);
+  position: relative;
+  z-index: 10;
 }
 
 .wr-slide-link .carousel-cell {

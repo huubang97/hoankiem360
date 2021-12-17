@@ -20,7 +20,7 @@
 		}
 	}
 	$nameCate= $modelOption->getcat($listCategory['Option']['value']['category'],9,'id');
-	//debug($listNotices);
+	//debug($listCategory2);
 ?>
 <style>
 	.wr-header {
@@ -169,11 +169,11 @@
 				<h3>Tổng hợp ưu đãi</h3>
 				<div class="wr-box-cate-select">
 					<span>Danh mục</span>
-					<select name="" id="">
-						<option value="">Tất cả</option>
+					<select name="" id="idNotice" onchange="reloadNotice(this)">
+						<option value="uu-dai-khuyen-mai">Tất cả</option>
 						<?php if(!empty($listCategory2['list'])) {
 							foreach ($listCategory2['list']['sub'] as $key => $value) { ?>
-								<option value="<?php echo @$value['id'] ?>"><?php echo @$value['name'] ?></option>
+								<option value="<?php echo @$value['slug'] ?>"><?php echo @$value['name'] ?></option>
 							<?php 
 							}
 						} ?>

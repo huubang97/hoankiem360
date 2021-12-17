@@ -111,6 +111,12 @@ function reload(e,onMonth) {
   }
 }
 
+function reloadNotice(e) {
+  let idNotice = $('#idNotice').val();
+   window.location=idNotice+".html";
+  
+}
+
 // load event
 function loadEvent(e) {
   var month = $(e).attr('data-month');
@@ -138,6 +144,14 @@ function loadEvent(e) {
     });
 }
 
+// load Notice
+function loadNoticeKM(e,id=3) {
+  $('.main-notice:not(".main-notice'+id+'")').attr('hidden','hidden');
+  $('.main-notice'+id).removeAttr('hidden');
+  $('.navs-tab > a').removeClass('selected');
+  $(e).addClass('selected');
+}
+
 // menu scroll 
 $(document).ready(function() {
     $('a[href*="#"]').bind('click', function(e) {
@@ -153,6 +167,7 @@ $(document).ready(function() {
 
         return false;
     });
+    $('.main-notice:not(".main-notice3")').attr('hidden','hidden');
 });
 
 $(window).scroll(function() {
