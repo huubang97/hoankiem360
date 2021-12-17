@@ -30,6 +30,6 @@
    $routesPlugin['detailEventAPI'] = 'hoankiem360/view/detailEventAPI.php';
    $routesPlugin['lisHistoricalSitestAPI'] = 'hoankiem360/view/lisHistoricalSitestAPI.php';
    $routesPlugin['detailHistoricalSitesAPI'] = 'hoankiem360/view/detailHistoricalSitesAPI.php';
-   $routesPlugin['lisHRestaurantAPI'] = 'hoankiem360/view/lisHRestaurantAPI.php';
+   $routesPlugin['listRestaurantAPI'] = 'hoankiem360/view/listRestaurantAPI.php';
    $routesPlugin['detailRestaurantAPI'] = 'hoankiem360/view/detailRestaurantAPI.php';
 ?> 
