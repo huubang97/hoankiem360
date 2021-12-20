@@ -64,7 +64,7 @@ $('.wr-banner .mask').click(function(){
 function mouseover(e) {
   $('.blog-box').removeClass('selected');
   $(e).addClass('selected');
-  $('.mask').css('background','rgba(0, 0, 0, 0.6)');
+  $('.blog-box .mask').css('background','rgba(0, 0, 0, 0.6)');
   $(e).find('.mask').css('background','none');
 }
 
