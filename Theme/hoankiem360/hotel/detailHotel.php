@@ -1,6 +1,7 @@
 
  <?php getHeader()?>
 
+
 <style>
 	.wr-header-bot{
 		opacity: 1 !important;
@@ -710,7 +711,7 @@ $('.click_forms').click(function() {
             method: "POST",
             url: "http://api.quanlyluutru.com/saveBookingAPI",
             data: {
-                idHotel:'<?php echo @$tmpVariable['data']['Hotel']['codeManmo']; ?>',
+                idHotel:'<?php echo @$tmpVariable['data']['HotelManmo']['id']; ?>',
                 date_start:date_startse,
                 date_end:date_endse,
                 typeRoom:typeRoom,
