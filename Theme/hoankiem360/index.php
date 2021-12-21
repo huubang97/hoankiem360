@@ -121,7 +121,7 @@
 						<p class="text-center"><?php echo  @$themesettings['Option']['value']['Content3'] ?></p>
 					</div>
 				</div>
-				<div class="col-md-12 clsFlex set-pd-col">
+				<div class="col-md-12 clsFlex-wrap set-pd-col">
 					<div class="box-month">
 						<div class="text-center"><button><i class="fa fa-chevron-right" aria-hidden="true"></i></button></div>
 						<ul hidden="hidden" class="main-carousel navc carousel-nav" data-flickity='{"asNavFor": ".navc", "cellAlign": "center", "contain": true, "draggable": false, "pageDots": false }'>
@@ -139,7 +139,7 @@
 							<li class="carousel-cell text-center">Tháng 1</li>
 						</ul>
 						<ul class="carousel carousel-nav nav-nav"
-						  data-flickity='{ "asNavFor": ".navc", "contain": true, "pageDots": false }'>
+						  data-flickity='{ "asNavFor": ".navc", "contain": true, "pageDots": false, "draggable": false }'>
 						  	<li class="carousel-cell text-center <?php echo getdate()['mon']==12?'is-selected':'' ?>" data-month="12" onclick="loadEvent(this)">Tháng 12</li>
 							<li class="carousel-cell text-center <?php echo getdate()['mon']==11?'is-selected':'' ?>" data-month="11" onclick="loadEvent(this)">Tháng 11</li>
 							<li class="carousel-cell text-center <?php echo getdate()['mon']==10?'is-selected':'' ?>" data-month="10" onclick="loadEvent(this)">Tháng 10</li>
@@ -200,7 +200,7 @@
 					<h3 class="text-center"><?php echo  @$themesettings['Option']['value']['title4'] ?></h3>
 					<p class="text-center"><?php echo  @$themesettings['Option']['value']['Content4'] ?></p>
 				</div>
-				<div class="col-md-12 clsFlex">
+				<div class="col-md-12 set-pd-col clsFlex">
 					<div class="blog-box blog-box1 selected" onmouseover="mouseover(this);">
 						<a href="<?php echo @$tmpVariable['listCategoryBlog']['sub'][10]['slug'] ?>.html">
 							<div class="mask">
@@ -313,38 +313,153 @@
 					<h3>Khuyến mãi</h3>
 					<a href="/uu-dai-khuyen-mai.html">Xem tất cả</a>
 				</div>
-				<div class="wr-slide-link wr-slide-link-card">
+				<div class="wr-slide-link wr-slide-link-card cardNotice">
 					<div class="navs-tab">
-						<a class="selected" href="">Ẩm thực</a>
-						<a href="">Giải trí</a>
-						<a href="">Giáo dục</a>
-						<a href="">Mua sắm</a>
-						<a href="">Giao thông</a>
-						<a href="">Y tế</a>
+						<a class="selected" onclick="loadNoticeKM(this,3)" href="javascript:void(0)">Ẩm thực</a>
+						<a onclick="loadNoticeKM(this,4)" href="javascript:void(0)">Giải trí</a>
+						<a onclick="loadNoticeKM(this,5)" href="javascript:void(0)">Giáo dục</a>
+						<a onclick="loadNoticeKM(this,6)" href="javascript:void(0)">Mua sắm</a>
+						<a onclick="loadNoticeKM(this,7)" href="javascript:void(0)">Giao thông</a>
+						<a onclick="loadNoticeKM(this,8)" href="javascript:void(0)">Y tế</a>
 					</div>
-					<div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
-						<?php 
-							global $modelNotice;
-							$notice= $modelNotice->getOtherNotice(array((int)  $themesettings['Option']['value']['idCateNotice1']),6);
-							if(!empty($notice)){
-								foreach ($notice as $key => $value) { ?>
-										<div class="carousel-cell">
-									  		<a href="/<?php echo $value['Notice']['slug']?>.html">
-									  			<div class="image">
-									  				<img src="<?php echo $value['Notice']['image']?>" alt="">
-									  			</div>
-									  			<div class="title-content">
-									  				<h3><?php echo $value['Notice']['title']?></h3>
-									  				<div class="line"></div>
-									  				<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
-									  			</div>
-									  		</a>
-									  	</div>
-							<?php }
-							}
-						?>
-					  	
-					</div>
+
+					<?php 
+					if(!empty($tmpVariable['noticeKM1'])){ ?>
+						<div class="main-carousel main-notice main-notice3" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
+							<?php 
+							foreach ($tmpVariable['noticeKM1'] as $key => $value) { ?>
+								<div class="carousel-cell">
+									<a href="/<?php echo $value['Notice']['slug']?>.html">
+										<div class="image">
+											<img src="<?php echo $value['Notice']['image']?>" alt="">
+										</div>
+										<div class="title-content">
+											<h3><?php echo $value['Notice']['title']?></h3>
+											<div class="line"></div>
+											<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
+										</div>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+						<?php
+					}
+					?>
+
+					<?php 
+					if(!empty($tmpVariable['noticeKM2'])){ ?>
+						<div class="main-carousel main-notice main-notice4" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
+							<?php 
+							foreach ($tmpVariable['noticeKM2'] as $key => $value) { ?>
+								<div class="carousel-cell">
+									<a href="/<?php echo $value['Notice']['slug']?>.html">
+										<div class="image">
+											<img src="<?php echo $value['Notice']['image']?>" alt="">
+										</div>
+										<div class="title-content">
+											<h3><?php echo $value['Notice']['title']?></h3>
+											<div class="line"></div>
+											<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
+										</div>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+						<?php
+					}
+					?>
+
+					<?php 
+					if(!empty($tmpVariable['noticeKM3'])){ ?>
+						<div class="main-carousel main-notice main-notice5" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
+							<?php 
+							foreach ($tmpVariable['noticeKM3'] as $key => $value) { ?>
+								<div class="carousel-cell">
+									<a href="/<?php echo $value['Notice']['slug']?>.html">
+										<div class="image">
+											<img src="<?php echo $value['Notice']['image']?>" alt="">
+										</div>
+										<div class="title-content">
+											<h3><?php echo $value['Notice']['title']?></h3>
+											<div class="line"></div>
+											<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
+										</div>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+						<?php
+					}
+					?>
+
+					<?php 
+					if(!empty($tmpVariable['noticeKM4'])){ ?>
+						<div class="main-carousel main-notice main-notice6" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
+							<?php 
+							foreach ($tmpVariable['noticeKM4'] as $key => $value) { ?>
+								<div class="carousel-cell">
+									<a href="/<?php echo $value['Notice']['slug']?>.html">
+										<div class="image">
+											<img src="<?php echo $value['Notice']['image']?>" alt="">
+										</div>
+										<div class="title-content">
+											<h3><?php echo $value['Notice']['title']?></h3>
+											<div class="line"></div>
+											<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
+										</div>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+						<?php
+					}
+					?>
+
+					<?php 
+					if(!empty($tmpVariable['noticeKM5'])){ ?>
+						<div class="main-carousel main-notice main-notice7" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
+							<?php 
+							foreach ($tmpVariable['noticeKM5'] as $key => $value) { ?>
+								<div class="carousel-cell">
+									<a href="/<?php echo $value['Notice']['slug']?>.html">
+										<div class="image">
+											<img src="<?php echo $value['Notice']['image']?>" alt="">
+										</div>
+										<div class="title-content">
+											<h3><?php echo $value['Notice']['title']?></h3>
+											<div class="line"></div>
+											<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
+										</div>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+						<?php
+					}
+					?>
+
+					<?php 
+					if(!empty($tmpVariable['noticeKM6'])){ ?>
+						<div class="main-carousel main-notice main-notice8" data-flickity='{ "cellAlign": "left", "contain": true, "draggable": false, "pageDots": false }'>
+							<?php 
+							foreach ($tmpVariable['noticeKM6'] as $key => $value) { ?>
+								<div class="carousel-cell">
+									<a href="/<?php echo $value['Notice']['slug']?>.html">
+										<div class="image">
+											<img src="<?php echo $value['Notice']['image']?>" alt="">
+										</div>
+										<div class="title-content">
+											<h3><?php echo $value['Notice']['title']?></h3>
+											<div class="line"></div>
+											<p class="des"><?php echo date('d/m/y', $value['Notice']['time']) ?></p>
+										</div>
+									</a>
+								</div>
+							<?php } ?>
+						</div>
+						<?php
+					}
+					?>
 				</div>
 			</div>			
 		</div>
@@ -413,14 +528,14 @@
 		</div>
 		<script>
 			$(document).ready(function() {
-				$('#idhome').attr('href','javascript:void(0)');
-				$('#idnetdep').attr('href','#netdep');
-				$('#iddiemdien').attr('href','#diemden');
-				$('#idsukien').attr('href','#sukien');
-				$('#idblog').attr('href','#blogdulich');
-				$('#idkenhdoanhnghiep').attr('href','#kenhdoanhnghiep');
-				$('#idbando').attr('href','#bando');
-				$('#idvietnam360').attr('href','#vietnam360');
+				$('.idhome').attr('href','javascript:void(0)');
+				$('.idnetdep').attr('href','#netdep');
+				$('.iddiemdien').attr('href','#diemden');
+				$('.idsukien').attr('href','#sukien');
+				$('.idblog').attr('href','#blogdulich');
+				$('.idkenhdoanhnghiep').attr('href','#kenhdoanhnghiep');
+				$('.idbando').attr('href','#bando');
+				$('.idvietnam360').attr('href','#vietnam360');
 			});
 		</script>
 		<?php getFooter(); ?>

@@ -246,7 +246,7 @@ a:hover {
 
 .box-menu-mobile a {
   display: block;
-  text-align: center;
+  text-align: right;
   padding: 0 10px;
   margin-bottom: 10px;
   font-size: 1.4rem;
@@ -2601,14 +2601,6 @@ a:hover {
     height: unset;
   }
 
-  .box-month {
-    width: 90px;
-  }
-  .box-month-event {
-    width: calc(100% - 90px);
-    padding-bottom: 45px;
-  }
-
   .box-month-event .box-left {
     width: unset;
     padding: 0;
@@ -2882,6 +2874,50 @@ a:hover {
   /* đăng ký */
   .box-width-regis a {
     width: 160px;
+  }
+
+  /* res mobile event */
+  .box-month {
+    width: 100%!important;
+  }
+
+  .box-month-event {
+    width: 100%;
+  }
+
+  .box-month .carousel .flickity-viewport {
+    transform: rotate(0);
+    height: 60px!important;
+  }
+
+  .box-month > ul li {
+    writing-mode: unset;
+  }
+
+  .box-month .carousel {
+
+  }
+
+  .box-month > ul li {
+    width: unset;
+    padding: 10px;
+  }
+
+  .box-month > ul li.is-selected {
+    font-size: unset;
+  }
+
+  .box-month .carousel .flickity-prev-next-button.next {
+    transform: unset;
+    right: 6px;
+    top: unset;
+    bottom: 20px;
+  }
+
+  .box-month .carousel .flickity-prev-next-button.previous {
+    transform: unset;
+    left: 6px;
+    bottom: 20px;
   }
 }
 

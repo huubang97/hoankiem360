@@ -70,28 +70,28 @@
 								</div>	
 							</div>
 							<div class="clsFlex-between box-menu navigation">
-								<a id="idhome" href="/">Trang chủ</a>
-								<a id="idnetdep" href="#netdep">Nét đẹp Hoàn Kiếm</a>
-								<a id="iddiemdien" href="/">Điểm đến</a>
-								<a id="idsukien" href="/su_kien">Sự kiện</a>
-								<a id="idblog" href="/blog-du-lich.html">Blog du lịch</a>
-								<a id="idkenhdoanhnghiep" href="/uu-dai-khuyen-mai.html">Kênh doanh nghiệp</a>
-								<a id="idbando" href="/">Bản đồ</a>
-								<a id="idvietnam360" href="vietnam360">Việt Nam 360</a>
+								<a class="idhome" href="/">Trang chủ</a>
+								<a class="idnetdep" href="#netdep">Nét đẹp Hoàn Kiếm</a>
+								<a class="iddiemdien" href="/">Điểm đến</a>
+								<a class="idsukien" href="/su_kien">Sự kiện</a>
+								<a class="idblog" href="/blog-du-lich.html">Blog du lịch</a>
+								<a class="idkenhdoanhnghiep" href="/uu-dai-khuyen-mai.html">Kênh doanh nghiệp</a>
+								<a class="idbando" href="/">Bản đồ</a>
+								<a class="idvietnam360" href="vietnam360">Việt Nam 360</a>
 								<a><i class="fa fa-search" aria-hidden="true"></i></a>
 								<button class="hidden-pc" data-toggle="collapse" data-target="#menu-mb"><img src="<?php echo @$urlThemeActive ?>assets/images/menuBar.svg" alt=""></button>
 							</div>
 						</div>
-						<div class="hidden-pc">
-							<div id="menu-mb" class="collapse box-menu-mobile">
-								<a href="">Trang chủ</a>
-								<a href="">Nét đẹp Hoàn Kiếm</a>
-								<a href="">Điểm đến</a>
-								<a href="">Sự kiện</a>
-								<a href="">Blog du lịch</a>
-								<a href="">Kênh doanh nghiệp</a>
-								<a href="">Bản đồ</a>
-								<a href="">Việt Nam 360</a>
+						<div class="hidden-pc" style="width:100%">
+							<div id="menu-mb" style="width:inherit" class="collapse box-menu-mobile">
+								<a class="idhome" href="/">Trang chủ</a>
+								<a class="idnetdep" href="#netdep">Nét đẹp Hoàn Kiếm</a>
+								<a class="iddiemdien" href="/">Điểm đến</a>
+								<a class="idsukien" href="/su_kien">Sự kiện</a>
+								<a class="idblog" href="/blog-du-lich.html">Blog du lịch</a>
+								<a class="idkenhdoanhnghiep" href="/uu-dai-khuyen-mai.html">Kênh doanh nghiệp</a>
+								<a class="idbando" href="/">Bản đồ</a>
+								<a class="idvietnam360" href="vietnam360">Việt Nam 360</a>
 								<a><i class="fa fa-search" aria-hidden="true"></i></a>
 							</div>
 						</div>

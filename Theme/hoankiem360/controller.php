@@ -75,17 +75,33 @@ function indexTheme(){
 
 
 	
-	$listDataEvent= $modelEvent->find('all',array('conditions'=>array('month'=>'11')));
+	$listDataEvent= $modelEvent->find('all',array('conditions'=>array('month'=>getdate()['mon'])));
 
 
     $_SESSION['urlCallBack']= $urlNow;
     $newNoticeNetDep = $modelNotice->getOtherNotice(array(9),8);
+    $noticeKM1 = $modelNotice->getOtherNotice(array(3),5);
+    $noticeKM2 = $modelNotice->getOtherNotice(array(4),5);
+    $noticeKM3 = $modelNotice->getOtherNotice(array(5),5);
+    $noticeKM4 = $modelNotice->getOtherNotice(array(6),5);
+    $noticeKM5 = $modelNotice->getOtherNotice(array(7),5);
+    $noticeKM6 = $modelNotice->getOtherNotice(array(8),5);
 
     $listCategory = $modelOption->getOption('categoryNotice');
     $listCategoryBlog= $modelOption->getcat($listCategory['Option']['value']['category'],14,'id');
+    $listCategoryNoticeKM= $modelOption->getcat($listCategory['Option']['value']['category'],2,'id');
 
     setVariable('newNoticeNetDep',$newNoticeNetDep);
     setVariable('listCategoryBlog',$listCategoryBlog);
+    setVariable('listCategoryNoticeKM',$listCategoryNoticeKM);
     setVariable('listDataEvent',$listDataEvent);
+
+    setVariable('noticeKM1',$noticeKM1);
+    setVariable('noticeKM2',$noticeKM2);
+    setVariable('noticeKM3',$noticeKM3);
+    setVariable('noticeKM4',$noticeKM4);
+    setVariable('noticeKM5',$noticeKM5);
+    setVariable('noticeKM6',$noticeKM6);
+    
 }
 ?>
