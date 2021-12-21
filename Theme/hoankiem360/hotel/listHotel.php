@@ -1,7 +1,7 @@
 <?php getHeader();
-	debug($tmpVariable);
+
 	$lisf = getListFurniture();
-	debug($lisf);
+	
 ?>
 <style>
 	.wr-header-bot{

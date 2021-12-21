@@ -295,6 +295,7 @@
 						<?php
 							if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){
 								foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+									debug($value);
 									if($value['Comment']['star'] = 0 ){ ?>
 										<div class="item_review">
 											<p>1<i class="fas fa-star"></i></p>
