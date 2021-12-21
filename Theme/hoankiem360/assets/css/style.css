@@ -2540,6 +2540,32 @@ a:hover {
   margin-left: 200px;
 }
 
+.wr-search {
+  margin-top: 100px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  font-size: 1.4rem;
+}
+
+.wr-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #f0f0f0;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.wr-search button {
+  background: #efb138;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #fff;
+  padding: 9px 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
 
 @media only screen and (min-width: 1500px) {
   .wr-event {
