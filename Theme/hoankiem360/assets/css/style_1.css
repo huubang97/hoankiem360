@@ -50,9 +50,11 @@ button:focus{
 }
 
 .search button{
-    padding: 9px 5px;
+    padding: 9.5px 11px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background: none;
+    color: #707070;
 }
 .title_destination{
     padding: 10px;
