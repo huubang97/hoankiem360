@@ -466,6 +466,11 @@
 							<ul>
 								<li>Khá</li>
 								<li>
+									<?php 
+										foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+											if($value['Comment']['star'])
+										}
+									?>
 									<i class="fas fa-star"></i>
 									<i class="fas fa-star"></i>
 									<i class="fas fa-star"></i>

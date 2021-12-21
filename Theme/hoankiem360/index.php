@@ -138,7 +138,7 @@
 							<li class="carousel-cell text-center">Tháng 2</li>
 							<li class="carousel-cell text-center">Tháng 1</li>
 						</ul>
-						<ul class="carousel carousel-nav"
+						<ul class="carousel carousel-nav nav-nav"
 						  data-flickity='{ "asNavFor": ".navc", "contain": true, "pageDots": false }'>
 						  	<li class="carousel-cell text-center <?php echo getdate()['mon']==12?'is-selected':'' ?>" data-month="12" onclick="loadEvent(this)">Tháng 12</li>
 							<li class="carousel-cell text-center <?php echo getdate()['mon']==11?'is-selected':'' ?>" data-month="11" onclick="loadEvent(this)">Tháng 11</li>
