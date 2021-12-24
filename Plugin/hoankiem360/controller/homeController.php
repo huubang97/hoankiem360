@@ -684,8 +684,6 @@ function detailHotel($input){
             $infoHotelMM= str_replace('ï»¿', '', utf8_encode($infoHotelMM));
             $infoHotelMM= json_decode($infoHotelMM, true);
 
-
-
             //$conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
             //$otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
 
