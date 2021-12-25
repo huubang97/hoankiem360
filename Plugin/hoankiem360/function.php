@@ -13,7 +13,7 @@
     $menus[1]['sub'][1] = array('name' => 'Nhà hàng ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-restaurant-listRestaurantAdmin.php','permission'=>'listRestaurantAdmin');
     $menus[1]['sub'][2] = array('name' => 'Phố cổ ', 'url' => $urlPlugins . 'admin/hoankiem360-admin-oldQuarter-listOldQuarterAdmin.php','permission'=>'listOldQuarterAdmin');
     $menus[1]['sub'][3] = array('name' => 'Cơ quan hành chính', 'url' => $urlPlugins . 'admin/hoankiem360-admin-governanceAgency-listGovernanceAgencyAdmin.php','permission'=>'listGovernanceAgencyAdmin');
-    $menus[1]['sub'][4] = array('name' => 'Tour', 'url' => $urlPlugins . 'admin/hoankiem360-admin-tour-listTourAdmin.php','permission'=>'listTourAdmin');
+    $menus[1]['sub'][4] = array('name' => 'Dịch vụ hỗ trợ du lịch', 'url' => $urlPlugins . 'admin/hoankiem360-admin-tour-listTourAdmin.php','permission'=>'listTourAdmin');
     //$menus[1]['sub'][5] = array('name' => 'Khách sạn', 'url' => $urlPlugins . 'admin/hoankiem360-admin-hotel-listHotelAdmin.php','permission'=>'listHotelAdmin');
     $menus[1]['sub'][6] = array('name' => 'Lễ hội', 'url' => $urlPlugins . 'admin/hoankiem360-admin-festival-listFestivalAdmin.php','permission'=>'listFestivalAdmin');
     $menus[1]['sub'][7] = array('name' => 'Hồ Hoàn Kiếm', 'url' => $urlPlugins . 'admin/hoankiem360-admin-hklake-listHklakeAdmin.php','permission'=>'listHklakeAdmin');

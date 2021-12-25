@@ -1146,4 +1146,42 @@ function listLastMinuteBooking(){
         setVariable('urlPage',$urlPage);
 
 }
+
+function detailLastMinuteBooking($input){
+    global $infoSite;
+    global $urlHomes;
+     global $urlNow;
+    $_SESSION['urlCallBack']= $urlNow;   
+    $modelOption= new Option();
+    $modelHotel = new Hotel();
+    $keyManMo = '5dc8f2652ac5db08348b4567';
+    $listFurniture = getListFurniture();
+
+    if(isset($input['request']->params['pass'][1])){
+        $input['request']->params['pass'][1]= str_replace('.html', '', $input['request']->params['pass'][1]);
+       // $data= $modelHotel->getHotelSlug($input['request']->params['pass'][1]);
+            
+            $dataPost= array('key'=>$keyManMo, 'slug'=>$input['request']->params['pass'][1], 'lat'=>'', 'long'=>'', 'idUser'=>'');
+            $infoHotelMM= sendDataConnectMantan('http://api.quanlyluutru.com/detailLastBookingHourAPI', $dataPost);
+            $infoHotelMM= str_replace('ï»¿', '', utf8_encode($infoHotelMM));
+            $infoHotelMM= json_decode($infoHotelMM, true);
+
+            //$conditions['id']=array('$nin'=>explode(',', strtoupper(str_replace(' ', '', $data['Hotel']['id']))));
+            //$otherData= $modelHotel->getPage($page = 1, $limit = 3, $conditions, $order = array(), $fields=null);
+
+            $data['HotelManmo'] = $infoHotelMM;
+
+            setVariable('listFurniture', $listFurniture); 
+
+           /* debug($data);
+            die();*/
+            setVariable('data',$data);
+            //setVariable('otherData',$otherData);
+        }else{
+            $modelOption->redirect($urlHomes);
+        }
+    
+    
+       
+}
 ?>

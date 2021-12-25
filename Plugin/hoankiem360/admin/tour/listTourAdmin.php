@@ -1,7 +1,7 @@
 <script type="text/javascript" src="<?php echo $urlHomes . 'app/Plugin/mantanHotel/script.js'; ?>"></script>
 <link href="<?php echo $urlHomes . 'app/Plugin/mantanHotel/style.css'; ?>" rel="stylesheet">
 <?php
-$breadcrumb = array('name' => 'Tour',
+$breadcrumb = array('name' => 'Dịch vụ hỗ trợ du lịch',
     'url' => $urlPlugins . 'admin/hoankiem360-admin-tour-listTourAdmin.php',
     'sub' => array('name' => 'Danh sách')
     );
@@ -36,8 +36,8 @@ element.style {
            <table class="table table-bordered" style="border: 1px solid #ddd!important; margin-top: 10px;">  
             <tr>
                 <td>
-                    <label>Tên tour</label>
-                    <input type="" name="name" class="form-control" placeholder="Tên tour" value="<?php echo @$_GET['name'];?>">
+                    <label>Tên dịch vụ hỗ trợ du lịch</label>
+                    <input type="" name="name" class="form-control" placeholder="Tên dịch vụ hỗ trợ du lịch" value="<?php echo @$_GET['name'];?>">
                 </td>
                  <td colspan="2">
                     <br>
@@ -64,7 +64,7 @@ element.style {
 
             <tr>
                 <th>Hình ảnh</th>
-                <th>Tên tour</th>
+                <th>Tên dịch vụ hỗ trợ du lịch</th>
                 <th>Số điện thoại</th>
                 <th>địa chỉ </th>
                 <th colspan="2">Hành động</th>

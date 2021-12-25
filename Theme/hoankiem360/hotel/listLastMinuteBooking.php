@@ -11,7 +11,7 @@
         <main class="destination container">
             <ul>
                 <li>Điểm Đến / </li>
-                <li> Cơ Quan Hành Chính</li>
+                <li>  Đặt Phòng Cuối Ngày</li>
             </ul>
             <div class="row">
                 <?php include __DIR__.'/../select.php' ;?>
@@ -49,7 +49,7 @@
 													</div>
 													<div class="col-md-8 col-12">
 														<div class="title_hotel">
-															<a href="/chi_tiet_khach_san/<?php echo $value['Hotel']['slug']?>.html"><?php echo $value['Hotel']['name']?>
+															<a href="/chi_tiet_dat_phong_cuoi_ngay/<?php echo $value['Hotel']['slug']?>.html"><?php echo $value['Hotel']['name']?>
 															<?php 
 																if($value['Hotel']['point'] == 1){
 																	echo'
