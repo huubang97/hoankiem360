@@ -126,7 +126,7 @@
 						<p>Hình thức nghỉ</p>
 						<select name="type_register" id="type_register" onchange="tinhphi();">
 							<option value="" data-imagesrc="">Hình thức nghỉ </option>
-                            <option value="gia_theo_dem" data-imagesrc="">Nghỉ đêm</option>
+                            <option value="gia_qua_dem" data-imagesrc="">Nghỉ đêm</option>
 						</select>
 					</div>
 					<div class="col-md-6">
@@ -161,7 +161,7 @@
 						<input type="text" name="pricePay" id="pricePay" value="" required=""  disabled="" placeholder="Chi phí dự kiến">
 					</div>
 					<div class="col-md-12" style=" margin-top: 55px;">
-						<div id="textDiscount" class="text-center"></div>
+						<div id="textDiscount" class="text-center" style="color: #efb138;"></div>
 						<button type="button" class="btn_booking btn_dp" id="buttonSend" onclick="resetTinh();">Đặt Phòng</button>
 					</div>
 				</div>
@@ -258,11 +258,8 @@
 			?>
 
 		
-		
 		<?php 
-			if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){  
-				
-			?>
+			if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){ ?>
 				<div class="information_hotel">
 				<h2>Đánh Giá <?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></h2>
 
@@ -270,7 +267,9 @@
 					<div class="col-lg-9 col-md-9  col-12">
 						<?php
 							if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){
-									if($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 0 ){ ?>
+								foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+
+									if($value['Comment']['star'] == 0 ){ ?>
 										<div class="item_review">
 											<p>1<i class="fas fa-star"></i></p>
 											<div class="scroll_star scroll_star_active"></div>
@@ -297,7 +296,7 @@
 											<p class="precent_star">0%</p>
 										</div>
 								<?php }
-									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 1) { ?>
+									elseif ($value['Comment']['star'] == 1) { ?>
 										<div class="item_review">
 											<p>1<i class="fas fa-star"></i></p>
 											<div class="scroll_star scroll_star_active"></div>
@@ -323,7 +322,7 @@
 											<div class="scroll_star"></div>
 											<p class="precent_star">0%</p>
 								<?php	}
-									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 2) { ?>
+									elseif ($value['Comment']['star'] == 2) { ?>
 											<div class="item_review">
 												<p>1<i class="fas fa-star"></i></p>
 												<div class="scroll_star "></div>
@@ -349,7 +348,7 @@
 												<div class="scroll_star"></div>
 												<p class="precent_star">0%</p>
 									<?php	}
-									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 3) { ?>
+									elseif ($value['Comment']['star'] == 3) { ?>
 											<div class="item_review">
 												<p>1<i class="fas fa-star"></i></p>
 												<div class="scroll_star "></div>
@@ -375,7 +374,7 @@
 												<div class="scroll_star"></div>
 												<p class="precent_star">0%</p>
 									<?php	}
-									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 4) { ?>
+									elseif ($value['Comment']['star'] == 4) { ?>
 											<div class="item_review">
 												<p>1<i class="fas fa-star"></i></p>
 												<div class="scroll_star "></div>
@@ -428,7 +427,7 @@
 												<p class="precent_star">100%</p>
 									<?php	}
 
-								
+								}
 							}
 						?>
 						
@@ -438,51 +437,53 @@
 						<div class="review">
 							<span>
 								<?php 
-										echo $tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star']
+									foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+										echo ''.$value['Comment']['star'].'';
+									}
 								?>
 							</span>
 
 							<ul>
 								<li>
 									<?php 
-										
-											if($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] <= 2){ ?>
+										foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+											if($value['Comment']['star'] <= 2){ ?>
 													kém
 											<?php } 
-											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 3) { ?>
+											elseif ($value['Comment']['star'] == 3) { ?>
 													trung bình
 											<?php }
-											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 4) { ?>
+											elseif ($value['Comment']['star'] == 4) { ?>
 													khá
 											<?php }
 											else{ ?>
 													tốt
 											<?php	}
-										
+										}
 									?>
 								</li>
 								<li>
 									<?php 
-										
-											if($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 1){ ?>
+										foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
+											if($value['Comment']['star'] == 1){ ?>
 													<i class="fas fa-star"></i>
 											<?php } 
-											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 2) { ?>
+											elseif ($value['Comment']['star'] == 2) { ?>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 											<?php }
-											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 3) { ?>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-											<?php }
-											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 4) { ?>
-													<i class="fas fa-star"></i>
+											elseif ($value['Comment']['star'] == 3) { ?>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 											<?php }
-											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 5) { ?>
+											elseif ($value['Comment']['star'] == 4) { ?>
+													<i class="fas fa-star"></i>
+													<i class="fas fa-star"></i>
+													<i class="fas fa-star"></i>
+													<i class="fas fa-star"></i>
+											<?php }
+											elseif ($value['Comment']['star'] == 5) { ?>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
@@ -492,6 +493,7 @@
 											else{ ?>
 													<i class="fas fa-star"></i>
 											<?php	}
+										}
 									?>
 								</li>
 								<li>
@@ -599,6 +601,7 @@
 </div>
 
 
+
 		<script type="text/javascript">
     jQuery('#date_start, #date_end').datetimepicker({
     	format:'d/m/Y H:i'
@@ -686,7 +689,7 @@ $('.click_forms').click(function() {
                 codeDiscount:'',
                 wed: '0',
             }
-            }).done(function( msg ) {
+            }).done(function(msg){
                 console.log('123abc');
                  console.log(msg);
                 $('.w3_main_grid_right > button[type="button"]').text('ĐẶT NGAY');
@@ -821,35 +824,23 @@ function tinhphi()
 	      		if($ros['TypeRoom']['id']== $key){
 	       ?>
 	      
-        	allprice['<?php echo $ros['TypeRoom']['id']; ?>']=['<?php echo $ros['TypeRoom']['id']; ?>',<?php echo $ros['TypeRoom']['ngay_thuong']['gia_ngay']; ?>,<?php echo $BookingHour['gia_qua_dem'] ?>,<?php echo $ros['TypeRoom']['ngay_thuong']['gia_ngay']; ?>,<?php echo $ros['TypeRoom']['ngay_thuong']['phu_troi_them_khach']; ?>];
+        	//allprice['<?php echo $ros['TypeRoom']['id']; ?>']=['<?php echo $ros['TypeRoom']['id']; ?>',<?php echo $ros['TypeRoom']['ngay_thuong']['gia_ngay']; ?>,<?php echo $BookingHour['gia_qua_dem'] ?>,<?php echo $ros['TypeRoom']['ngay_thuong']['gia_ngay']; ?>,<?php echo $ros['TypeRoom']['ngay_thuong']['phu_troi_them_khach']; ?>];
 
+        	allprice['<?php echo $ros['TypeRoom']['id']; ?>'] = <?php echo $BookingHour['gia_qua_dem'] ?>;
     <?php } } }
     }
     ?>
 
-   	 console.log(allprice[typeRoom]);  
-   	 console.log(time);
-   	 console.log((time-2)*allprice[typeRoom][4]);
+   	 // console.log(allprice[typeRoom]);  
+   	 // console.log(time);
+   	 // console.log((time-2)*allprice[typeRoom][4])
 
-   if(allprice[typeRoom][0]==typeRoom){
+   
+  showPriceDate =  allprice[typeRoom]*number_rooms;
 
-    if(typePay=='gia_theo_gio'){
-        if(time<3){
-           showPriceDate = allprice[typeRoom][1];
-       }else{
-        showPriceDate = ((allprice[typeRoom][1]) + ((time-2)*allprice[typeRoom][4]))*number_rooms;
-    }
+  show = new Intl.NumberFormat().format(showPriceDate);
 
-}else if(typePay=='gia_theo_dem'){
-   showPriceDate =  allprice[typeRoom][2]*number_rooms;
-
-}else if(typePay=='gia_theo_ngay'){
-   showPriceDate = (allprice[typeRoom][3]* date)*number_rooms;
-
-}
-}
-
-$('#pricePay').val(showPriceDate);
+$('#pricePay').val(show);
 $('#textDeposits').val(showPriceDate);
 $('#deposits').val(priceDate);
 $('#price').val(price);
