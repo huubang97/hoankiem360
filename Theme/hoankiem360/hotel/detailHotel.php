@@ -285,7 +285,9 @@
 
 		
 		<?php 
-			if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){ ?>
+			if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){  
+				
+			?>
 				<div class="information_hotel">
 				<h2>Đánh Giá <?php echo @$tmpVariable['data']['HotelManmo']['data']['Hotel']['name'];?></h2>
 
@@ -293,9 +295,7 @@
 					<div class="col-lg-9 col-md-9  col-12">
 						<?php
 							if(!empty($tmpVariable['data']['HotelManmo']['listComment'])){
-								foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
-
-									if($value['Comment']['star'] == 0 ){ ?>
+									if($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 0 ){ ?>
 										<div class="item_review">
 											<p>1<i class="fas fa-star"></i></p>
 											<div class="scroll_star scroll_star_active"></div>
@@ -322,7 +322,7 @@
 											<p class="precent_star">0%</p>
 										</div>
 								<?php }
-									elseif ($value['Comment']['star'] == 1) { ?>
+									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 1) { ?>
 										<div class="item_review">
 											<p>1<i class="fas fa-star"></i></p>
 											<div class="scroll_star scroll_star_active"></div>
@@ -348,7 +348,7 @@
 											<div class="scroll_star"></div>
 											<p class="precent_star">0%</p>
 								<?php	}
-									elseif ($value['Comment']['star'] == 2) { ?>
+									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 2) { ?>
 											<div class="item_review">
 												<p>1<i class="fas fa-star"></i></p>
 												<div class="scroll_star "></div>
@@ -374,7 +374,7 @@
 												<div class="scroll_star"></div>
 												<p class="precent_star">0%</p>
 									<?php	}
-									elseif ($value['Comment']['star'] == 3) { ?>
+									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 3) { ?>
 											<div class="item_review">
 												<p>1<i class="fas fa-star"></i></p>
 												<div class="scroll_star "></div>
@@ -400,7 +400,7 @@
 												<div class="scroll_star"></div>
 												<p class="precent_star">0%</p>
 									<?php	}
-									elseif ($value['Comment']['star'] == 4) { ?>
+									elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 4) { ?>
 											<div class="item_review">
 												<p>1<i class="fas fa-star"></i></p>
 												<div class="scroll_star "></div>
@@ -453,7 +453,7 @@
 												<p class="precent_star">100%</p>
 									<?php	}
 
-								}
+								
 							}
 						?>
 						
@@ -463,53 +463,51 @@
 						<div class="review">
 							<span>
 								<?php 
-									foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
-										echo ''.$value['Comment']['star'].'';
-									}
+										echo $tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star']
 								?>
 							</span>
 
 							<ul>
 								<li>
 									<?php 
-										foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
-											if($value['Comment']['star'] <= 2){ ?>
+										
+											if($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] <= 2){ ?>
 													kém
 											<?php } 
-											elseif ($value['Comment']['star'] == 3) { ?>
+											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 3) { ?>
 													trung bình
 											<?php }
-											elseif ($value['Comment']['star'] == 4) { ?>
+											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 4) { ?>
 													khá
 											<?php }
 											else{ ?>
 													tốt
 											<?php	}
-										}
+										
 									?>
 								</li>
 								<li>
 									<?php 
-										foreach ($tmpVariable['data']['HotelManmo']['listComment'] as $key => $value) {
-											if($value['Comment']['star'] == 1){ ?>
+										
+											if($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 1){ ?>
 													<i class="fas fa-star"></i>
 											<?php } 
-											elseif ($value['Comment']['star'] == 2) { ?>
+											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 2) { ?>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 											<?php }
-											elseif ($value['Comment']['star'] == 3) { ?>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-											<?php }
-											elseif ($value['Comment']['star'] == 4) { ?>
-													<i class="fas fa-star"></i>
+											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 3) { ?>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 											<?php }
-											elseif ($value['Comment']['star'] == 5) { ?>
+											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 4) { ?>
+													<i class="fas fa-star"></i>
+													<i class="fas fa-star"></i>
+													<i class="fas fa-star"></i>
+													<i class="fas fa-star"></i>
+											<?php }
+											elseif ($tmpVariable['data']['HotelManmo']['listComment'][0]['Comment']['star'] == 5) { ?>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
 													<i class="fas fa-star"></i>
@@ -519,7 +517,6 @@
 											else{ ?>
 													<i class="fas fa-star"></i>
 											<?php	}
-										}
 									?>
 								</li>
 								<li>
