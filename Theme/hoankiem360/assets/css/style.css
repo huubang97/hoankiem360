@@ -22,18 +22,18 @@
 }
 
 * {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 html {
-	font-size: 10px;
+  font-size: 10px;
 }
 
 body {
-	font-size: 1.6rem;
-	font-family: SVN-GoTham, sans-serif;
-	font-weight: 300;
+  font-size: 1.6rem;
+  font-family: SVN-GoTham, sans-serif;
+  font-weight: 300;
 }
 
 input::-webkit-outer-spin-button,
@@ -47,12 +47,12 @@ input[type=number] {
 }
 
 a {
-	color: inherit;
+  color: inherit;
 }
 
 a:hover {
-	text-decoration: none;
-	color: #efb138;
+  text-decoration: none;
+  color: #efb138;
 }
 
 .noselect {
@@ -123,8 +123,8 @@ a:hover {
 }
 
 .line-header-top {
-	padding: 10px 0;
-	background: rgba(0,0,0,0.3);
+  padding: 10px 0;
+  background: rgba(0,0,0,0.3);
 }
 
 .wr-header {
@@ -138,8 +138,8 @@ a:hover {
 .wr-header-top {
   font-size: 1.4rem;
   color: #fff;
-	padding: 3px 0;
-	background: rgba(0,0,0,0.25);
+  padding: 3px 0;
+  background: rgba(0,0,0,0.25);
 }
 
 .wr-header-top .box-log {
@@ -2980,4 +2980,18 @@ a:hover {
 .page-pagination__list li a[href] {
   background: #fff;
   color: #efb138!important;
+}
+.ifram_destination{
+  position: relative;
+}
+
+.ifram_destination .mask{
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    transition: background 0.8s;
+    z-index: 5;
 }

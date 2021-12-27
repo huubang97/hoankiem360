@@ -11,7 +11,7 @@
         <main class="destination container">
             <ul>
                 <li>Điểm Đến / </li>
-                <li>  Đặt Phòng Cuối Ngày</li>
+                <li> Cơ Quan Hành Chính</li>
             </ul>
             <div class="row">
                 <?php include __DIR__.'/../select.php' ;?>

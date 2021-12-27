@@ -12,6 +12,7 @@
   		if(!empty($tmpVariable['data']['Restaurant']['image360'])){ ?>
   			<div class="ifram_destination">
 				<?php echo $tmpVariable['data']['Restaurant']['image360'] ?>
+				<div class="mask"></div>
 			</div>
   <?php	}
   	?>
@@ -150,7 +151,7 @@
 											<div class="col-md-12  col-12 " >
 												<div class="item_destination" style="background-image: url(<?php echo $value['Restaurant']['image']?>);">
 													<div class="title_destination">
-														<a href="/chi_tiet_di_tich_lich_su/<?php echo $value['Restaurant']['urlSlug'] ?>.html">
+														<a href="/chi_tiet_nha_hang/<?php echo $value['Restaurant']['urlSlug'] ?>.html">
 															<p><?php echo $value['Restaurant']['name'] ?></p>
 															<ul>
 																<li><i class="fas fa-heart"></i> 0</li>

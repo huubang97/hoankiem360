@@ -8,10 +8,12 @@
 	}
 </style>
   <main class="detailDestination" >
+  
   	<?php 
   		if(!empty($tmpVariable['data']['GovernanceAgency']['image360'])){ ?>
   			<div class="ifram_destination">
 				<?php echo $tmpVariable['data']['GovernanceAgency']['image360'] ?>
+				<div class="mask"></div>
 			</div>
   <?php	}
   	?>
@@ -150,7 +152,7 @@
 											<div class="col-md-12  col-12 " >
 												<div class="item_destination" style="background-image: url(<?php echo $value['GovernanceAgency']['image']?>);">
 													<div class="title_destination">
-														<a href="/chi_tiet_di_tich_lich_su/<?php echo $value['GovernanceAgency']['urlSlug'] ?>.html">
+														<a href="/chi_tiet_co_quan_hanh_chinh/<?php echo $value['GovernanceAgency']['urlSlug'] ?>.html">
 															<p><?php echo $value['GovernanceAgency']['name'] ?></p>
 															<ul>
 																<li><i class="fas fa-heart"></i> 0</li>

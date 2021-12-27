@@ -12,6 +12,7 @@
   		if(!empty($tmpVariable['data']['Hklake']['image360'])){ ?>
   			<div class="ifram_destination">
 				<?php echo $tmpVariable['data']['Hklake']['image360'] ?>
+				<div class="mask"></div>
 			</div>
   <?php	}
   	?>
@@ -150,7 +151,7 @@
 											<div class="col-md-12  col-12 " >
 												<div class="item_destination" style="background-image: url(<?php echo $value['Hklake']['image']?>);">
 													<div class="title_destination">
-														<a href="/chi_tiet_di_tich_lich_su/<?php echo $value['Hklake']['urlSlug'] ?>.html">
+														<a href="/chi_tiet_ho_hoan_kiem/<?php echo $value['Hklake']['urlSlug'] ?>.html">
 															<p><?php echo $value['Hklake']['name'] ?></p>
 															<ul>
 																<li><i class="fas fa-heart"></i> 0</li>

@@ -72,7 +72,7 @@
 							<div class="clsFlex-between box-menu navigation">
 								<a class="idhome" href="/">Trang chủ</a>
 								<a class="idnetdep" href="#netdep">Nét đẹp Hoàn Kiếm</a>
-								<a class="iddiemdien" href="/">Điểm đến</a>
+								<a class="iddiemdien" href="/ho_hoan_kiem">Điểm đến</a>
 								<a class="idsukien" href="/su_kien">Sự kiện</a>
 								<a class="idblog" href="/blog-du-lich.html">Blog du lịch</a>
 								<a class="idkenhdoanhnghiep" href="/uu-dai-khuyen-mai.html">Kênh doanh nghiệp</a>

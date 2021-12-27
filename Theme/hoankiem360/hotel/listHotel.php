@@ -11,15 +11,19 @@
         <main class="destination container">
             <ul>
                 <li>Điểm Đến / </li>
-                <li> Cơ Quan Hành Chính</li>
+                <li> Trung tâm sự kiện và khách sạn</li>
             </ul>
             <div class="row">
                 <?php include __DIR__.'/../select.php' ;?>
                 <div class="col-md-6 col-12 search">
-                    <form action="">
-                        <input type="text">
-                        <button><i class="fas fa-search"></i></button>
+                	 <form action="" method="GET">
+                        <input type="" name="name" placeholder="Tên khách sạn" value="<?php echo @$_GET['name'];?>">
+                        <button submit=""><i class="fas fa-search"></i></button>
                     </form>
+                    <!-- <form action="" method="GET">
+                        <input type="" name="name" class="form-control" placeholder="Tên khách sạn" value="<?php echo @$_GET['name'];?>">
+                        <button submit="" ><i class="fas fa-search"></i></button>
+                    </form> -->
                 </div>
             </div>
 			<div class="listDestination container">
