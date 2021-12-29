@@ -1,4 +1,16 @@
-
+<style type="text/css">
+  .gm-style-iw-d{
+    width: 210px;
+  }
+  .gm-style-iw-d a{
+    font-size: 15px;
+    font-weight: 500;
+    width: 79px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+</style>
 <div class="container-fluid wr-map page-section" id="bando">
       <div class="row">
         <div class="col-md-12 title-blog">
@@ -38,19 +50,17 @@
     </div>
  <script type="text/javascript">
 	function initMap() {
-
-
-	  	var locations = [<?php
+	  var locations = [<?php
 		if (!empty(getFindnear())) {
 		    $listShowMap= array();
 		    foreach (getFindnear() as $data) {
 		    	if(!empty($data['lat']) & !empty($data['long'])){
 			        //$content = '<a href='.$data['urlSlug'].'></a>';
-			        $content   = '<img src=https://hoankiem360.vn/rest/api/v1/gallery/5ff3ce6cf105cf3d26a2b13a/load?q=851 ><a href='.$data['urlSlug'].'>' . $data['name']. '</a>';
+			        $content   = '<img src='.$data['image'].' style=width:200px;height:156px;  ><br/><a href='.$data['urlSlug'].'>' . $data['name']. '</a>';
 			        $content.='<br/>Điện thoạt: ' . $data['phone'];
 			        $content.='<br/>Địa chỉ: ' . $data['address'];
 
-			        $listShowMap[]= '["' . $content . '", ' . $data['lat'] . ', ' . $data['long'] . ', "' . $data['image'] . '","'.$data['type'].'"]';
+			        $listShowMap[]= '["' . $content . '", ' . $data['lat'] . ', ' . $data['long'] . ', "' . $data['icon'] . '","'.$data['type'].'"]';
 			      }
 		    }
 		    //	$listShowMap[]= '[]';
@@ -116,7 +126,7 @@
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                     map: map,
-                    //icon: locations[i][3]
+                    icon: locations[i][3]
                 });
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -139,7 +149,7 @@
 
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
-                infowindow.setContent('2222222');
+                infowindow.setContent('');
                 infowindow.open(map, marker);
             }
         })(marker, i));

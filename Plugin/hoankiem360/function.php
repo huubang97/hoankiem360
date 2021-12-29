@@ -127,7 +127,7 @@ addMenuAdminMantan($menus);
              
     }
 
-    function getFindnear(){
+function getFindnear(){
 
     global $urlHomes;
         $modelHistoricalSites = new HistoricalSites();
@@ -184,6 +184,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $Hotel['Hotel']['coordinates_y'],
                                     'urlSlug'=> 'chi_tiet_khach_san/'.$Hotel['Hotel']['slug'].'.html',
                                     'type'=> 'khach_san',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/khachsan.png',
 
                 );
             }
@@ -199,6 +200,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listhistoricalSites['HistoricalSites']['longitude'],
                                     'urlSlug'=> 'chi_tiet_di_tich_lich_su/'.$listhistoricalSites['HistoricalSites']['urlSlug'].'.html',
                                     'type'=> 'di_tich_lich_su',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/ditich.png',
 
                 );
             }
@@ -213,6 +215,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listRestaurant['Restaurant']['longitude'],
                                     'urlSlug'=> 'chi_tiet_nha_hang/'.$listRestaurant['Restaurant']['urlSlug'].'.html',
                                     'type'=> 'nha_hang',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/nhahang.png',
 
                 );
             }
@@ -227,6 +230,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listOldQuarter['OldQuarter']['longitude'],
                                     'urlSlug'=> 'chi_tiet_pho_co/'.$listOldQuarter['OldQuarter']['urlSlug'].'.html',
                                     'type'=> 'pho_co',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/phoco.png',
 
                 );
             }
@@ -242,6 +246,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listGovernanceAgency['GovernanceAgency']['longitude'],
                                     'urlSlug'=> 'chi_tiet_co_quan_hanh_chinh/'.$listGovernanceAgency['GovernanceAgency']['urlSlug'].'.html',
                                     'type'=> 'co_quan_hanh_chinh',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/hanhchinh.png',
 
                 );
             }
@@ -256,6 +261,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listTour['Tour']['longitude'],
                                     'urlSlug'=> 'chi_tiet_tour/'.$listTour['Tour']['urlSlug'].'.html',
                                     'type'=> 'tour',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/hotro.png',
 
                 );
             }
@@ -271,6 +277,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listFestival['Festival']['longitude'],
                                     'urlSlug'=> 'chi_tiet_le_hoi/'.$listFestival['Festival']['urlSlug'].'.html',
                                     'type'=> 'le_hoi',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/ditich.png',
 
                 );
             }
@@ -286,6 +293,7 @@ addMenuAdminMantan($menus);
                                     'long'=> $listHklake['Hklake']['longitude'],
                                     'urlSlug'=> 'chi_tiet_ho_hoan_kiem/'.$listHklake['Hklake']['urlSlug'].'.html',
                                     'type'=> 'ho_hoan_kiem',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/lehoi.png',
 
                 );
             }
@@ -301,18 +309,12 @@ addMenuAdminMantan($menus);
                                     'long'=> $listEntertainment['Entertainment']['longitude'],
                                     'urlSlug'=> 'chi_tiet_giai_tri/'.$listEntertainment['Entertainment']['urlSlug'].'.html',
                                     'type'=> 'giai_tri',
+                                    'icon'=> '/app/Theme/hoankiem360/assets/images/icon/ditich.png',
 
                 );
             }
         }
+        return $listData;
 
-        
-
-
-        /* debug($listData);
-         die();*/
-
-         return $listData;
-
-}
+}                                       
 ?>
