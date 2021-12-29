@@ -114,16 +114,205 @@ addMenuAdminMantan($menus);
         $entertainment= $modelEntertainment->find('count');
 
 
-        return array(   '1'=>array('id'=>1,'name'=>'Khu vực Hồ Hoàn Kiếm','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khu-vuc-hoan-kiem.png','urlSlug'=>$urlHomes .'ho_hoan_kiem', 'count'=>@$hklake),
-            '2'=>array('id'=>2,'name'=>'Di tích và danh lam','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/di-tich-danh-lam.png','urlSlug'=>$urlHomes .'di_tich_lich_su', 'count'=>@$historicalSites),   
-            '3'=>array('id'=>3,'name'=>'Phố cổ Hà Nội','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/pho-ha-noi.png','urlSlug'=>$urlHomes .'pho_co', 'count'=>@$oldQuarter),   
-            '4'=>array('id'=>4,'name'=>'Dịch vụ hỗ trợ du lịch','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/dich-vu-ho-tro-du-lich.png','urlSlug'=>$urlHomes .'tour', 'count'=>@$tour),  
-            '5'=>array('id'=>5,'name'=>'Cơ quan hành chính','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/co-quan-hanh-chinh.png','urlSlug'=>$urlHomes .'co_quan_hanh_chinh', 'count'=>@$governanceAgency),   
-            '6'=>array('id'=>6,'name'=>'Lễ hội và sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/su-kien.png','urlSlug'=>$urlHomes .'le_hoi', 'count'=>@$festival), 
-            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>$urlHomes .'khach_san', 'count'=>@$_SESSION['totalHotel']),   
-            '8'=>array('id'=>8,'name'=>'Nhà hàng và quán ăn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/nha-hang-va-quan-an.png','urlSlug'=>$urlHomes .'nha_hang', 'count'=>@$restaurant),   
-            '9'=>array('id'=>9,'name'=>'Giải trí và thư giãn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/giai-tri-va-thu-dan.png','urlSlug'=>$urlHomes .'giai_tri', 'count'=>@$entertainment),  
+        return array(   '1'=>array('id'=>1,'name'=>'Khu vực Hồ Hoàn Kiếm','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khu-vuc-hoan-kiem.png','urlSlug'=>'ho_hoan_kiem', 'count'=>@$hklake),
+            '2'=>array('id'=>2,'name'=>'Di tích và danh lam','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/di-tich-danh-lam.png','urlSlug'=>'di_tich_lich_su', 'count'=>@$historicalSites),   
+            '3'=>array('id'=>3,'name'=>'Phố cổ Hà Nội','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/pho-ha-noi.png','urlSlug'=>'pho_co', 'count'=>@$oldQuarter),   
+            '4'=>array('id'=>4,'name'=>'Dịch vụ hỗ trợ du lịch','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/dich-vu-ho-tro-du-lich.png','urlSlug'=>'tour', 'count'=>@$tour),  
+            '5'=>array('id'=>5,'name'=>'Cơ quan hành chính','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/co-quan-hanh-chinh.png','urlSlug'=>'co_quan_hanh_chinh', 'count'=>@$governanceAgency),   
+            '6'=>array('id'=>6,'name'=>'Lễ hội và sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/su-kien.png','urlSlug'=>'le_hoi', 'count'=>@$festival), 
+            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>'khach_san', 'count'=>@$_SESSION['totalHotel']),   
+            '8'=>array('id'=>8,'name'=>'Nhà hàng và quán ăn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/nha-hang-va-quan-an.png','urlSlug'=>'nha_hang', 'count'=>@$restaurant),   
+            '9'=>array('id'=>9,'name'=>'Giải trí và thư giãn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/giai-tri-va-thu-dan.png','urlSlug'=>'giai_tri', 'count'=>@$entertainment),  
         );                                  
              
     }
+
+    function getFindnear(){
+
+    global $urlHomes;
+        $modelHistoricalSites = new HistoricalSites();
+
+        $historicalSites= $modelHistoricalSites->find('all');
+
+        $modelRestaurant = new Restaurant();
+
+        $restaurant= $modelRestaurant->find('all');
+
+        $modelOldQuarter = new OldQuarter();
+
+        $oldQuarter= $modelOldQuarter->find('all');
+
+        $modelGovernanceAgency = new GovernanceAgency();
+
+        $governanceAgency= $modelGovernanceAgency->find('all');
+
+        $modelTour = new Tour();
+
+        $tour= $modelTour->find('all');
+
+        $modelFestival = new Festival();
+
+        $festival= $modelFestival->find('all');
+
+        $modelHklake = new Hklake();
+
+        $hklake= $modelHklake->find('all');
+
+        $modelEntertainment = new Entertainment();
+
+        $entertainment= $modelEntertainment->find('all');
+
+
+        $listData = array();
+
+        $keyManMo = '5dc8f2652ac5db08348b4567';
+        $city = 1;
+        $district = 7;
+
+        $dataPost= array('key'=>$keyManMo, 'city'=>1, 'lat'=>'','nameHotel'=> '', 'long'=>'', 'district'=>7, 'limit'=>'','page'=>1);
+            $listHotel= sendDataConnectMantan('https://api.quanlyluutru.com/getHotelAroundAPI', $dataPost);
+            $listHotel= str_replace('ï»¿', '', utf8_encode($listHotel));
+            $listHotel= json_decode($listHotel, true);
+
+        if(!empty($listHotel['data'])){
+            foreach($listHotel['data'] as $keyHotel => $Hotel){
+                $listData[] =  array('name'=> $Hotel['Hotel']['name'],
+                                    'address'=> $Hotel['Hotel']['address'],
+                                    'phone'=> $Hotel['Hotel']['phone'],
+                                    'image'=> $Hotel['Hotel']['imageDefault'],
+                                    'lat'=> $Hotel['Hotel']['coordinates_x'],
+                                    'long'=> $Hotel['Hotel']['coordinates_y'],
+                                    'urlSlug'=> 'chi_tiet_khach_san/'.$Hotel['Hotel']['slug'].'.html',
+                                    'type'=> 'khach_san',
+
+                );
+            }
+        }
+
+        if(!empty($historicalSites)){
+            foreach($historicalSites as $keyhistor => $listhistoricalSites){
+                $listData[] =  array('name'=> $listhistoricalSites['HistoricalSites']['name'],
+                                    'address'=> $listhistoricalSites['HistoricalSites']['address'],
+                                    'phone'=> $listhistoricalSites['HistoricalSites']['phone'],
+                                    'image'=> $listhistoricalSites['HistoricalSites']['image'],
+                                    'lat'=> $listhistoricalSites['HistoricalSites']['latitude'],
+                                    'long'=> $listhistoricalSites['HistoricalSites']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_di_tich_lich_su/'.$listhistoricalSites['HistoricalSites']['urlSlug'].'.html',
+                                    'type'=> 'di_tich_lich_su',
+
+                );
+            }
+        }
+        if(!empty($restaurant)){
+            foreach($restaurant as $keyrestaurant => $listRestaurant){
+                $listData[] =  array('name'=> $listRestaurant['Restaurant']['name'],
+                                    'address'=> $listRestaurant['Restaurant']['address'],
+                                    'phone'=> $listRestaurant['Restaurant']['phone'],
+                                    'image'=> $listRestaurant['Restaurant']['image'],
+                                    'lat'=> $listRestaurant['Restaurant']['latitude'],
+                                    'long'=> $listRestaurant['Restaurant']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_nha_hang/'.$listRestaurant['Restaurant']['urlSlug'].'.html',
+                                    'type'=> 'nha_hang',
+
+                );
+            }
+        }
+        if(!empty($oldQuarter)){
+            foreach($oldQuarter as $keyOldQuarter => $listOldQuarter){
+                $listData[] =  array('name'=> $listOldQuarter['OldQuarter']['name'],
+                                    'address'=> $listOldQuarter['OldQuarter']['address'],
+                                    'phone'=> $listOldQuarter['OldQuarter']['phone'],
+                                    'image'=> $listOldQuarter['OldQuarter']['image'],
+                                    'lat'=> $listOldQuarter['OldQuarter']['latitude'],
+                                    'long'=> $listOldQuarter['OldQuarter']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_pho_co/'.$listOldQuarter['OldQuarter']['urlSlug'].'.html',
+                                    'type'=> 'pho_co',
+
+                );
+            }
+        }
+
+        if(!empty($governanceAgency)){
+            foreach($governanceAgency as $keyGovernanceAgency => $listGovernanceAgency){
+                $listData[] =  array('name'=> $listGovernanceAgency['GovernanceAgency']['name'],
+                                    'address'=> $listGovernanceAgency['GovernanceAgency']['address'],
+                                    'phone'=> $listGovernanceAgency['GovernanceAgency']['phone'],
+                                    'image'=> $listGovernanceAgency['GovernanceAgency']['image'],
+                                    'lat'=> $listGovernanceAgency['GovernanceAgency']['latitude'],
+                                    'long'=> $listGovernanceAgency['GovernanceAgency']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_co_quan_hanh_chinh/'.$listGovernanceAgency['GovernanceAgency']['urlSlug'].'.html',
+                                    'type'=> 'co_quan_hanh_chinh',
+
+                );
+            }
+        }
+        if(!empty($tour)){
+            foreach($tour as $keyTour => $listTour){
+                $listData[] =  array('name'=> $listTour['Tour']['name'],
+                                    'address'=> $listTour['Tour']['address'],
+                                    'phone'=> $listTour['Tour']['phone'],
+                                    'image'=> $listTour['Tour']['image'],
+                                    'lat'=> $listTour['Tour']['latitude'],
+                                    'long'=> $listTour['Tour']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_tour/'.$listTour['Tour']['urlSlug'].'.html',
+                                    'type'=> 'tour',
+
+                );
+            }
+        }
+
+         if(!empty($festival)){
+            foreach($festival as $keyFestival => $listFestival){
+                $listData[] =  array('name'=> $listFestival['Festival']['name'],
+                                    'address'=> $listFestival['Festival']['address'],
+                                    'phone'=> $listFestival['Festival']['phone'],
+                                    'image'=> $listFestival['Festival']['image'],
+                                    'lat'=> $listFestival['Festival']['latitude'],
+                                    'long'=> $listFestival['Festival']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_le_hoi/'.$listFestival['Festival']['urlSlug'].'.html',
+                                    'type'=> 'le_hoi',
+
+                );
+            }
+        }
+
+        if(!empty($hklake)){
+            foreach($hklake as $keyHklake => $listHklake){
+                $listData[] =  array('name'=> $listHklake['Hklake']['name'],
+                                    'address'=> $listHklake['Hklake']['address'],
+                                    'phone'=> $listHklake['Hklake']['phone'],
+                                    'image'=> $listHklake['Hklake']['image'],
+                                    'lat'=> $listHklake['Hklake']['latitude'],
+                                    'long'=> $listHklake['Hklake']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_ho_hoan_kiem/'.$listHklake['Hklake']['urlSlug'].'.html',
+                                    'type'=> 'ho_hoan_kiem',
+
+                );
+            }
+        }
+
+        if(!empty($entertainment)){
+            foreach($entertainment as $keyEntertainment => $listEntertainment){
+                $listData[] =  array('name'=> $listEntertainment['Entertainment']['name'],
+                                    'address'=> $listEntertainment['Entertainment']['address'],
+                                    'phone'=> $listEntertainment['Entertainment']['phone'],
+                                    'image'=> $listEntertainment['Entertainment']['image'],
+                                    'lat'=> $listEntertainment['Entertainment']['latitude'],
+                                    'long'=> $listEntertainment['Entertainment']['longitude'],
+                                    'urlSlug'=> 'chi_tiet_giai_tri/'.$listEntertainment['Entertainment']['urlSlug'].'.html',
+                                    'type'=> 'giai_tri',
+
+                );
+            }
+        }
+
+        
+
+
+        /* debug($listData);
+         die();*/
+
+         return $listData;
+
+}
 ?>

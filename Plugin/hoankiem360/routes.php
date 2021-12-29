@@ -56,4 +56,5 @@
    $routesPlugin['viewNoticeAPI'] = 'hoankiem360/view/viewNoticeAPI.php';
    $routesPlugin['getNoticeHotAPI'] = 'hoankiem360/view/getNoticeHotAPI.php';
    $routesPlugin['getNoticeNewAPI'] = 'hoankiem360/view/getNoticeNewAPI.php';
+   $routesPlugin['findnear'] = 'hoankiem360/view/findnear.php';
 ?>

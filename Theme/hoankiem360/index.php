@@ -463,42 +463,7 @@
 				</div>
 			</div>			
 		</div>
-		<div class="container-fluid wr-map page-section" id="bando">
-			<div class="row">
-				<div class="col-md-12 title-blog">
-					<h3 class="text-center"><?php echo  @$themesettings['Option']['value']['title6'] ?></h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 set-pd-col clsFlex-wrap" style="overflow: hidden;">
-					<div class="menu-map">
-						<div class="box-menu-map">
-							<div><span class="cursor-pointer" onclick="btnMenu(this)"><i class="fa fa-bars" aria-hidden="true"></i></span>
-								<span data-toggle="collapse" data-target="#box-check" class="cursor-pointer hidden-pc" onclick="btnMenu2(this)"><i class="fa fa-bars" aria-hidden="true"></i></span>
-							</div>
-							<ul id="box-check" class="collapse show">
-								<li>
-									<input id="check-all" type="checkbox">
-									<label class="noselect" for="check-all">Chọn tất cả</label>
-								</li>
-								<li>
-									<input id="check-all1" type="checkbox">
-									<label class="noselect" for="check-all1">Khu vực hoàn kiếm</label>
-								</li>
-								<li>
-									<input id="check-all2" type="checkbox">
-									<label class="noselect" for="check-all2">Khu vực hai bà trưng</label>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="iframe-map">
-						<button onclick="btnMenu(this)"><i class="fa fa-bars" aria-hidden="true"></i></button>
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12526.661815276344!2d105.84666190538307!3d21.024728503940896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac69f861af3f%3A0x331250d72cd2fa28!2zSOG7kyBHxrDGoW0!5e0!3m2!1svi!2s!4v1638263780573!5m2!1svi!2s" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
+		<?php include("findnear.php"); ?>
 		<div class="container-fluid page-section" id="vietnam360">
 			<div class="row">
 				<div class="col-md-12 title-blog">
