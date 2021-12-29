@@ -61,6 +61,11 @@ $('.wr-banner .mask').click(function(){
 })
 
 
+$('.ifram_destination .mask').click(function(){
+  $('.ifram_destination .mask').remove();
+})
+
+
 function mouseover(e) {
   $('.blog-box').removeClass('selected');
   $(e).addClass('selected');

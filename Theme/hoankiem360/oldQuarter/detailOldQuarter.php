@@ -12,6 +12,7 @@
   		if(!empty($tmpVariable['data']['OldQuarter']['image360'])){ ?>
   			<div class="ifram_destination">
 				<?php echo $tmpVariable['data']['OldQuarter']['image360'] ?>
+				<div class="mask"></div>
 			</div>
   <?php	}
   	?>

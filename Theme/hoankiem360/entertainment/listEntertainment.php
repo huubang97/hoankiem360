@@ -35,7 +35,7 @@
 											<div class="col-md-6  col-12 ">
 												<div class="item_destination" style="background-image: url(<?php echo $value['Entertainment']['image']?>);">
 													<div class="title_destination">
-														<a href="/chi_tiet_ho_hoan_kiem/<?php echo $value['Entertainment']['urlSlug']?>.html">
+														<a href="/chi_tiet_giai_tri/<?php echo $value['Entertainment']['urlSlug']?>.html">
 															<p><?php echo $value['Entertainment']['name']?></p>
 															<ul>
 																<li><i class="fas fa-heart"></i> 0</li>
