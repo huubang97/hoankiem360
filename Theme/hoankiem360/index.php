@@ -29,7 +29,7 @@
 				<div class="grid-gallery">
 					<?php if(!empty($tmpVariable['newNoticeNetDep'])) {
 						foreach ($tmpVariable['newNoticeNetDep'] as $key => $value) { ?>
-						<div class="image" style="background:url('<?php echo @$value['Notice']['image'] ?>')">
+						<div class="image" style="background-image:url('<?php echo @$value['Notice']['image'] ?>')">
 							<a href="<?php echo getUrlNotice($value['Notice']['id']) ?>">
 								<h3><?php echo @$value['Notice']['title'] ?></h3>
 								<p><?php echo @$value['Notice']['introductory'] ?></p>
