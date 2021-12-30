@@ -65,7 +65,41 @@
 					</div>
 				</div>
 			</div>
-			
+				<?php
+				if ($tmpVariable['page'] > 5) {
+					$startPage = $tmpVariable['page'] - 5;
+				} else {
+					$startPage = 1;
+				}
+
+				if ($tmpVariable['totalPage'] > $tmpVariable['page'] + 5) {
+					$endPage = $tmpVariable['page'] + 5;
+				} else {
+					$endPage = $tmpVariable['totalPage'];
+				}
+
+				if($tmpVariable['totalPage']>1){
+				?>
+
+				
+				<div class="col-sm-12 wow fadeInUp  " data-wow-delay=".25s">
+					<div class="direc " >
+						<ul class="page-pagination__list">
+							<li class="page-pagination__item"><a class="page-pagination__link" href="<?php echo $tmpVariable['urlPage'] . $tmpVariable['back'] ?>" class="prev"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+							<?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
+								<li class="page-pagination__item "><a  href="<?php echo $tmpVariable['urlPage'] . $i; ?>" class="page-pagination__link <?php
+								if ($i == $tmpVariable['page']) {
+									echo 'active';
+								}
+								?>"><?php echo $i; ?></a></li>
+							<?php }
+							?>
+
+							<li class="page-pagination__item"><a class="page-pagination__link" href="<?php echo $tmpVariable['urlPage'] . $tmpVariable['next'] ?>" class="next"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			<?php }?> 
         </main>
 
 <?php getFooter()?>
