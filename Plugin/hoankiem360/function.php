@@ -18,6 +18,8 @@
     $menus[1]['sub'][6] = array('name' => 'Lễ hội', 'url' => $urlPlugins . 'admin/hoankiem360-admin-festival-listFestivalAdmin.php','permission'=>'listFestivalAdmin');
     $menus[1]['sub'][7] = array('name' => 'Hồ Hoàn Kiếm', 'url' => $urlPlugins . 'admin/hoankiem360-admin-hklake-listHklakeAdmin.php','permission'=>'listHklakeAdmin');
     $menus[1]['sub'][8] = array('name' => 'Giải trí', 'url' => $urlPlugins . 'admin/hoankiem360-admin-entertainment-listEntertainmentAdmin.php','permission'=>'listEntertainmentAdmin');
+    $menus[2]['title'] = 'Quản lý thông báo về app';
+    $menus[2]['sub'][0] = array('name' => 'Thông báo mã giảm giá', 'url' => $urlPlugins . 'admin/hoankiem360-admin-notification-addNotificationCodeDiscountAdmin.php','permission'=>'addNotificationCodeDiscountAdmin');
     
 
 addMenuAdminMantan($menus);

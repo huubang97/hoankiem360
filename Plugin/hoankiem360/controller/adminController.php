@@ -1831,4 +1831,92 @@ function deleteUserAdmin($input) {
         $modelOption->redirect($urlHomes);
     }
 }
+
+function addNotificationCodeDiscountAdmin($input){
+    //Configure::write('debug', 2);
+    global $urlNow;
+    global $urlHomes;
+    global $modelOption;
+    global $isRequestPost;
+    global $modelUser;
+
+    if (checkAdminLogin()) {
+        $mess= '';
+        $modelNotification = new Notification();
+        $modelTokenDevice= new TokenDevice();
+
+        if($isRequestPost){
+            $dataSend=$input['request']->data;
+            if(!empty($dataSend['content']) && !empty($dataSend['codeDiscount'])){
+                // lưu vào bảng thông báo
+                $save['Notification']['content']= $dataSend['content'];
+                $save['Notification']['time']= time();
+                $save['Notification']['to']= 'customer';
+                $save['Notification']['type']= 'codeDiscount';
+                $modelNotification->save($save);
+
+                $data = array('title'=>'Mã khuyến mại: '.strtoupper(trim($dataSend['codeDiscount'])),'body'=>$dataSend['content'],'type'=>'codeDiscount');
+                
+                $target= array();
+                $conditions['tokenDevice']= array('$exists'=>true,'$ne'=>'');
+                //$allUser= $modelUser->find('all', array('conditions'=>$conditions,'fields'=>array('tokenDevice')));
+                $allToken= $modelTokenDevice->find('all');
+
+                if(!empty($allToken)){
+                    $number=0;
+                    $target[$number]= array();
+
+                    foreach ($allToken as $item) {
+                        $numberTokenDevice= 1;
+
+                        if(!empty($target[$number]) && count($target[$number])+$numberTokenDevice>=1000){
+                            $number++;
+                            $target[$number]= array();
+                        }
+
+                        $target[$number][]= $item['TokenDevice']['tokenDevice'];
+                        
+                    }
+                }
+                
+                if(!empty($target[0])){
+                    $totalUser= count($allToken);
+
+                    for($i=0;$i<=$number;$i++){
+                        $return= sendMessageNotifi($data,$target[$i]);
+                        
+                        $return= json_decode($return, true);
+
+                        if(!empty($return['failure']) && !empty($return['results'])){
+                            foreach($return['results'] as $key=>$results){
+                                if(!empty($results['error']) && $results['error']=='NotRegistered'){
+                                    // xóa token user
+                                    $updateUser['$unset']['tokenDevice']= '';
+                                    $conditionsUser['tokenDevice']= $target[$i][$key];
+                                    $modelUser->create();
+                                    $modelUser->updateAll($updateUser, $conditionsUser);
+
+                                    // xóa danh sách token
+                                    $conditionsToken= array('tokenDevice'=>$target[$i][$key]);
+                                    $modelTokenDevice->create();
+                                    $modelTokenDevice->deleteAll($conditionsToken);
+
+                                    $totalUser--;
+                                }
+                            }
+                        }
+                    }
+
+                    $mess= 'Đã gửi thành công cho '.number_format($totalUser).'/'.number_format(count($allToken)).' người dùng';
+                }
+                
+            }else{
+                $mess= 'Không được để trống thông tin';
+            }
+        }
+        setVariable('mess',$mess);
+    }else{
+        $modelOption->redirect($urlHomes);
+    }
+}
 ?>

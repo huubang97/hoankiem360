@@ -525,7 +525,7 @@ function getNoticeHotAPI($input){
     if($page<1) $page=1;
     $limit= 15;
     $conditions= array();
-    $fields= array('title','image','author','introductory','time');
+    $fields= array();
 
     $return= $modelNotice->getTopEventNotice($limit,$fields,$page);
 
@@ -556,6 +556,118 @@ function getNoticeNewAPI($input){
             $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
         }
     }
+    echo json_encode($return);
+}
+
+function saveNotificationUserAPI($input)
+{
+    global $contactSite;
+    global $smtpSite;
+
+    $modelUser= new Userhotel();
+    $modelNotification = new Notification();
+    $modelHotel= new Hotel();
+
+    $dataSend = $input['request']->data;
+    $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
+    if(!empty($dataUser['User']['accessToken'])){
+        $today= getdate();
+
+        $save['Notification']['idHotel']= $dataSend['idHotel'];
+        $save['Notification']['idRoom']= $dataSend['idRoom'];
+        $save['Notification']['content']= $dataSend['content'];
+        $save['Notification']['time']= $today[0];
+        $save['Notification']['idUser']= $dataUser['User']['id'];
+        $save['Notification']['user']= $dataUser['User']['user'];
+        $save['Notification']['phone']= $dataSend['phone'];
+        $save['Notification']['to']= 'manager';
+        $save['Notification']['status']= 'new';
+
+        if($modelNotification->save($save)){
+            $return = array('code'=>0);
+            $hotel= $modelHotel->getHotel($dataSend['idHotel'],array('email') );
+            if(!empty($hotel['Hotel']['email'])){
+                // send email for user and admin
+                $from = array($contactSite['Option']['value']['email'] => $smtpSite['Option']['value']['show']);
+                $to = array(trim($hotel['Hotel']['email']) );
+                $cc = array();
+                $bcc = array();
+                $subject = '[' . $smtpSite['Option']['value']['show'] . '] Thông báo mới từ khách hàng';
+
+                // create content email
+
+                $content = 'Bạn nhận được thông báo mới từ khách hàng, nội dung như sau:<br/><br/>'.$dataSend['content'];
+                
+                $modelNotification->sendMail($from, $to, $cc, $bcc, $subject, $content);
+            }
+        }else{
+            $return = array('code'=>1);
+        }
+    }else{
+        $return = array('code'=>-1);
+    }
+    
+    echo json_encode($return);
+}
+
+function getListRequestUserAPI($input)
+{
+    $modelUser= new Userhotel();
+    $modelNotification = new Notification();
+
+    $dataSend = $input['request']->data;
+    $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
+    $return = array('code'=>0);
+
+    if(!empty($dataUser['User']['accessToken'])){
+        $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
+        if($page<1) $page=1;
+        $limit= 15;
+        $conditions = array('idUser'=>$dataUser['User']['id'],'idHotel'=>$dataSend['idHotel'],'to'=>'manager');
+        $order = array('created' => 'desc');
+        $fields= array();
+
+        $data= $modelNotification->getPage($page, $limit , $conditions, $order, $fields );
+
+        $return = array('code'=>1,'data'=>$data);
+    }else{
+        $return = array('code'=>-1);
+    }
+    
+    echo json_encode($return);
+}
+
+function getListNotificationUserAPI($input)
+{
+    $modelUser= new Userhotel();
+    $modelNotification = new Notification();
+
+    $dataSend = $input['request']->data;
+    if(!empty($dataSend['accessToken'])){
+        $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
+    }
+    $return = array('code'=>0);
+
+    $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
+    if($page<1) $page=1;
+    $limit= 15;
+
+    $conditions = array('to'=>'customer');
+    
+    if(!empty($dataUser['User']['accessToken'])){
+        $conditions['$or'][0]['idUser']= $dataUser['User']['id'];
+        $conditions['$or'][1]['idUser']= array('$exists'=> false);
+    }else{
+        $conditions['idUser']= array('$exists'=> false);
+    }
+
+    $order = array('created' => 'desc');
+    $fields= array();
+
+    $data= $modelNotification->getPage($page, $limit , $conditions, $order, $fields );
+
+    $return = array('code'=>1,'data'=>$data);
+    
     echo json_encode($return);
 }
 ?>

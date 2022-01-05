@@ -13,6 +13,6 @@
    include('model/festival.php');
    include('model/hklake.php');
    include('model/entertainment.php');
+   include('model/notification.php');
+   include('model/tokenDevice.php');
  ?>
-
- 
