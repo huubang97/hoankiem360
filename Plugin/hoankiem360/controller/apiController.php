@@ -493,7 +493,7 @@ function getNoticeInCategoryAPI($input){
     if($page<1) $page=1;
     $limit= 15;
     $conditions= array();
-    $fields= array('title','image','author','introductory','time');
+    $fields= array();
 
     $return= $modelNotice->getOtherNotice(array((int)$dataSend['category']),$limit,$conditions,$page,$fields);
 
@@ -508,11 +508,15 @@ function getNoticeInCategoryAPI($input){
 
 function viewNoticeAPI($input)
 {
-    if(!empty($_GET['id'])){
+    $dataSend= $input['request']->data;
+
+
+    if(!empty($dataSend['id'])){
         global $modelNotice;
-        $data= $modelNotice->getNotice($_GET['id']);
-        setVariable('data',$data);
+        $data= $modelNotice->getNotice($dataSend['id']);
+        $return= array('code'=>1,'data'=>$data);
     }
+    echo json_encode($return);
 }
 
 function getNoticeHotAPI($input){
@@ -547,7 +551,7 @@ function getNoticeNewAPI($input){
     if($page<1) $page=1;
     $limit= 15;
     $conditions= array();
-    $fields= array('title','image','author','introductory','time');
+    $fields= array();
 
     $return= $modelNotice->getNewNotice($limit,$fields,$page);
 
