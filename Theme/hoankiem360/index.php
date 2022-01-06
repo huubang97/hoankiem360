@@ -1,4 +1,4 @@
-		<?php getHeader(); 
+		<?php getHeader();
 		global $themesettings;
 		global $modelOption;
 		// debug($tmpVariable['newNoticeNetDep']);
@@ -124,13 +124,13 @@
 				<div class="col-md-12 clsFlex-wrap set-pd-col">
 					<div class="box-month">
 						<div class="text-center"><button><i class="fa fa-chevron-right" aria-hidden="true"></i></button></div>
-						<ul hidden="hidden" class="main-carousel navc carousel-nav" data-flickity='{"asNavFor": ".navc", "cellAlign": "center", "contain": true, "draggable": false, "pageDots": false }'>
+						<ul hidden="hidden" class="main-carousel navc carousel-nav" data-flickity='{"initialIndex": <?php echo (12-getdate()['mon']) ?>, "asNavFor": ".navc", "cellAlign": "center", "contain": true, "draggable": false, "pageDots": false }'>
 							<li class="carousel-cell text-center">Tháng 12</li>
 							<li class="carousel-cell text-center">Tháng 11</li>
-							<li class="carousel-cell text-center">Tháng 10</li>
+							<li class="carousel-cell text-center ">Tháng 10</li>
 							<li class="carousel-cell text-center">Tháng 9</li>
 							<li class="carousel-cell text-center">Tháng 8</li>
-							<li class="carousel-cell text-center selected">Tháng 7</li>
+							<li class="carousel-cell text-center ">Tháng 7</li>
 							<li class="carousel-cell text-center">Tháng 6</li>
 							<li class="carousel-cell text-center">Tháng 5</li>
 							<li class="carousel-cell text-center">Tháng 4</li>
@@ -140,18 +140,18 @@
 						</ul>
 						<ul class="carousel carousel-nav nav-nav"
 						  data-flickity='{ "asNavFor": ".navc", "contain": true, "pageDots": false, "draggable": false }'>
-						  	<li class="carousel-cell text-center <?php echo getdate()['mon']==12?'is-selected':'' ?>" data-month="12" onclick="loadEvent(this)">Tháng 12</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==11?'is-selected':'' ?>" data-month="11" onclick="loadEvent(this)">Tháng 11</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==10?'is-selected':'' ?>" data-month="10" onclick="loadEvent(this)">Tháng 10</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==9?'is-selected':'' ?>" data-month="9" onclick="loadEvent(this)">Tháng 9</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==8?'is-selected':'' ?>" data-month="8" onclick="loadEvent(this)">Tháng 8</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==7?'is-selected':'' ?>" data-month="7" onclick="loadEvent(this)">Tháng 7</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==6?'is-selected':'' ?>" data-month="6" onclick="loadEvent(this)">Tháng 6</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==5?'is-selected':'' ?>" data-month="5" onclick="loadEvent(this)">Tháng 5</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==4?'is-selected':'' ?>" data-month="4" onclick="loadEvent(this)">Tháng 4</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==3?'is-selected':'' ?>" data-month="3" onclick="loadEvent(this)">Tháng 3</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==2?'is-selected':'' ?>" data-month="2" onclick="loadEvent(this)">Tháng 2</li>
-							<li class="carousel-cell text-center <?php echo getdate()['mon']==1?'is-selected':'' ?>" data-month="1" onclick="loadEvent(this)">Tháng 1</li>
+						  	<li class="carousel-cell text-center>" data-month="12" onclick="loadEvent(this)">Tháng 12</li>
+							<li class="carousel-cell text-center>" data-month="11" onclick="loadEvent(this)">Tháng 11</li>
+							<li class="carousel-cell text-center>" data-month="10" onclick="loadEvent(this)">Tháng 10</li>
+							<li class="carousel-cell text-center" data-month="9" onclick="loadEvent(this)">Tháng 9</li>
+							<li class="carousel-cell text-center" data-month="8" onclick="loadEvent(this)">Tháng 8</li>
+							<li class="carousel-cell text-center" data-month="7" onclick="loadEvent(this)">Tháng 7</li>
+							<li class="carousel-cell text-center" data-month="6" onclick="loadEvent(this)">Tháng 6</li>
+							<li class="carousel-cell text-center" data-month="5" onclick="loadEvent(this)">Tháng 5</li>
+							<li class="carousel-cell text-center" data-month="4" onclick="loadEvent(this)">Tháng 4</li>
+							<li class="carousel-cell text-center" data-month="3" onclick="loadEvent(this)">Tháng 3</li>
+							<li class="carousel-cell text-center" data-month="2" onclick="loadEvent(this)">Tháng 2</li>
+							<li class="carousel-cell text-center" data-month="1" onclick="loadEvent(this)">Tháng 1</li>
 						</ul>
 						<div class="text-center"><button><i class="fa fa-chevron-left" aria-hidden="true"></i></button></div>
 					</div>

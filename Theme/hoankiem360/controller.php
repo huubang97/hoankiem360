@@ -73,9 +73,10 @@ function indexTheme(){
 
 	$conditions = array();
 
-
+	$month = getdate()['mon'];
+	$year = getdate()['year'];
 	
-	$listDataEvent= $modelEvent->find('all',array('conditions'=>array('month'=>getdate()['mon'])));
+	$listDataEvent= $modelEvent->find('all',array('conditions'=>array('month'=>(string)$month,'year'=>(string)$year)));
 
 
     $_SESSION['urlCallBack']= $urlNow;
