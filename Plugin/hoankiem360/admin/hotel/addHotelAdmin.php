@@ -104,7 +104,7 @@ addBreadcrumbAdmin($breadcrumb);
             </div>
             <div class="form-group col-sm-6">
                 <i>Ảnh 360:</i>
-                <input type="text" name="image360" class="form-control" id="image360"  value="<?php echo @$save['Hotel']['image360'] ?>">
+                <textarea type="text" name="image360" class="form-control" id="image360"><?php echo @$save['Hotel']['image360'] ?></textarea>
             </div>
             <div class="form-group col-sm-6">
                 <i>Thứ tự:</i>
