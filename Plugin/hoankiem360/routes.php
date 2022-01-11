@@ -52,6 +52,7 @@
    $routesPlugin['listImage360API'] = 'hoankiem360/view/listImage360API.php';
    $routesPlugin['detailImage360API'] = 'hoankiem360/view/detailImage360API.php';
    $routesPlugin['getListCategoryAPI'] = 'hoankiem360/view/getListCategoryAPI.php';
+   $routesPlugin['searchViewNoticeAPI'] = 'hoankiem360/view/searchViewNoticeAPI.php';
    $routesPlugin['getNoticeInCategoryAPI'] = 'hoankiem360/view/getNoticeInCategoryAPI.php';
    $routesPlugin['viewNoticeAPI'] = 'hoankiem360/view/viewNoticeAPI.php';
    $routesPlugin['getNoticeHotAPI'] = 'hoankiem360/view/getNoticeHotAPI.php';
@@ -59,4 +60,5 @@
    $routesPlugin['saveNotificationUserAPI'] = 'hoankiem360/view/saveNotificationUserAPI.php';
    $routesPlugin['getListRequestUserAPI'] = 'hoankiem360/view/getListRequestUserAPI.php';
    $routesPlugin['getListNotificationUserAPI'] = 'hoankiem360/view/getListNotificationUserAPI.php';
+   $routesPlugin['listlocationAPI'] = 'hoankiem360/view/listlocationAPI.php';
 ?>

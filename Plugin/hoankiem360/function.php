@@ -116,15 +116,15 @@ addMenuAdminMantan($menus);
         $entertainment= $modelEntertainment->find('count');
 
 
-        return array(   '1'=>array('id'=>1,'name'=>'Khu vực Hồ Hoàn Kiếm','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khu-vuc-hoan-kiem.png','urlSlug'=>'ho_hoan_kiem', 'count'=>@$hklake),
-            '2'=>array('id'=>2,'name'=>'Di tích và danh lam','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/di-tich-danh-lam.png','urlSlug'=>'di_tich_lich_su', 'count'=>@$historicalSites),   
-            '3'=>array('id'=>3,'name'=>'Phố cổ Hà Nội','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/pho-ha-noi.png','urlSlug'=>'pho_co', 'count'=>@$oldQuarter),   
-            '4'=>array('id'=>4,'name'=>'Dịch vụ hỗ trợ du lịch','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/dich-vu-ho-tro-du-lich.png','urlSlug'=>'tour', 'count'=>@$tour),  
-            '5'=>array('id'=>5,'name'=>'Cơ quan hành chính','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/co-quan-hanh-chinh.png','urlSlug'=>'co_quan_hanh_chinh', 'count'=>@$governanceAgency),   
-            '6'=>array('id'=>6,'name'=>'Lễ hội và sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/su-kien.png','urlSlug'=>'le_hoi', 'count'=>@$festival), 
-            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>'khach_san', 'count'=>@$_SESSION['totalHotel']),   
-            '8'=>array('id'=>8,'name'=>'Nhà hàng và quán ăn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/nha-hang-va-quan-an.png','urlSlug'=>'nha_hang', 'count'=>@$restaurant),   
-            '9'=>array('id'=>9,'name'=>'Giải trí và thư giãn','class'=>'fa-print','image'=>$urlHomes .'app/webroot/upload/admin/files/giai-tri-va-thu-dan.png','urlSlug'=>'giai_tri', 'count'=>@$entertainment),  
+        return array(   '1'=>array('id'=>1,'name'=>'Khu vực Hồ Hoàn Kiếm','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/khu-vuc-hoan-kiem.png','urlSlug'=>'ho_hoan_kiem', 'count'=>@$hklake),
+            '2'=>array('id'=>2,'name'=>'Di tích và danh lam','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/di-tich-danh-lam.png','urlSlug'=>'di_tich_lich_su', 'count'=>@$historicalSites),   
+            '3'=>array('id'=>3,'name'=>'Phố cổ Hà Nội','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/pho-ha-noi.png','urlSlug'=>'pho_co', 'count'=>@$oldQuarter),   
+            '4'=>array('id'=>4,'name'=>'Dịch vụ hỗ trợ du lịch','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/dich-vu-ho-tro-du-lich.png','urlSlug'=>'tour', 'count'=>@$tour),  
+            '5'=>array('id'=>5,'name'=>'Cơ quan hành chính','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/co-quan-hanh-chinh.png','urlSlug'=>'co_quan_hanh_chinh', 'count'=>@$governanceAgency),   
+            '6'=>array('id'=>6,'name'=>'Lễ hội và sự kiện','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/su-kien.png','urlSlug'=>'le_hoi', 'count'=>@$festival), 
+            '7'=>array('id'=>7,'name'=>'Khách sạn và trung tâm hội nghị, sự kiện','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/khach-san-va-dich-vu-du-lich.png','urlSlug'=>'khach_san', 'count'=>@$_SESSION['totalHotel']),   
+            '8'=>array('id'=>8,'name'=>'Nhà hàng và quán ăn','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/nha-hang-va-quan-an.png','urlSlug'=>'nha_hang', 'count'=>@$restaurant),   
+            '9'=>array('id'=>9,'name'=>'Giải trí và thư giãn','class'=>'fa-print','image'=>'https://demo.hoankiem360.vn/app/webroot/upload/admin/files/giai-tri-va-thu-dan.png','urlSlug'=>'giai_tri', 'count'=>@$entertainment),  
         );                                  
              
     }

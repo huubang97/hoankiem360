@@ -500,6 +500,7 @@ function getNoticeInCategoryAPI($input){
     if($return){
         foreach ($return as $key => $value) {
             $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+            $return[$key]['Notice']['image']= (strpos($value['Notice']['image'], 'http') !== false)?$value['Notice']['image']:'https://demo.hoankiem360.vn'.$value['Notice']['image'];
         }
     }
 
@@ -514,8 +515,38 @@ function viewNoticeAPI($input)
     if(!empty($dataSend['id'])){
         global $modelNotice;
         $data= $modelNotice->getNotice($dataSend['id']);
+        $data['Notice']['image']= (strpos($data['Notice']['image'], 'http') !== false)?$data['Notice']['image']:'https://demo.hoankiem360.vn'.$data['Notice']['image'];
         $return= array('code'=>1,'data'=>$data);
     }
+    echo json_encode($return);
+}
+
+function searchViewNoticeAPI($input){
+    
+     header('Access-Control-Allow-Methods: *');
+    $modelHklake = new Hklake();
+    $dataSend = arrayMap($input['request']->data);
+        global $modelNotice;
+        global $urlHomes;
+        $conditions = array();
+          if(!empty($dataSend['name'])){
+             $key=createSlugMantan($dataSend['name']);
+            $conditions['slug']= array('$regex' => $key);
+        }
+
+        $order= array('created'=>'desc');
+
+        $totalData= $modelNotice->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+        if($totalData){
+        foreach ($totalData as $key => $value) {
+            $totalData[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+            $totalData[$key]['Notice']['image']= (strpos($value['Notice']['image'], 'http') !== false)?$value['Notice']['image']:'https://demo.hoankiem360.vn'.$value['Notice']['image'];
+        }
+    }
+
+        $return= array('code'=>1,'listData'=>$totalData);
+
     echo json_encode($return);
 }
 
@@ -536,6 +567,7 @@ function getNoticeHotAPI($input){
     if($return){
         foreach ($return as $key => $value) {
             $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+            $return[$key]['Notice']['image']= (strpos($value['Notice']['image'], 'http') !== false)?$value['Notice']['image']:'https://demo.hoankiem360.vn'.$value['Notice']['image'];
         }
     }
     echo json_encode($return);
@@ -558,38 +590,44 @@ function getNoticeNewAPI($input){
     if($return){
         foreach ($return as $key => $value) {
             $return[$key]['Notice']['url']= $urlHomes.'viewNoticeAPI?id='.$value['Notice']['id'];
+
+            $return[$key]['Notice']['image']= (strpos($value['Notice']['image'], 'http') !== false)?$value['Notice']['image']:'https://demo.hoankiem360.vn'.$value['Notice']['image'];
         }
     }
     echo json_encode($return);
 }
 
+
+
 function saveNotificationUserAPI($input)
 {
     global $contactSite;
     global $smtpSite;
-
-    $modelUser= new Userhotel();
     $modelNotification = new Notification();
-    $modelHotel= new Hotel();
-
+         header('Access-Control-Allow-Methods: *');
     $dataSend = $input['request']->data;
-    $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
-    if(!empty($dataUser['User']['accessToken'])){
+
+    $dataPost= array('accessToken'=>$dataSend['accessToken'],);
+            $user= sendDataConnectMantan('https://api.quanlyluutru.com/getFavoriteHotelUserAPI', $dataPost);
+            $user= str_replace('ï»¿', '', utf8_encode($user));
+            $user= json_decode($user, true);
+
+    if(!empty($user['User']['accessToken'])){
         $today= getdate();
 
         $save['Notification']['idHotel']= $dataSend['idHotel'];
         $save['Notification']['idRoom']= $dataSend['idRoom'];
         $save['Notification']['content']= $dataSend['content'];
         $save['Notification']['time']= $today[0];
-        $save['Notification']['idUser']= $dataUser['User']['id'];
-        $save['Notification']['user']= $dataUser['User']['user'];
+        $save['Notification']['idUser']= $user['User']['id'];
+        $save['Notification']['user']= $user['User']['user'];
         $save['Notification']['phone']= $dataSend['phone'];
         $save['Notification']['to']= 'manager';
         $save['Notification']['status']= 'new';
 
         if($modelNotification->save($save)){
             $return = array('code'=>0);
-            $hotel= $modelHotel->getHotel($dataSend['idHotel'],array('email') );
+           /* $hotel= $modelHotel->getHotel($dataSend['idHotel'],array('email') );
             if(!empty($hotel['Hotel']['email'])){
                 // send email for user and admin
                 $from = array($contactSite['Option']['value']['email'] => $smtpSite['Option']['value']['show']);
@@ -603,7 +641,7 @@ function saveNotificationUserAPI($input)
                 $content = 'Bạn nhận được thông báo mới từ khách hàng, nội dung như sau:<br/><br/>'.$dataSend['content'];
                 
                 $modelNotification->sendMail($from, $to, $cc, $bcc, $subject, $content);
-            }
+            }*/
         }else{
             $return = array('code'=>1);
         }
@@ -616,11 +654,13 @@ function saveNotificationUserAPI($input)
 
 function getListRequestUserAPI($input)
 {
-    $modelUser= new Userhotel();
     $modelNotification = new Notification();
-
+     header('Access-Control-Allow-Methods: *');
     $dataSend = $input['request']->data;
-    $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
+    $dataPost= array('accessToken'=>$dataSend['accessToken']);
+            $dataUser= sendDataConnectMantan('https://api.quanlyluutru.com/getFavoriteHotelUserAPI', $dataPost);
+            $dataUser= str_replace('ï»¿', '', utf8_encode($dataUser));
+            $dataUser= json_decode($dataUser, true);
     $return = array('code'=>0);
 
     if(!empty($dataUser['User']['accessToken'])){
@@ -643,12 +683,17 @@ function getListRequestUserAPI($input)
 
 function getListNotificationUserAPI($input)
 {
-    $modelUser= new Userhotel();
     $modelNotification = new Notification();
-
+    header('Access-Control-Allow-Methods: *');
     $dataSend = $input['request']->data;
     if(!empty($dataSend['accessToken'])){
         $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
+
+         $dataPost= array('accessToken'=>$dataSend['accessToken']);
+            $dataUser= sendDataConnectMantan('https://api.quanlyluutru.com/getFavoriteHotelUserAPI', $dataPost);
+            $dataUser= str_replace('ï»¿', '', utf8_encode($dataUser));
+            $dataUser= json_decode($dataUser, true);
+            $return = array('code'=>0);
     }
     $return = array('code'=>0);
 
@@ -672,6 +717,24 @@ function getListNotificationUserAPI($input)
 
     $return = array('code'=>1,'data'=>$data);
     
+    echo json_encode($return);
+}
+
+function listlocationAPI($input){
+    global $modelNotice;
+    global $urlHomes;
+        
+    $destination = destination();
+        
+    $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
+    if($page<1) $page=1;
+    $limit= 15;
+    $conditions= array();
+    $fields= array();
+
+    $return= destination();
+
+
     echo json_encode($return);
 }
 ?>
