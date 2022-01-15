@@ -760,6 +760,8 @@ function tinhthoigian(){
 
      	var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 
+     	console.log(data);
+
       if(date!=date_start){
          $('#textDiscount').html('bạn phải chọn ngày vào dự kiến hôm nay');
             $('#buttonSend').hide();
