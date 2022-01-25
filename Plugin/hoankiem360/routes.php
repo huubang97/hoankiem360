@@ -61,4 +61,5 @@
    $routesPlugin['getListRequestUserAPI'] = 'hoankiem360/view/getListRequestUserAPI.php';
    $routesPlugin['getListNotificationUserAPI'] = 'hoankiem360/view/getListNotificationUserAPI.php';
    $routesPlugin['listlocationAPI'] = 'hoankiem360/view/listlocationAPI.php';
+   $routesPlugin['saveTokenDeviceUserAPI'] = 'hoankiem360/view/saveTokenDeviceUserAPI.php';
 ?>

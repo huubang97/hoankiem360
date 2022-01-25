@@ -615,13 +615,11 @@ function saveNotificationUserAPI($input)
     if(!empty($user['User']['accessToken'])){
         $today= getdate();
 
-        $save['Notification']['idHotel']= $dataSend['idHotel'];
-        $save['Notification']['idRoom']= $dataSend['idRoom'];
-        $save['Notification']['content']= $dataSend['content'];
+        $save['Notification']['content']= @$dataSend['content'];
         $save['Notification']['time']= $today[0];
         $save['Notification']['idUser']= $user['User']['id'];
         $save['Notification']['user']= $user['User']['user'];
-        $save['Notification']['phone']= $dataSend['phone'];
+        $save['Notification']['phone']= $user['User']['phone'];
         $save['Notification']['to']= 'manager';
         $save['Notification']['status']= 'new';
 
@@ -667,7 +665,7 @@ function getListRequestUserAPI($input)
         $page = (!empty($dataSend['page']))?(int)$dataSend['page']:1;
         if($page<1) $page=1;
         $limit= 15;
-        $conditions = array('idUser'=>$dataUser['User']['id'],'idHotel'=>$dataSend['idHotel'],'to'=>'manager');
+        $conditions = array('idUser'=>$dataUser['User']['id'],'to'=>'manager');
         $order = array('created' => 'desc');
         $fields= array();
 
@@ -737,4 +735,50 @@ function listlocationAPI($input){
 
     echo json_encode($return);
 }
+
+function saveTokenDeviceUserAPI($input)
+{
+    global $keyManMoChat;
+
+   //$modelUser= new Userhotel();
+    $modelTokenDevice= new TokenDevice();
+
+    $dataSend = $input['request']->data;
+
+    // if(!empty($dataSend['accessToken'])){
+    //     $dataUser = $modelUser->checkLoginByToken($dataSend['accessToken']);
+    // }
+
+    if(!empty($dataSend['tokenDevice'])){
+        // lưu vào bảng user
+        /*if(!empty($dataUser['User']['accessToken'])){
+            $save['$set']['tokenDevice']= $dataSend['tokenDevice'];
+            $id= new MongoId($dataUser['User']['id']);
+            $dk= array('_id'=>$id);
+
+            if($modelUser->updateAll($save,$dk)){
+
+                $return = array('code'=>0);
+            }else{
+                $return = array('code'=>1);
+            }
+        }else{
+            $return = array('code'=>-1);
+        }*/
+        
+        // lưu vào bảng token
+        $tokenDevice= $modelTokenDevice->find('first', array('conditions'=>array('tokenDevice'=>$dataSend['tokenDevice'])));
+
+        $tokenDevice['TokenDevice']['tokenDevice']= $dataSend['tokenDevice'];
+        $tokenDevice['TokenDevice']['userId']= @$dataUser['User']['id'];
+        $tokenDevice['TokenDevice']['lastUpdate']= time();
+        if($modelTokenDevice->save($tokenDevice)){
+             $return = array('code'=>0);
+        }
+    }
+    
+    echo json_encode($return);
+}
+
+
 ?>
